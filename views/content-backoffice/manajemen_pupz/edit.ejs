@@ -1,0 +1,231 @@
+<% include ../../template-backoffice/header.ejs %>
+
+<!-- BEGIN PAGE CONTENT -->
+<div class="page-content">
+  <div class="header">
+    <h2><strong>Edit Data PUPZ</strong></h2>
+    <div class="breadcrumb-wrapper">
+      <ol class="breadcrumb">
+        <li><a href="/backoffice">Dashboard</a></li>
+        <li><a href="/manajemen_pupz">Data PUPZ</a></li>
+        <li class="active">Edit Data</li>
+      </ol>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="panel">
+        <div class="panel-content">
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <form role="form" action="/manajemen_pupz/submit_edit" method="POST">
+                <input type="text" name="id" value="<%= data[0].id%>">
+                <div class="form-group">
+                  <label>Diizinkan</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                      <textarea class="form-control" rows="3" name="" id="diizinkan"><%= data[0].diizinkan%></textarea>  
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Terbatas</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                      <textarea class="form-control" rows="3" name="" id="terbatas"><%= data[0].terbatas%></textarea>  
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Bersyarat</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                      <textarea class="form-control" rows="3" name=""  id="bersyarat"><%= data[0].bersyarat%></textarea>  
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label>Dilarang</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                      <textarea class="form-control" rows="3" name=""  id="dilarang"><%= data[0].dilarang%></textarea>  
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Ketentuan Lain</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                      <textarea class="form-control" rows="3" name=""  id="tentulain"><%= data[0].ketentuan%></textarea>  
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Keterangan Lain</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                      <textarea class="form-control" rows="3" name=""  id="ketlain"><%= data[0].keterangan%></textarea>  
+                    </div>
+                  </div>
+                </div>
+                
+
+                <button type="submit" class="btn btn-primary btn-embossed">Simpan Data</button>
+              </form>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="copyright">
+      <p class="pull-left sm-pull-reset">
+        <span>Copyright <span class="copyright">©</span> 2017 </span>
+        <span>Pemerintah Kabupaten Pekalongan</span>.
+      </p>
+    </div>
+  </div>
+</div>
+<!-- END PAGE CONTENT -->
+
+<% include ../../template-backoffice/footer.ejs %>
+<script type="text/javascript">
+  $(document).ready(function() {
+    // Option ckeditor
+    CKEDITOR.replace( 'diizinkan', {
+      toolbarGroups: [
+        { name: 'clipboard', groups: [ 'clipboard', 'undo' ] },
+        { name: 'editing', groups: [ 'find', 'selection', 'spellchecker', 'editing' ] },
+        { name: 'links', groups: [ 'links' ] },
+        { name: 'insert', groups: [ 'insert' ] },
+        { name: 'forms', groups: [ 'forms' ] },
+        { name: 'tools', groups: [ 'tools' ] },
+        { name: 'document', groups: [ 'mode', 'document', 'doctools' ] },
+        { name: 'others', groups: [ 'others' ] },
+        '/',
+        { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
+        { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi', 'paragraph' ] },
+        { name: 'styles', groups: [ 'styles' ] },
+        { name: 'colors', groups: [ 'colors' ] },
+        { name: 'about', groups: [ 'about' ] }
+      ],
+
+      removeButtons: 'Underline,Subscript,Superscript,About,Image,Styles,Format'
+    });
+
+    CKEDITOR.replace( 'terbatas', {
+      toolbarGroups: [
+        { name: 'clipboard', groups: [ 'clipboard', 'undo' ] },
+        { name: 'editing', groups: [ 'find', 'selection', 'spellchecker', 'editing' ] },
+        { name: 'links', groups: [ 'links' ] },
+        { name: 'insert', groups: [ 'insert' ] },
+        { name: 'forms', groups: [ 'forms' ] },
+        { name: 'tools', groups: [ 'tools' ] },
+        { name: 'document', groups: [ 'mode', 'document', 'doctools' ] },
+        { name: 'others', groups: [ 'others' ] },
+        '/',
+        { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
+        { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi', 'paragraph' ] },
+        { name: 'styles', groups: [ 'styles' ] },
+        { name: 'colors', groups: [ 'colors' ] },
+        { name: 'about', groups: [ 'about' ] }
+      ],
+
+      removeButtons: 'Underline,Subscript,Superscript,About,Image,Styles,Format'
+    });
+
+    CKEDITOR.replace( 'bersyarat', {
+      toolbarGroups: [
+        { name: 'clipboard', groups: [ 'clipboard', 'undo' ] },
+        { name: 'editing', groups: [ 'find', 'selection', 'spellchecker', 'editing' ] },
+        { name: 'links', groups: [ 'links' ] },
+        { name: 'insert', groups: [ 'insert' ] },
+        { name: 'forms', groups: [ 'forms' ] },
+        { name: 'tools', groups: [ 'tools' ] },
+        { name: 'document', groups: [ 'mode', 'document', 'doctools' ] },
+        { name: 'others', groups: [ 'others' ] },
+        '/',
+        { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
+        { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi', 'paragraph' ] },
+        { name: 'styles', groups: [ 'styles' ] },
+        { name: 'colors', groups: [ 'colors' ] },
+        { name: 'about', groups: [ 'about' ] }
+      ],
+
+      removeButtons: 'Underline,Subscript,Superscript,About,Image,Styles,Format'
+    });
+
+    CKEDITOR.replace( 'dilarang', {
+      toolbarGroups: [
+        { name: 'clipboard', groups: [ 'clipboard', 'undo' ] },
+        { name: 'editing', groups: [ 'find', 'selection', 'spellchecker', 'editing' ] },
+        { name: 'links', groups: [ 'links' ] },
+        { name: 'insert', groups: [ 'insert' ] },
+        { name: 'forms', groups: [ 'forms' ] },
+        { name: 'tools', groups: [ 'tools' ] },
+        { name: 'document', groups: [ 'mode', 'document', 'doctools' ] },
+        { name: 'others', groups: [ 'others' ] },
+        '/',
+        { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
+        { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi', 'paragraph' ] },
+        { name: 'styles', groups: [ 'styles' ] },
+        { name: 'colors', groups: [ 'colors' ] },
+        { name: 'about', groups: [ 'about' ] }
+      ],
+
+      removeButtons: 'Underline,Subscript,Superscript,About,Image,Styles,Format'
+    });
+
+    CKEDITOR.replace( 'tentulain', {
+      toolbarGroups: [
+        { name: 'clipboard', groups: [ 'clipboard', 'undo' ] },
+        { name: 'editing', groups: [ 'find', 'selection', 'spellchecker', 'editing' ] },
+        { name: 'links', groups: [ 'links' ] },
+        { name: 'insert', groups: [ 'insert' ] },
+        { name: 'forms', groups: [ 'forms' ] },
+        { name: 'tools', groups: [ 'tools' ] },
+        { name: 'document', groups: [ 'mode', 'document', 'doctools' ] },
+        { name: 'others', groups: [ 'others' ] },
+        '/',
+        { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
+        { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi', 'paragraph' ] },
+        { name: 'styles', groups: [ 'styles' ] },
+        { name: 'colors', groups: [ 'colors' ] },
+        { name: 'about', groups: [ 'about' ] }
+      ],
+
+      removeButtons: 'Underline,Subscript,Superscript,About,Image,Styles,Format'
+    });
+
+    CKEDITOR.replace( 'ketlain', {
+      toolbarGroups: [
+        { name: 'clipboard', groups: [ 'clipboard', 'undo' ] },
+        { name: 'editing', groups: [ 'find', 'selection', 'spellchecker', 'editing' ] },
+        { name: 'links', groups: [ 'links' ] },
+        { name: 'insert', groups: [ 'insert' ] },
+        { name: 'forms', groups: [ 'forms' ] },
+        { name: 'tools', groups: [ 'tools' ] },
+        { name: 'document', groups: [ 'mode', 'document', 'doctools' ] },
+        { name: 'others', groups: [ 'others' ] },
+        '/',
+        { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
+        { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi', 'paragraph' ] },
+        { name: 'styles', groups: [ 'styles' ] },
+        { name: 'colors', groups: [ 'colors' ] },
+        { name: 'about', groups: [ 'about' ] }
+      ],
+
+      removeButtons: 'Underline,Subscript,Superscript,About,Image,Styles,Format'
+    });
+    // End option ckeditor
+  });
+</script>

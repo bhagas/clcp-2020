@@ -1,0 +1,220 @@
+<% include ../../template-backoffice/header.ejs %>
+
+<!-- BEGIN PAGE CONTENT -->
+<div class="page-content">
+  <div class="header">
+    <h2><strong>Edit Data Saran</strong></h2>
+    <div class="breadcrumb-wrapper">
+      <ol class="breadcrumb">
+        <li><a href="/backoffice">Dashboard</a></li>
+        <li><a href="/manajemen_saran">Data Saran</a></li>
+        <li class="active">Edit Data</li>
+      </ol>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="panel">
+        <div class="panel-content">
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <form role="form" action="/manajemen_saran/submit_edit" method="POST" >
+                <input type="hidden" class="form-control" id="" name="id" value="<%= data[0].id%>">
+
+                <div class="row">
+                  <div class="col-md-6 col-lg-6">
+                    <div class="form-group">
+                      <label>NIK</label>
+                      <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                          <input type="text" class="form-control" name="nik" id="" value="<%= data[0].nik%>" disabled>    
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label>Alamat</label>
+                      <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                          <input type="text" class="form-control" name="alamat" id="" value="<%= data[0].alamat%>" disabled>    
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label>Email</label>
+                      <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                          <input type="text" class="form-control" name="email" id="" value="<%= data[0].email%>" disabled>    
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label>Foto Permasalahan</label>
+                      <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                          
+                          <img src="/foto/<%= data[0].foto%>"> 
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="col-md-6 col-lg-6">
+                    <div class="form-group">
+                      <label>Nama</label>
+                      <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                          <input type="text" class="form-control" name="" id="" value="<%= data[0].nama%>" disabled>    
+                        </div>
+                      </div>
+                    </div>
+
+
+                    <div class="form-group">
+                      <label>No. Telepon</label>
+                      <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                          <input type="text" class="form-control" name="" id="" value="<%= data[0].telp%>" disabled>    
+                        </div>
+                      </div>
+                    </div>
+
+
+                    <div class="form-group">
+                      <label>Koordinat Permasalahan</label>
+                      <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                          <input type="text" class="form-control" name="" id="" value="<%= data[0].x%>, <%= data[0].y%>" disabled>    
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label>Publish ?</label>
+                      <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                         <select class="form-control" name="publis" id="">
+                            <option value="0" <% if(data[0].publis==0){%> selected<% }%>>Tidak</option>
+                            <option value="1" <% if(data[0].publis==1){%> selected<% }%>>Ya</option>
+                         </select> 
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="row">
+                  <div class="co-md-12 col-lg-12">
+                    <div class="form-group">
+                      <label>Pengaduan</label>
+                      <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                          <textarea class="form-control" rows="3" id="editor1" name="" disabled><%- data[0].pengaduan%></textarea>   
+                        </div>
+                      </div>
+                    </div>
+
+
+                    <div class="form-group">
+                      <label>Tanggapan</label>
+                      <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                          <textarea class="form-control" rows="3" id="editor2" name="tanggapan"><%- data[0].tanggapan%></textarea> 
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+
+                
+
+                
+
+                
+
+                
+                <button type="submit" class="btn btn-primary btn-embossed">Simpan Data</button>
+              </form>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="copyright">
+      <p class="pull-left sm-pull-reset">
+        <span>Copyright <span class="copyright">©</span> 2017 </span>
+        <span>Pemerintah Kabupaten Pekalongan</span>.
+      </p>
+    </div>
+  </div>
+</div>
+<!-- END PAGE CONTENT -->
+
+<% include ../../template-backoffice/footer.ejs %>
+<script type="text/javascript">
+  $(document).ready(function() {
+    // Option ckeditor
+    CKEDITOR.replace( 'editor1', {
+      toolbarGroups: [
+        { name: 'clipboard', groups: [ 'clipboard', 'undo' ] },
+        { name: 'editing', groups: [ 'find', 'selection', 'spellchecker', 'editing' ] },
+        { name: 'links', groups: [ 'links' ] },
+        { name: 'insert', groups: [ 'insert' ] },
+        { name: 'forms', groups: [ 'forms' ] },
+        { name: 'tools', groups: [ 'tools' ] },
+        { name: 'document', groups: [ 'mode', 'document', 'doctools' ] },
+        { name: 'others', groups: [ 'others' ] },
+        '/',
+        { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
+        { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi', 'paragraph' ] },
+        { name: 'styles', groups: [ 'styles' ] },
+        { name: 'colors', groups: [ 'colors' ] },
+        { name: 'about', groups: [ 'about' ] }
+      ],
+
+      removeButtons: 'Underline,Subscript,Superscript,About,Image,Styles,Format'
+    });
+    // End option ckeditor
+
+    // Option ckeditor
+    CKEDITOR.replace( 'editor2', {
+      toolbarGroups: [
+        { name: 'clipboard', groups: [ 'clipboard', 'undo' ] },
+        { name: 'editing', groups: [ 'find', 'selection', 'spellchecker', 'editing' ] },
+        { name: 'links', groups: [ 'links' ] },
+        { name: 'insert', groups: [ 'insert' ] },
+        { name: 'forms', groups: [ 'forms' ] },
+        { name: 'tools', groups: [ 'tools' ] },
+        { name: 'document', groups: [ 'mode', 'document', 'doctools' ] },
+        { name: 'others', groups: [ 'others' ] },
+        '/',
+        { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
+        { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi', 'paragraph' ] },
+        { name: 'styles', groups: [ 'styles' ] },
+        { name: 'colors', groups: [ 'colors' ] },
+        { name: 'about', groups: [ 'about' ] }
+      ],
+
+      removeButtons: 'Underline,Subscript,Superscript,About,Image,Styles,Format'
+    });
+    // End option ckeditor
+  });
+</script>

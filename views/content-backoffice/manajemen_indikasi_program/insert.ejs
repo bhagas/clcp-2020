@@ -1,0 +1,175 @@
+<% include ../../template-backoffice/header.ejs %>
+<!-- BEGIN PAGE CONTENT -->
+<div class="page-content">
+  <div class="header">
+    <h2><strong>Tambah Data Indikasi Program</strong></h2>
+    <div class="breadcrumb-wrapper">
+      <ol class="breadcrumb">
+        <li><a href="/backoffice">Dashboard</a></li>
+        <li><a href="/manajemen_indikasi_program">Data Indikasi Program</a></li>
+        <li class="active">Tambah Data</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="panel">
+        <div class="panel-content">
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <form role="form" action="/manajemen_indikasi_program/submit_insert" method="POST" >
+                <div class="form-group">
+                  <label>Indikasi Program Utama</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                      <input type="text" class="form-control" name="ip_utama" id="" placeholder="">    
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Program</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                      <input type="text" class="form-control" name="program" id="" placeholder="">    
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Kegiatan</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <textarea name="keg" class="form-control"></textarea>
+                          
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Lokasi</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+                      <textarea name="lokasi" class="form-control" id="lokasi"></textarea>
+
+                        
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Waktu Pelaksanaan</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                      <label>Tahun Awal</label>
+                      <select class="form-control" name="tahun" id="" data-search="true">
+                        <%for(var c = 2020; c <=2040; c++){%>
+        					        <option value="<%=c%>"><%=c%></option>
+        					      <%}%>
+                      </select>   
+                    </div>
+
+                    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                      <label>Tahun Akhir</label>
+                      <select class="form-control" name="tahun_akhir" id="" data-search="true">
+                        <%for(var c = 2020; c <=2040; c++){%>
+        					        <option value="<%=c%>"><%=c%></option>
+        					      <%}%>
+                      </select>  
+                    </div>
+                  </div>
+                </div>
+
+                
+
+                <!-- <div class="form-group">
+                  <label>Realisasi Lokasi</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                      <input type="text" class="form-control" name="r_lokasi" id="" placeholder="">    
+                    </div>
+                  </div>
+                </div> -->
+
+                <div class="form-group">
+                  <label>Sumber Dana</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                      <!-- <select class="form-control" name="sumber_dana" id="">
+                        <option value="">-- Pilih --</option>
+                        <option>APBN</option>
+                        <option>APBD Provinsi</option>
+                        <option>APBD Kabupaten</option>
+                      </select> -->
+                      <input type="text" class="form-control" name="sumber_dana" id="">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Biaya (Rp)</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                      <input type="text" class="form-control" name="biaya" id="" placeholder="">    
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Pelaksana</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                      <input type="text" class="form-control" name="pelaksana" id="" placeholder="">    
+                    </div>
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-embossed">Simpan Data</button>
+              </form>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <div class="copyright">
+      <p class="pull-left sm-pull-reset">
+        <span>Copyright <span class="copyright">©</span> 2017 </span>
+        <span>Pemerintah Kabupaten Pekalongan</span>.
+      </p>
+    </div>
+  </div>
+</div>
+<!-- END PAGE CONTENT -->
+
+<% include ../../template-backoffice/footer.ejs %>
+<script type="text/javascript">
+  $(document).ready(function() {
+    // Option ckeditor
+    CKEDITOR.replace( 'lokasi', {
+      toolbarGroups: [
+        { name: 'clipboard', groups: [ 'clipboard', 'undo' ] },
+        { name: 'editing', groups: [ 'find', 'selection', 'spellchecker', 'editing' ] },
+        { name: 'links', groups: [ 'links' ] },
+        { name: 'insert', groups: [ 'insert' ] },
+        { name: 'forms', groups: [ 'forms' ] },
+        { name: 'tools', groups: [ 'tools' ] },
+        { name: 'document', groups: [ 'mode', 'document', 'doctools' ] },
+        { name: 'others', groups: [ 'others' ] },
+        '/',
+        { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
+        { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi', 'paragraph' ] },
+        { name: 'styles', groups: [ 'styles' ] },
+        { name: 'colors', groups: [ 'colors' ] },
+        { name: 'about', groups: [ 'about' ] }
+      ],
+
+      removeButtons: 'Underline,Subscript,Superscript,About,Image,Styles,Format'
+    });
+    // End option ckeditor
+  });
+</script>

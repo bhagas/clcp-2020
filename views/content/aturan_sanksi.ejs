@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link rel="shortcut icon" href="/images/template/Logo Kab Pekalongan.ico">
+	<title>Sistem Informasi RTRW Kabupaten Pekalongan</title>
+
+	<link href="/stylesheets/template/css/theme.css" rel="stylesheet">
+	<link href="/stylesheets/template/css/style.css" rel="stylesheet">
+	<link href="/stylesheets/template/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  
+  <!-- Plugins This Page -->
+  <link href="/plugins/datatables/dataTables.css" rel="stylesheet">
+  <!-- End Plugins This Page -->
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+  <style type="text/css">
+    body{
+        font-family: "Source Sans Pro";
+    }
+
+    .section-one ul.list-unstyled li{
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+
+    .section-one ul.list-unstyled li a{
+        text-decoration: none;
+        color: black;
+        font-weight: 700;
+    }
+
+    #data thead tr td{
+      font-weight: 700
+    }
+
+    #konten:before{
+      content: "";
+      width: 210px;
+      height: 100%;
+      background-color: #f9941c;
+      position: absolute;
+      left: -210px;
+      bottom: 0;
+      z-index: -1;
+    }
+  </style>
+</head>
+
+<body>
+    <section class="section-one">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-2 col-lg-2 p-l-0 p-r-0">
+              <div style="width: 100%;height: 100vh;background-color: #f9941c;">
+                <div class="row">
+                  <div class="col-md-12 col-lg-12">
+                    <div style="width: 100%;background-color: #ffca4f;padding:  15px;">
+                      <center><img src="/images/template/Logo Kab Pekalongan.png"></center>
+                      <h5 class="m-b-0 text-center"><strong>PEMERINTAH KABUPATEN PEKALONGAN</strong></h5>
+                      <h6 class="m-t-5 m-b-0 text-center"><strong>SISTEM INFORMASI RTRW KABUPATEN PEKALONGAN</strong></h6>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row p-l-15 p-r-15">
+                  <div class="col-md-12 col-lg-12 m-t-15">
+                    <ul class="list-unstyled">
+                      <li><a href="/">HOME</a></li>
+                      <li><a href="/struktur_ruang">STRUKTUR RUANG</a></li>
+                      <li><a href="/pola_ruang">POLA RUANG</a></li>
+                      <li><a href="/indikasi_program">INDIKASI PROGRAM</a></li>
+                      <li><a href="/aturan_sanksi">ATURAN & SANKSI</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div id="konten" class="col-md-10 col-lg-10" style="position: relative;min-height: 100vh">
+              <div class="row m-t-15">
+                <div class="col-md-6 col-lg-6">
+                  <div id="btn_tabs_1" style="width: 100%;background-color: #ffca4f;display: table;cursor: pointer;border-bottom:4px solid #f9941c;border-right:4px solid #f9941c;border-radius:4px;">
+                    <div style="display: table-row;">
+                      <div style="display: table-cell;height: 60px;vertical-align: middle;">
+                        <h5 class="m-t-0 m-b-0 text-center"><strong>ARAHAN SANKSI</strong></h5>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-6 col-lg-6">
+                  <div id="btn_tabs_2" style="width: 100%;background-color: #ffca4f;display: table;cursor: pointer;border-bottom:4px solid #f9941c;border-right:4px solid #f9941c;border-radius:4px;">
+                    <div style="display: table-row;">
+                      <div style="display: table-cell;height: 60px;vertical-align: middle;">
+                        <h5 class="m-t-0 m-b-0 text-center"><strong>PERIZINAN & INSENTIF DISINSENTIF</strong></h5>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>  
+
+              <div class="row" id="tab_1" style="padding-bottom: 60px;margin-top:30px;">
+                <div class="col-md-12 col-lg-12">
+                  <object data="/document/Arahan Sanksi.pdf" width="100%" height="500" type='application/pdf'>
+                  <p>Sorry, the PDF couldn't be displayed :(</p>
+                  </object>
+                </div>
+              </div>
+
+              <div class="row" id="tab_2" style="padding-bottom: 60px;margin-top:30px;">
+                <div class="col-md-12 col-lg-12">
+                  <object data="/document/Izin dan Insentif Disinsentif.pdf" width="100%" height="500" type='application/pdf'>
+                  <p>Sorry, the PDF couldn't be displayed :(</p>
+                  </object>
+                </div>
+              </div>
+
+              <div class="row" >
+                <div class="col-md-12 col-lg-12" style="position: absolute;bottom: 0;left: 0;right: 0;background-color: #f9941c">
+                  <div >
+                    <h5 class="text-center"><strong>Copyright &copy; 2017 PEMERINTAH KABUPATEN PEKALONGAN</strong></h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </section>
+
+    <script src="/plugins/jquery/jquery-1.11.1.min.js"></script>
+    <script src="/javascripts/template/bootstrap.min.js"></script>
+    
+    <!-- Plugins This Page -->
+    <script src="/plugins/datatables/jquery.dataTables.min.js"></script>
+    <!-- End Plugins This Page -->
+    <script type="text/javascript">
+      $('#tab_2').hide(); 
+
+      $('#btn_tabs_1').click(function() { 
+        $('#tab_1').show(); 
+        $('#tab_2').hide(); 
+      }); 
+   
+      $('#btn_tabs_2').click(function() { 
+        $('#tab_1').hide(); 
+        $('#tab_2').show(); 
+      }); 
+
+
+      $('#data').DataTable({ 
+        "language": { 
+            "sProcessing":   "Sedang memproses...", 
+            "sLengthMenu":   "_MENU_", 
+            "sZeroRecords":  "Tidak ditemukan data yang sesuai", 
+            "sInfo":         "Menampilkan _START_ sampai _END_ dari _TOTAL_ entri", 
+            "sInfoEmpty":    "Menampilkan 0 sampai 0 dari 0 entri", 
+            "sInfoFiltered": "(disaring dari _MAX_ entri keseluruhan)", 
+            "sInfoPostFix":  "", 
+            "sUrl":          "", 
+            "oPaginate": { 
+                "sFirst":    "Pertama", 
+                "sPrevious": "Sebelumnya", 
+                "sNext":     "Selanjutnya", 
+                "sLast":     "Terakhir" 
+            } 
+        }, 
+        // "columnDefs": [ 
+        //     { "width": "230px", "targets": 6}, 
+        // ], 
+      });
+    </script>
+</body>
+</html>

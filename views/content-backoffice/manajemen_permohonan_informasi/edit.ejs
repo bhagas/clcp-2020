@@ -1,0 +1,2762 @@
+<% include ../../template-backoffice/header.ejs %>
+
+<!-- BEGIN PAGE CONTENT -->
+<div class="page-content">
+  <div class="header">
+    <h2><strong>Edit Data Permohonan Informasi</strong></h2>
+    <div class="breadcrumb-wrapper">
+      <ol class="breadcrumb">
+        <li><a href="/backoffice">Dashboard</a></li>
+        <li><a href="/peta_informasi_tata_ruang/list">Data Permohonan Informasi</a></li>
+        <li class="active">Edit Data</li>
+      </ol>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="panel">
+        <div class="panel-content">
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <div class="tab tab-light clearfix">  
+                <ul class="nav nav-tabs text-center" role="tablist"> 
+                  <li class="active"><a href="#tab1-1" data-toggle="tab" aria-expanded="false"><i class="glyph-icon flaticon-buildings-1"></i><span class="font-custom">FORMULIR PERMOHONAN</span></a></li> 
+                  <li><a href="#tab1-2" data-toggle="tab" aria-expanded="true"><i class="glyph-icon flaticon-construction-14"></i><span class="font-custom">RINGKASAN INFORMASI TATA RUANG</span></a></li>
+                </ul> 
+                <div class="tab-content"> 
+                  <div role="tabpanel" class="tab-pane fade active in" id="tab1-1">
+                    <div class="row">
+                      <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                        <div class="row">
+                          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <div style="width: 100%;height: 40px;background-color: #f2f2f2;display: table;">
+                              <div style="display: table-row;">
+                                <div style="display: table-cell;vertical-align: middle;padding-left: 15px;">
+                                  <h5 style="margin-top: 0px;margin-bottom: 0px;"><strong>PETA LOKASI</strong></h5>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+          
+                          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <div style="width: 100%;border:2px solid #f2f2f2;padding: 10px;">
+                              <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                  <div style="width: 100%;height: 400px;background-color: #e0e0e0" id="map"></div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                        <div class="row">
+                          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <div style="width: 100%;height: 40px;background-color: #f2f2f2;display: table;">
+                              <div style="display: table-row;">
+                                <div style="display: table-cell;vertical-align: middle;padding-left: 15px;">
+                                  <h5 style="margin-top: 0px;margin-bottom: 0px;"><strong>KOORDINAT LOKASI</strong></h5>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+          
+                          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <div style="width: 100%;border:2px solid #f2f2f2;padding: 10px;">
+                              <table id="myTable" class="order-list" style="width: 100%;background-color: ;">
+                                  <thead>
+                                      <tr>
+                                          <td>Koordinat x</td>
+                                          <td>Koordinat y</td>
+                                      </tr>
+                                  </thead>
+                                  <tbody>
+                                      <tr>
+                                          <td>
+                                              <input type="text" name="x[]" style="width: 100%"/>
+                                          </td>
+                                          <td>
+                                              <input type="text" name="y[]" style="width: 100%"/>
+                                          </td>
+                                          <td><a class="deleteRow" style="width: 100%"></a>
+          
+                                          </td>
+                                      </tr>
+                                  </tbody>
+                                  <tfoot>
+                                      <tr>
+                                          <td>
+                                              <input type="button" id="addrow" value="Tambah Koordinat" />
+                                          </td>
+                                      </tr>
+                                     <tr>
+                                          <td>
+                                              <input type="button" id="parsepeta" value="Gambar Peta" />
+                                          </td>
+                                      </tr>
+                                     <tr>
+                                          <td>
+                                              <input type="button" id="reset_peta" value="Reset Peta" />
+                                          </td>
+                                      </tr>
+                                  </tfoot>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 table-no-border">
+                        <form role="form" action="/peta_informasi_tata_ruang/submit_edit" method="POST" enctype="multipart/form-data">
+                          <input type="hidden" class="form-control" id="" name="id" value="<%= data[0].id%>">
+                          <input type="hidden" class="form-control" id="shape" name="SHAPE" value="<%= data[0].wkt%>">
+                           <table class="table table-bordered">
+                             <tbody>
+                               <tr>
+                                 <td style="width: 20%;">Nama</td>
+                                 <td style="width: 1%">:</td>
+                                 <td><input type="text" class="form-control" name="nama" id="" value="<%= data[0].nama%>"></td>
+                               </tr>
+          
+                               <tr>
+                                <td>NIK</td>
+                                <td>:</td>
+                                <td><input type="text" class="form-control" name="nik" id="" value="<%= data[0].nik%>"></td>
+                              </tr>
+          
+                              <tr>
+                                <td>Email</td>
+                                <td>:</td>
+                                <td><input type="text" class="form-control" name="email" id="" value="<%= data[0].email%>"></td>
+                              </tr>
+          
+                              <tr>
+                                <td>Tempat Lahir</td>
+                                <td>:</td>
+                                <td><input type="text" class="form-control" name="tempat_lahir" id="" placeholder="" value="<%= data[0].tempat_lahir%>"></td>
+                              </tr>
+              
+                              <tr>
+                                <td>Tanggal Lahir</td>
+                                <td>:</td>
+                                <td><input type="text" class="form-control" name="tanggal_lahir" id="tgl" placeholder="" value="<%= data[0].tgl_lahir_tampil%>"></td>
+                              </tr>
+          
+                              <tr>
+                                <td>Pekerjaan</td>
+                                <td>:</td>
+                                <td><input type="text" class="form-control" name="pekerjaan" id="" placeholder="" value="<%= data[0].pekerjaan%>"></td>
+                              </tr>
+              
+                              <tr>
+                                <td>Alamat</td>
+                                <td>:</td>
+                                <td><input type="text" class="form-control" name="alamat" id="" placeholder="" value="<%= data[0].alamat%>"></td>
+                              </tr>
+          
+                              <tr>
+                                <td>No. Telepon/HP</td>
+                                <td>:</td>
+                                <td><input type="text" class="form-control" name="telp" id="" value="<%= data[0].telp%>"></td>
+                              </tr>
+          
+                              <tr>
+                                <td>Lokasi</td>
+                                <td>:</td>
+                                <td><input type="text" class="form-control" name="lokasi" id="" value="<%= data[0].lokasi%>"></td>
+                              </tr>
+          
+                              <tr>
+                                <td>Kecamatan</td>
+                                <td>:</td>
+                                <td>
+                                  <select class="form-control js-example-basic-multiple" name="kec" id="kec" style="width: 100%;">
+                                    <option value="">-- Pilih --</option>
+                                    <%for(let i =0; i < kec.length; i++){%>
+                                      <option value="<%=kec[i].kecamatan%>" <%= (kec[i].kecamatan==data[0].kec)?'selected':''%>  ><%=kec[i].kecamatan%></option>
+                                      <%}%>
+                                  </select>
+                                </td>
+                              </tr>
+              
+                              <tr>
+                                <td>Desa</td>
+                                <td>:</td>
+                                <td>
+                                  <select class="form-control js-example-basic-multiple" name="desa" id="desa" style="width: 100%;">
+                                    <%for(let i =0; i < desa.length; i++){%>
+                                      <option value="<%=desa[i].desa%>" <%= (desa[i].desa==data[0].desa)?'selected':''%>><%=desa[i].desa%></option>
+                                      <%}%>
+                                  </select>
+                                </td>
+                              </tr>
+              
+                              <tr>
+                                <td>Pekarangan Hak</td>
+                                <td>:</td>
+                                <td>
+                                  <select class="form-control" name="hak" id="">
+                                    <option value="">-- Pilih --</option>
+                                    <option value="Milik" <%= (data[0].hak=='Milik')?'selected':''%>>Milik</option>
+                                    <option value="Guna Bangunan" <%= (data[0].hak=='Guna Bangunan')?'selected':''%>>Guna Bangunan</option>
+                                    <option value="Tanah Negara" <%= (data[0].hak=='Tanah Negara')?'selected':''%>>Tanah Negara</option>
+                                  </select>
+                                </td>
+                              </tr>
+          
+                              <tr>
+                                <td>Nomor</td>
+                                <td>:</td>
+                                <td>
+                                  <input type="text" class="form-control" name="no_hak" id="" placeholder="" value="<%= data[0].no_hak%>">
+                                </td>
+                              </tr>
+              
+                              <tr>
+                                <td>Atas Nama</td>
+                                <td>:</td>
+                                <td>
+                                  <input type="text" class="form-control" name="atas_nama" id="" placeholder="" value="<%= data[0].atas_nama%>">
+                                </td>
+                              </tr>
+              
+                              <tr>
+                                <td>Luas Tanah</td>
+                                <td>:</td>
+                                <td>
+                                  <input type="text" class="form-control" name="luas" id="" placeholder="" value="<%= data[0].luas%>">
+                                </td>
+                              </tr>
+              
+                              <tr>
+                                <td>Rencana Pemanfaatan</td>
+                                <td>:</td>
+                                <td>
+                                  <textarea class="form-control" name="rencana" id="" rows="5"><%= data[0].rencana%></textarea>
+                                </td>
+                              </tr>
+              
+                              <tr>
+                                <td>Upload KTP</td>
+                                <td>:</td>
+                                <td>
+                                  
+                                  <input type="file" class="form-control" name="ktp" id="" placeholder="" >
+                                  <a href="/foto/<%= data[0].ktp%>" target="_blank">[DOWNLOAD]</a>
+                                </td>
+                              </tr>
+              
+                              <tr>
+                                <td>Upload Sertifikat</td>
+                                <td>:</td>
+                                <td>
+                                  
+                                  <input type="file" class="form-control" name="sertifikat" id="" placeholder="">
+                                  <a href="/foto/<%= data[0].sertifikat%>" target="_blank">[DOWNLOAD]</a>
+                                </td>
+                              </tr>
+          
+                              <tr>
+                                <td>No. Surat</td>
+                                <td>:</td>
+                                <td>
+                                  <!-- <a href="/foto/<%= data[0].sertifikat%>" target="_blank">[DOWNLOAD]</a> -->
+                                  <input type="text" class="form-control" name="no_surat" id="no_surat" value="<%= data[0].no_surat%>">
+                                </td>
+                              </tr>
+          
+                              <tr>
+                                <td>Tanggal Surat</td>
+                                <td>:</td>
+                                <td>
+                                  <!-- <a href="/foto/<%= data[0].sertifikat%>" target="_blank">[DOWNLOAD]</a> -->
+                                  <input type="text" class="form-control" name="tanggal_surat" id="tanggal_surat" value="<%= data[0].tgl_tampil%>">
+                                </td>
+                              </tr>
+          
+                              <tr>
+                                <td style="vertical-align:top">Persetujuan</td>
+                                <td style="vertical-align:top">:</td>
+                                <td style="vertical-align:top">
+                                  <select class="form-control" name="disetujui" id="">
+                                    <option value="0" <%= (data[0].disetujui=='0')?'selected':''%>>Belum</option>
+                                    <option value="1" <%= (data[0].disetujui=='1')?'selected':''%>>Sudah</option>
+                                  </select>
+
+                                  <i><p>Email akan otomatis dikirim ketika status disetujui!</p></i>
+                                </td>
+                              </tr>
+                             </tbody>
+                           </table>
+          
+                          <!-- <div class="form-group">
+                            <label>Nama Penanggung Jawab </label>
+                            <div class="row">
+                              <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                <input type="text" class="form-control" name="penanggung_jawab" id="" value="<%= data[0].penanggung_jawab%>">
+                              </div>
+                            </div>
+                          </div> -->
+          
+                          
+          
+                          <!-- <div class="form-group">
+                            <label>Keperluan</label>
+                            <div class="row">
+                              <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                <input type="text" class="form-control" name="keperluan" id="" value="<%= data[0].keperluan%>">
+                              </div>
+                            </div>
+                          </div> -->
+          
+                          
+                          
+          
+                          
+          
+                    
+          
+                          
+                           
+                          
+                          <button type="submit" class="btn btn-primary btn-embossed">Simpan</button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div role="tabpanel" class="tab-pane fade" id="tab1-2">
+                    <div class="row">
+                      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <table class="table table-bordered">
+                        <thead>
+                          <tr>
+                            <th ><strong>No.</strong></th>
+                            <th ><strong>Pola Ruang</strong></th>
+                            <th ><strong>Diizinkan</strong></th>
+                            <th ><strong>Terbatas</strong></th>
+                            <th ><strong>Bersyarat</strong></th>
+                            <th ><strong>Dilarang</strong></th>
+                            <th ><strong>Ketentuan Lainnya</strong></th>
+                            <th ><strong>Keterangan Lainnya</strong></th>
+                          </tr>
+                        </thead>
+          
+                        <tbody id="tabel_polaruang">
+                          
+                        </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+
+          
+
+          
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="copyright">
+      <p class="pull-left sm-pull-reset">
+        <span>Copyright <span class="copyright">©</span> 2017 </span>
+        <span>Pemerintah Kabupaten Pekalongan</span>.
+      </p>
+    </div>
+  </div>
+</div>
+<!-- END PAGE CONTENT -->
+
+<% include ../../template-backoffice/footer.ejs %>
+<script type="text/javascript">
+        
+            function toWKT (layer) {
+                var lng, lat, coords = [];
+               if (layer instanceof L.Polygon || layer instanceof L.Polyline) {
+                 var latlngs = layer.getLatLngs();
+               for (var i = 0; i < latlngs.length; i++) {
+                   var latlngs1 = latlngs[i];
+                   if (latlngs1.length){
+                   for (var j = 0; j < latlngs1.length; j++) {
+                     coords.push(latlngs1[j].lng + " " + latlngs1[j].lat);
+                     if (j === 0) {
+                       lng = latlngs1[j].lng;
+                       lat = latlngs1[j].lat;
+                     }
+                   }}
+                   else
+                   {
+                     coords.push(latlngs[i].lng + " " + latlngs[i].lat);
+                     if (i === 0) {
+                       lng = latlngs[i].lng;
+                       lat = latlngs[i].lat;
+                     }}
+               };
+                 if (layer instanceof L.Polygon) {
+                   return "POLYGON((" + coords.join(",") + "," + lng + " " + lat + "))";
+                 } else if (layer instanceof L.Polyline) {
+                   return "LINESTRING(" + coords.join(",") + ")";
+                 }
+               } else if (layer instanceof L.Marker) {
+                 return "POINT(" + layer.getLatLng().lng + " " + layer.getLatLng().lat + ")";
+               }
+             };
+             String.prototype.replaceAll = function(search, replacement) {
+                 var target = this;
+                 return target.split(search).join(replacement);
+             };
+
+             function pisah_wkt(poligon){
+              inputan_koordinat ="";
+              end_koordinat = "";
+              poligon = poligon.replaceAll("(", "");
+                 poligon = poligon.replaceAll(")", "");
+                 poligon = poligon.replace("POLYGON ", "");
+                 poligon = poligon.replace("POINT ", "");
+                 poligon = poligon.replace("LINESTRING ", "");
+                 poligon = poligon.replace("POLYGON", "");
+                 poligon = poligon.replace("POINT", "");
+                 poligon = poligon.replace("LINESTRING", "");
+
+                 var haha = 0;
+                 var a = poligon.split(",");
+               //  console.log(a)
+                 $('#myTable tbody').html('');
+                 var koordinat_akhir = a.length - 1;
+                 a.forEach(function(item, index){
+                  var b = item.split(" ");
+                
+                  if(index != koordinat_akhir){
+                        var newRow = $("<tr>");
+                        var cols = "";
+
+                        cols += '<td><input type="text" name="x[]" value="'+b[0]+'" style="width:100%"/></td>';
+                        cols += '<td><input type="text" name="y[]" value="'+b[1]+'" style="width:100%"/></td>';
+                         cols += '<td><input type="button" class="ibtnDel"  value="Hapus" style="width:100%"></td>';
+                      
+                        newRow.append(cols);
+                      //  if (counter == 4) $('#addrow').attr('disabled', true).prop('value', "You've reached the limit");
+                        $("table.order-list").append(newRow);
+                          
+                        inputan_koordinat = inputan_koordinat+''+b[0]+' '+b[1]+',';
+                  }else{
+                        end_koordinat= ''+b[0]+' '+b[1]
+                  }
+                  if(koordinat_akhir == 0){
+                      var newRow = $("<tr>");
+                      var cols = "";
+
+                      cols += '<td><input type="text" name="x[]" value="'+b[0]+'" style="width:100%"/></td>';
+                      cols += '<td><input type="text" name="y[]" value="'+b[1]+'" style="width:100%"/></td>';
+
+                       cols += '<td><input type="button" class="ibtnDel"  value="Hapus" style="width:100%"></td>';
+                      
+                      newRow.append(cols);
+                    //  if (counter == 4) $('#addrow').attr('disabled', true).prop('value', "You've reached the limit");
+                      $("table.order-list").append(newRow);
+                  }
+                   
+                 })
+             
+
+             }
+
+                $("#parsepeta").on("click", function () {
+                 drawnItems.clearLayers();
+                 inputan_koordinat ="";
+                 end_koordinat = "";
+               var tableHtml=$('table.order-list')  // tableHtml is a jQuery of the table
+
+               tableHtml.find('tbody > tr').each(function(){ 
+                    
+                                    if(inputan_koordinat==""){
+                      end_koordinat= ''+$(this).find('input[name^="x"]').val() +' '+$(this).find('input[name^="y"]').val()
+                     }
+                                   inputan_koordinat = inputan_koordinat+''+$(this).find('input[name^="x"]').val() +' '+$(this).find('input[name^="y"]').val()+',';
+               });
+             inputan_koordinat = inputan_koordinat + end_koordinat;
+               console.log(inputan_koordinat);
+              layer_parse=   omnivore.wkt.parse('POLYGON(('+inputan_koordinat+'))');
+
+              $('#SHAPE').val('POLYGON(('+inputan_koordinat+'))');
+                    layer_parse.eachLayer(function (layer) {
+
+                                       var bounds = layer.getBounds();
+                         //         // Get center of bounds
+                                  var center = bounds.getCenter();
+                         
+
+                        drawnItems.addLayer(layer);
+                       })
+               });
+                      $("#reset_peta").on("click", function () {
+                      drawnItems.clearLayers();
+                       
+                           
+                                            $('#myTable tbody').html('<tr><td><input type="text" name="x[]" style="width:100%"/></td><td><input type="text" name="y[]" style="width:100%"/></td><td><a class="deleteRow" style="width:100%"></a></td> </tr>');
+                                             $('#wkt_inputan').empty();
+                      
+                     });
+                        $("#addrow").on("click", function () {
+
+                    counter = $('#myTable tr').length - 2;
+
+                    var newRow = $("<tr>");
+                    var cols = "";
+
+                    cols += '<td><input type="text" name="x[]" style="width:100%"/></td>';
+                    cols += '<td><input type="text" name="y[]" style="width:100%"/></td>';
+
+                    cols += '<td><input type="button" class="ibtnDel"  value="Hapus" style="width:100%"></td>';
+                    newRow.append(cols);
+                  //  if (counter == 4) $('#addrow').attr('disabled', true).prop('value', "You've reached the limit");
+                    $("table.order-list").append(newRow);
+                    counter++;
+                    $("table.order-list").on("click", ".ibtnDel", function (event) {
+                        $(this).closest("tr").remove();
+                    
+                        
+                        counter -= 1
+                        $('#addrow').attr('disabled', false).prop('value', "Tambah Koordinat");
+                    });
+                    //  var price = +row.find('input[name^="price"]').val();
+                });
+          $(document).ready(function() {
+
+     
+            $('#kec').change(function() {
+               $.ajax({
+                 type : "GET",
+                 async : false,
+                 global : false,
+                 url :  "/pola_ruang/get_desa_by_kec?kec="+$('#kec').val(),
+                 dataType : 'json',
+                 success: function (data) {
+                  $("#desa").empty();
+              
+                $.each(data, function(){
+                     $("#desa").append('<option value="'+ this.desa +'">'+ this.desa +'</option>')
+                 })
+                   
+                 }
+               });
+               
+
+               
+           });
+              //peta_pemohon("LINESTRING (109.646793382854 -6.85981336715971,109.64874691843 -6.86062080496112)");
+            
+          
+              // $.ajax({
+              //   type : "GET",
+              //   async : false,
+              //   global : false,
+              //   url : root + "peta/json_kec",
+              //   dataType : 'json',
+              //   success: function (data) {
+              //    $("#kabupaten").empty();
+              //     $("#kabupaten").append('<option value="">Pilih Kecamatan / Kota</option>')
+              //  $.each(data, function(){
+              //       $("#kabupaten").append('<option value="'+ this.kecamatan +'">'+ this.kecamatan +'</option>')
+              //   })
+                  
+              //   }
+              // });
+              
+
+              
+          });
+       
+
+           var warna_total = ['#ffffff','#ffffff'];
+                var labels = ['Sumber Peta :','RTRW Tahun 2011-2031'];
+                 var wkt = new Wkt.Wkt();
+            function onLocationFound(e) {
+                var radius = e.accuracy / 2;
+                
+                if(center == 0 ){
+                  map.setView(e.latlng, 13);
+                  center++;
+                }
+               //   var koordinat = {latlng:{lat: ye, lng: xe}};
+               
+                  
+               //console.log(koordinat)
+                clickHandler(e)
+                // iht_layer.eachLayer(function (layer) {
+                //   layer_lat_long = layer.getLatLng();
+                //   layer_lat = layer.getLatLng().lat;
+                //   layer_lng = layer.getLatLng().lng;
+
+                //   // jarak ke point saat ini dalam meter
+                //   var posisi_kita_lat = e.latlng.lat;
+                //   var posisi_kita_lng = e.latlng.lng;
+
+                //   jarak = layer_lat_long.distanceTo(e.latlng);
+
+                //   var popupContent = getPopup( layer, posisi_kita_lat, posisi_kita_lng, layer_lat, layer_lng );
+                //   layer.bindPopup(popupContent, popupOptions);
+                //   if(jarak > 30000){
+                //      // layer.setOpacity(0);
+                //      // layer.unbindPopup();
+                //   }
+                // });
+              }
+
+              function ke_lokasi(x_awal, y_awal, x_akhir, y_akhir){
+                map.closePopup();
+                console.log(x_awal+ ' , ' +y_awal+ ' ; ' +x_akhir + ' , ' + y_akhir)
+
+                if(navigasi!=null){
+                  navigasi.spliceWaypoints(navigasi.getWaypoints().length - 1, 1, L.latLng(x_akhir, y_akhir));   
+                }
+                else{
+                  navigasi =  L.Routing.control({
+                    // waypointIcon :
+                    // waypoints : [L.latLng(x_awal, y_awal), L.latLng(x_akhir, y_akhir)]
+                    plan: L.Routing.plan([
+                        L.latLng(x_awal, y_awal),
+                        L.latLng(x_akhir, y_akhir)
+                    ], 
+                    {
+                      createMarker: function(i, wp) {
+                        return L.marker(wp.latLng, {
+                          draggable: false,
+                          icon: routeIcon
+                        });
+                      }
+                      // geocoder: L.Control.Geocoder.nominatim(),
+                      // routeWhileDragging: true
+                    })
+                  });
+                  navigasi.addTo(map);
+                  console.log(navigasi.getPlan());
+                  $('.leaflet-routing-container').append('<a href="#" id="tutup_navigasi" onclick="tutup_navigasi()">BATAL</a>');
+                }
+              }
+              
+              function tutup_navigasi() {
+                if(navigasi!=null){
+                  navigasi.spliceWaypoints(0, 2);
+                  $('.leaflet-routing-container').hide();
+                  navigasi = null;
+                }
+              }
+
+              function tambah_titik(x, y, id_jalan){
+
+                map.panTo(new L.LatLng(x, y));
+                map.setZoom(16);
+
+                jalan_layer.eachLayer(function (layer) {
+                  if ( layer.feature.properties.id_jalan == id_jalan ) {
+                    console.log(layer.feature.properties)
+                    layer.openPopup();
+                  };
+                });
+              }
+
+              $('#cari').click(function(){
+                var xe =  $('#xe').val();
+                var ye = $('#ye').val();
+                  map.panTo(new L.LatLng(ye, xe));
+                map.setZoom(16);
+                var koordinat = {latlng:{lat: ye, lng: xe}};
+               
+                  
+               //console.log(koordinat)
+                clickHandler(koordinat)
+              })
+
+
+              /**
+               * 
+               *  Variables Initialization
+               * 
+               */
+              var kabupaten_layer;
+              var iht_layer = null;
+              var source = null;
+              var marker;
+              var lingkaran;
+              var center = 0;
+              var navigasi=null;
+              var kabupaten_layer;
+              var marker_search='';
+
+              /**
+               * 
+               *  Layer Styling
+               * 
+               */
+              var sembunyi = {
+                color : "transparent",
+                weight : 1,
+                opacity : 0,
+                fillOpacity : 0
+              };
+              
+               var style_kabupaten = {
+                    color : "yellow", 
+                    weight : 3, 
+                    opacity : 1, 
+                    fillOpacity  : 0,
+                    dashArray : 3
+                  };
+               var style_gambar = {
+                    color : "blue", 
+                    weight : 2, 
+                    opacity : 1, 
+                    fillOpacity  : 0
+                    
+                  };
+                   var style_desa = {
+                    color : "white", 
+                    weight : 1, 
+                    opacity : 1, 
+                    fillOpacity  : 0,
+                    dashArray : 3
+                  };
+               var style_polaruang = {
+                color : "cyan", 
+                weight : 1, 
+                opacity : 1, 
+                fillOpacity  : 0.3,
+                dashArray : 3
+              };
+               var style_perikanan = {
+                color : "#C1EFFD", 
+                weight : 1, 
+                opacity : 1, 
+                fillOpacity  : 0.7,
+                dashArray : 3
+              };
+               var style_hutan_lindung = {
+                color : "#DFFFEA", 
+                weight : 1, 
+                opacity : 1, 
+                fillOpacity  : 0.7,
+                dashArray : 3
+              };
+               var style_pertahanan = {
+                color : "#F224C6", 
+                weight : 1, 
+                opacity : 1, 
+                fillOpacity  : 0.7,
+                dashArray : 3
+              };
+               var style_hutan_produksi_terbatas = {
+                color : "#B2E8E8", 
+                weight : 1, 
+                opacity : 1, 
+                fillOpacity  : 0.7,
+                dashArray : 3
+              };
+
+              var style_hutan_produksi_tetap = {
+                color : "#99F2CD", 
+                weight : 1, 
+                opacity : 1, 
+                fillOpacity  : 0.7,
+                dashArray : 3
+              };
+
+              
+
+              var style_kawasan_industri = {
+                color : "#E4E8B3", 
+                weight : 1, 
+                opacity : 1, 
+                fillOpacity  : 0.7,
+                dashArray : 3
+              };
+
+              var style_permukiman = {
+                color : "#FCDB2B", 
+                weight : 1, 
+                opacity : 1, 
+                fillOpacity  : 0.7,
+                dashArray : 3
+              };
+
+              var style_pertanian_lahan_basah = {
+                color : "#CBFFB5", 
+                weight : 1, 
+                opacity : 1, 
+                fillOpacity  : 0.7,
+                dashArray : 3
+              };
+
+              var style_pertanian_lahan_kering = {
+                color : "#95FEBD", 
+                weight : 1, 
+                opacity : 1, 
+                fillOpacity  : 0.7,
+                dashArray : 3
+              };
+
+              var style_rth = {
+                color : "#97FEC0", 
+                weight : 1, 
+                opacity : 1, 
+                fillOpacity  : 0.7,
+                dashArray : 3
+              };
+
+              var style_sempadan_pantai = {
+                color : "#CCFFCC", 
+                weight : 1, 
+                opacity : 1, 
+                fillOpacity  : 0.7,
+                dashArray : 3
+              };
+
+              var style_sempadan_sungai = {
+                color : "#C1FFCD", 
+                weight : 1, 
+                opacity : 1, 
+                fillOpacity  : 0.7,
+                dashArray : 3
+              };
+
+              var style_kawasan_tanaman_pangan = {
+                color : "#98f442", 
+                weight : 1, 
+                opacity : 1, 
+                fillOpacity  :0.7,
+                dashArray : 3
+              };
+
+              var style_lppb = {
+                color : "#2ECC71", 
+                weight : 1, 
+                opacity : 1, 
+                fillOpacity  :0.7,
+                dashArray : 3
+              };
+
+            
+
+              var style_kabupaten_gelap = {
+                color : "#000", 
+                weight : 1, 
+                opacity : 1, 
+                fillOpacity  : 0,
+                dashArray : 3
+              };
+              
+              var popupOptions = {
+                maxWidth : '450',
+                minWidth : '250',
+                className : 'custom',
+                closeOnClick : true
+              };
+
+              /**
+               * 
+               *  Map initialization
+               * 
+              . The Longitude of Kota Pati is 
+               */
+              var southWest = L.latLng(-8.629903118263488, 108.0780029296875),
+                northEast = L.latLng(-6.124169589851178, 112.52746582031249),
+                bounds = L.latLngBounds(southWest, northEast);
+              var map = L.map('map', {
+                  center: [ -6.882887, 109.669998],
+                  // maxBounds: bounds,
+                  zoom: 11,
+                  minZoom:2,
+                  maxZoom:19,
+                  fullscreenControl: true,
+                  fullscreenControlOptions: {
+                    position: 'topleft'
+                  }
+              });
+
+
+              //ngilangi garis putih
+      
+
+
+
+                function clickHandler(e) {
+               
+     //  var clickBounds = L.latLngBounds(e.latlng, e.latlng);
+
+     //  var intersectingFeatures = [];
+     //    for (var l in map._layers) {
+     //    var overlay = map._layers[l];
+     //    if (overlay._layers) {
+     //      for (var f in overlay._layers) {
+     //        var feature = overlay._layers[f];
+     //        var bounds;
+     //        if (feature.getBounds) bounds = feature.getBounds();
+     //        else if (feature._latlng) {
+     //          bounds = L.latLngBounds(feature._latlng, feature._latlng);
+     //        }
+     //        if (bounds && clickBounds.intersects(bounds)) {
+     //          intersectingFeatures.push(feature);
+     //        }
+     //      }
+     //    }
+     //  }
+     // intersectingFeatures.map(function(o) {
+     //    console.log(o)
+     //  })
+     //  var html = "Found features: " + intersectingFeatures.length + "<br/>" + intersectingFeatures.map(function(o) {
+     //    return o.feature
+     //  }).join('<br/>');
+     $('#xe').val(e.latlng.lng) 
+     $('#ye').val(e.latlng.lat) 
+    var html ="";
+     
+      html = html + "</br></br>Pola Ruang RTRW : </br>"
+     $.ajax({
+              type : "GET",
+              async : false,
+              global : false,
+              url : root + "peta/list_polaruang?x="+e.latlng.lng+"&y="+e.latlng.lat,
+              dataType : 'json',
+              success: function (data) {
+             // console.log(data)
+             $.each(data, function(){
+                  html = html + this.rencana_tg+"</br>";
+              })
+                
+              }
+            });
+
+     html = html + "</br>Koordinat : </br>"
+      html = html + "</br>"+e.latlng.lng+" "+e.latlng.lat+"</br>"
+
+      
+         
+      map.openPopup(html, e.latlng);
+    }
+
+
+
+
+              // map.fitBounds(bounds);
+
+              var google_roadmap    = L.gridLayer.googleMutant({
+                                                              type: 'roadmap',
+                                                              styles: [
+                                                                          {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
+                                                                          {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
+                                                                          {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
+                                                                          {
+                                                                            featureType: 'administrative.locality',
+                                                                            elementType: 'labels.text.fill',
+                                                                            stylers: [{color: '#d59563'}]
+                                                                          },
+                                                                          {
+                                                                            featureType: 'poi',
+                                                                            elementType: 'labels.text.fill',
+                                                                            stylers: [{color: '#d59563'}]
+                                                                          },
+                                                                          {
+                                                                            featureType: 'poi.park',
+                                                                            elementType: 'geometry',
+                                                                            stylers: [{color: '#263c3f'}]
+                                                                          },
+                                                                          {
+                                                                            featureType: 'poi.park',
+                                                                            elementType: 'labels.text.fill',
+                                                                            stylers: [{color: '#6b9a76'}]
+                                                                          },
+                                                                          {
+                                                                            featureType: 'road',
+                                                                            elementType: 'geometry',
+                                                                            stylers: [{color: '#38414e'}]
+                                                                          },
+                                                                          {
+                                                                            featureType: 'road',
+                                                                            elementType: 'geometry.stroke',
+                                                                            stylers: [{color: '#212a37'}]
+                                                                          },
+                                                                          {
+                                                                            featureType: 'road',
+                                                                            elementType: 'labels.text.fill',
+                                                                            stylers: [{color: '#9ca5b3'}]
+                                                                          },
+                                                                          {
+                                                                            featureType: 'road.highway',
+                                                                            elementType: 'geometry',
+                                                                            stylers: [{color: '#746855'}]
+                                                                          },
+                                                                          {
+                                                                            featureType: 'road.highway',
+                                                                            elementType: 'geometry.stroke',
+                                                                            stylers: [{color: '#1f2835'}]
+                                                                          },
+                                                                          {
+                                                                            featureType: 'road.highway',
+                                                                            elementType: 'labels.text.fill',
+                                                                            stylers: [{color: '#f3d19c'}]
+                                                                          },
+                                                                          {
+                                                                            featureType: 'transit',
+                                                                            elementType: 'geometry',
+                                                                            stylers: [{color: '#2f3948'}]
+                                                                          },
+                                                                          {
+                                                                            featureType: 'transit.station',
+                                                                            elementType: 'labels.text.fill',
+                                                                            stylers: [{color: '#d59563'}]
+                                                                          },
+                                                                          {
+                                                                            featureType: 'water',
+                                                                            elementType: 'geometry',
+                                                                            stylers: [{color: '#17263c'}]
+                                                                          },
+                                                                          {
+                                                                            featureType: 'water',
+                                                                            elementType: 'labels.text.fill',
+                                                                            stylers: [{color: '#515c6d'}]
+                                                                          },
+                                                                          {
+                                                                            featureType: 'water',
+                                                                            elementType: 'labels.text.stroke',
+                                                                            stylers: [{color: '#17263c'}]
+                                                                          }
+                                                                        ]
+                                                         // valid values are 'roadmap', 'satellite', 'terrain' and 'hybrid'
+                                                          })
+
+              var google_hybrid     = L.gridLayer.googleMutant({
+                                                              type: 'hybrid' // valid values are 'roadmap', 'satellite', 'terrain' and 'hybrid'
+                                                          })
+              var google_satelit    = L.gridLayer.googleMutant({
+                                                              type: 'satellite' // valid values are 'roadmap', 'satellite', 'terrain' and 'hybrid'
+                                                          })
+              var osm               = L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {});
+              var Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}');
+             // var RBI            = L.tileLayer('http://portal.ina-sdi.or.id/arcgis/rest/services/IGD/RupabumiIndonesia/MapServer');
+
+              var RBI =  L.esri.tiledMapLayer({
+                url: "https://portal.ina-sdi.or.id/arcgis/rest/services/IGD/RupabumiIndonesia/MapServer"
+              });
+                             (function(){
+                  var originalInitTile = L.GridLayer.prototype._initTile
+                  L.GridLayer.include({
+                      _initTile: function (tile) {
+                          originalInitTile.call(this, tile);
+
+                          var tileSize = this.getTileSize();
+
+                          tile.style.width = tileSize.x + 1 + 'px';
+                          tile.style.height = tileSize.y + 1 + 'px';
+                      }
+                  });
+              })()
+              map.addLayer(Esri_WorldImagery);
+
+              var legend = L.control({position: 'bottomleft'});
+              var streetview = L.control({position: 'bottomright'});
+              
+              //gambar
+              var drawnItems = L.featureGroup().addTo(map);
+              var options = {
+                    position: 'topleft',
+                    draw: {
+                        polyline: false,
+                        polygon: {
+                         showArea: true,
+                            allowIntersection: false, // Restricts shapes to simple polygons
+                            drawError: {
+                                color: '#e1e100', // Color the shape will turn when intersects
+                                message: '<strong>Digitasi Salah!' // Message that will show when intersect
+                            },
+                            shapeOptions: {
+                                color: '#bada55'
+                            }
+                        },
+                        circle: false, // Turns off this drawing tool
+                        rectangle: false,
+                        marker: false
+                    },
+                    edit: {
+                        featureGroup: drawnItems, //REQUIRED!!
+                        remove: true
+                    }
+                };
+                
+                var drawControl = new L.Control.Draw(options);
+                map.addControl(drawControl);
+                
+                 map.on(L.Draw.Event.CREATED, function(event) {
+                   drawnItems.clearLayers();
+                    var layer = event.layer;
+                          var latlngss = layer.getLatLngs();
+                  // console.log(latlngss[0])
+                       var seeArea =  L.GeometryUtil.geodesicArea(latlngss[0]);
+                                       seeArea = L.GeometryUtil.readableArea(seeArea, true, {})
+                                     // console.log(seeArea);
+                       // console.log(toWKT(layer));
+                       $('#shape').val(toWKT(layer))
+                       // console.log(layer);
+                      var html ="<tr><td style='text-align:center'><strong>Luas Hasil Digitasi </strong></td></tr><tr><td style='text-align:center'><strong>"+seeArea+"</strong></td></tr>";
+                     
+                
+                               $.ajax({
+                                             type : "GET",
+                                             async : false,
+                                             global : false,
+                                             url : root + "peta/list_polaruang?p="+toWKT(layer),
+                                             dataType : 'json',
+                                             success: function (data) {
+                                          //  console.log(data)
+                                               
+                                           $('#tabel_kecamatan_desa').empty()
+                                              $.each(data.admin, function(){
+                                               var desane = '<ul>';
+                                                  $.each(this.desa, function(){
+                                                   desane = desane + '<li>'+this.desa+'</li>';
+                                                  })
+                                                   desane = desane + '</ul>';
+                                                $('#tabel_kecamatan_desa').append("<tr><td>"+this.kecamatan+"</td><td>"+desane+"</td></tr>")
+                                              })
+                                             
+                                            var i = 0;
+                                              $('#tabel_polaruang').empty()
+                                            $.each(data.pola_ruang, function(){
+                                                var total = 0;
+                                                    $.each(this.irisan, function(){
+                                                            if(this.polygon){
+
+                                                             wkt.read(''+this.polygon+'');
+                                                              var latlngss = wkt.toObject().getLatLngs();
+                                                                 var gambar = wkt.toObject();
+                                                                gambar.setStyle(style_gambar);
+                                                                 drawnItems.addLayer(gambar);
+                                                             //  console.log(this)
+                                                             //  console.log(wkt.toObject().getLatLngs())
+                                                                 //hitung luas
+                                                               if(wkt.toObject().getLatLngs().length > 1){
+                                                                 $.each(latlngss, function(index, value){
+                                                                  if(value.length > 1){
+                                                                    $.each(value, function(indexx, valuee){
+                                                                      var luas =  L.GeometryUtil.geodesicArea(valuee);
+                                                                      total = total + luas; 
+                                                                    })
+                                                                  }else{
+                                                                    var luas =  L.GeometryUtil.geodesicArea(value);
+                                                                      total = total + luas;  
+                                                                  }
+                                                                    
+                                                                    
+                                                                 })
+                                                               }else{
+
+                                                                var luas =  L.GeometryUtil.geodesicArea(latlngss[0]);
+                                                                
+                                                                      total = total + luas;   
+                                                               }
+                                                            }
+                                                                  
+                                                                           
+                                                    })
+                                                    if(total != 0){
+                                                       total = L.GeometryUtil.readableArea(total, true, {})
+                                                     }else{
+                                                      total = "Kesalahan dalam Penghitungan!"
+                                                     }
+                                                     i = i + 1;
+                                                     // html = html + "<tr><td>Kategori Pola Ruang</td><td>:</td><td>"+this.rencana_tg+" ("+total+")</td></tr>"
+                                                    
+                                                     let terbatas = "<ul>";
+                                                      let bersyarat = "<ul>";
+                                                        let diizinkan = "<ul>";
+                                                          let dilarang = "<ul>";
+                                                            let ketentuan = "<ul>";
+                                                              let keterangan = "<ul>";
+                                                                $.each(this.pupz, function(i, itm){
+                                                                  // console.log(itm)
+                                                                  if(itm.terbatas !=""){
+                                                                    terbatas+=`<li>${itm.terbatas}</li>`
+                                                                  }
+                                                                  if(itm.bersyarat !=""){
+                                                                    bersyarat+=`<li>${itm.bersyarat}</li>`
+                                                                  }
+                                                                  if(itm.diizinkan !=""){
+                                                                    diizinkan+=`<li>${itm.diizinkan}</li>`
+                                                                  }
+                                                                  if(itm.dilarang !=""){
+                                                                    dilarang+=`<li>${itm.dilarang}</li>`
+                                                                  }
+                                                                  if(itm.ketentuan !=""){
+                                                                    ketentuan+=`<li>${itm.ketentuan}</li>`
+                                                                  }
+                                                                  if(itm.keterangan !=""){
+                                                                    keterangan+=`<li>${itm.keterangan}</li>`
+                                                                  }
+                                                                })
+                                                                 terbatas += "</ul>";
+                                                       bersyarat += "</ul>";
+                                                         diizinkan += "</ul>";
+                                                           dilarang += "</ul>";
+                                                             ketentuan += "</ul>";
+                                                               keterangan += "</ul>";
+                                                       $('#tabel_polaruang').append("<tr><td>"+i+"</td><td>"+this.rencana_tg+"  ("+total+")</td><td>"+diizinkan+"</td><td>"+terbatas+"</td><td>"+bersyarat+"</td><td>"+dilarang+"</td><td>"+ketentuan+"</td><td>"+keterangan+"</td></tr>")
+
+
+                                                    // html = html + this.rencana_tg+" ("+total+")</br>";
+                                             })
+                                                
+                                               // $("#konten-detail").toggle("slide", {direction:"right"}, 500);
+                                               $('.modal').modal('show');
+                                             }
+                                           });
+                                    
+
+                     //    html = html+"</br>"+"<a href='/peta/print?p="+toWKT(layer)+"' style='color:blue' target='_blank'>[DOWNLOAD]</a>";
+                               var bounds = layer.getBounds();
+                      //         // Get center of bounds
+                               var center = bounds.getCenter();
+                        // map.openPopup(html, center, {
+                        //     offset: L.point(0, -24)
+                        //   });
+                         $('#konten_polaruang').empty()
+                        $('#konten_polaruang').append(html)
+                        // $("#konten-detail").toggle("slide", {direction:"right"}, 500);
+                        $('.modal').modal('show');
+                    drawnItems.addLayer(layer);
+            
+                   
+                 
+                  });
+
+
+              //gambar end 
+
+               function peta_pemohon(){
+                 //SELECT  SUBSTRING(md5(id + nama)FROM 1 FOR 6) AS kunci FROM `data_pemohon` WHERE 1
+                 drawnItems.clearLayers();
+                 var poligon = "<%= data[0].wkt%>";
+                 pisah_wkt(poligon)
+                // console.log(poligon)
+                 layer_parse=   omnivore.wkt.parse(poligon);
+                
+           
+
+             
+                       layer_parse.eachLayer(function (layer) {
+                        // console.log(layer.feature.geometry.type)
+                         if(layer.feature.geometry.type != "Point"){
+                           var bounds = layer.getBounds();
+                           var center = bounds.getCenter();
+                              map.setView(center, 18);
+                               map.fitBounds(bounds);
+                          
+                         }
+
+
+                                 drawnItems.clearLayers();
+                            
+                                        var latlngss = layer.getLatLngs();
+                                // console.log(latlngss[0])
+                                     var seeArea =  L.GeometryUtil.geodesicArea(latlngss[0]);
+                                                     seeArea = L.GeometryUtil.readableArea(seeArea, true, {})
+                                                   // console.log(seeArea);
+                                     // console.log(toWKT(layer));
+                                     // console.log(layer);
+                                    var html ="<tr><td style='text-align:center'><strong>Luas Hasil Digitasi </strong></td></tr><tr><td style='text-align:center'><strong>"+seeArea+"</strong></td></tr>";
+                                   
+                                
+                                             $.ajax({
+                                                           type : "GET",
+                                                           async : false,
+                                                           global : false,
+                                                           url : root + "peta/list_polaruang?p="+toWKT(layer),
+                                                           dataType : 'json',
+                                                           success: function (data) {
+                                                        //  console.log(data)
+                                                             
+                                                         $('#tabel_kecamatan_desa').empty()
+                                                            $.each(data.admin, function(){
+                                                             var desane = '<ul style="list-style:none;margin-bottom:0px;margin-top:0px;">';
+                                                                $.each(this.desa, function(){
+                                                                 desane = desane + '<li style="display:inline;float:left">'+this.desa+',</li>&nbsp;';
+                                                                })
+                                                                 desane = desane + '</ul>';
+                                                              $('#tabel_kecamatan_desa').append("<tr><td style='text-align: left'>"+this.kecamatan+"</td><td style='text-align: left'>"+desane+"</td></tr>")
+                                                            })
+                                                           
+                                                          var i = 0;
+                                                            $('#tabel_polaruang').empty()
+                                                          $.each(data.pola_ruang, function(){
+                                                              var total = 0;
+                                                                  $.each(this.irisan, function(){
+                                                                          if(this.polygon){
+
+                                                                           wkt.read(''+this.polygon+'');
+                                                                            var latlngss = wkt.toObject().getLatLngs();
+                                                                               var gambar = wkt.toObject();
+                                                                              gambar.setStyle(style_gambar);
+                                                                               drawnItems.addLayer(gambar);
+                                                                           //  console.log(this)
+                                                                           //  console.log(wkt.toObject().getLatLngs())
+                                                                               //hitung luas
+                                                                             if(wkt.toObject().getLatLngs().length > 1){
+                                                                               $.each(latlngss, function(index, value){
+                                                                                if(value.length > 1){
+                                                                                  $.each(value, function(indexx, valuee){
+                                                                                    var luas =  L.GeometryUtil.geodesicArea(valuee);
+                                                                                    total = total + luas; 
+                                                                                  })
+                                                                                }else{
+                                                                                  var luas =  L.GeometryUtil.geodesicArea(value);
+                                                                                    total = total + luas;  
+                                                                                }
+                                                                                  
+                                                                                  
+                                                                               })
+                                                                             }else{
+
+                                                                              var luas =  L.GeometryUtil.geodesicArea(latlngss[0]);
+                                                                              
+                                                                                    total = total + luas;   
+                                                                             }
+                                                                          }
+                                                                                
+                                                                                         
+                                                                  })
+                                                                  if(total != 0){
+                                                                     total = L.GeometryUtil.readableArea(total, true, {})
+                                                                   }else{
+                                                                    total = "Kesalahan dalam Penghitungan!"
+                                                                   }
+                                                                   i = i + 1;
+                                                                   // html = html + "<tr><td>Kategori Pola Ruang</td><td>:</td><td>"+this.rencana_tg+" ("+total+")</td></tr>"
+                                                                  
+                                                                   let terbatas = "<ul>";
+                                                      let bersyarat = "<ul>";
+                                                        let diizinkan = "<ul>";
+                                                          let dilarang = "<ul>";
+                                                            let ketentuan = "<ul>";
+                                                              let keterangan = "<ul>";
+                                                                $.each(this.pupz, function(i, itm){
+                                                                  // console.log(itm)
+                                                                  if(itm.terbatas !=""){
+                                                                    terbatas+=`<li>${itm.terbatas}</li>`
+                                                                  }
+                                                                  if(itm.bersyarat !=""){
+                                                                    bersyarat+=`<li>${itm.bersyarat}</li>`
+                                                                  }
+                                                                  if(itm.diizinkan !=""){
+                                                                    diizinkan+=`<li>${itm.diizinkan}</li>`
+                                                                  }
+                                                                  if(itm.dilarang !=""){
+                                                                    dilarang+=`<li>${itm.dilarang}</li>`
+                                                                  }
+                                                                  if(itm.ketentuan !=""){
+                                                                    ketentuan+=`<li>${itm.ketentuan}</li>`
+                                                                  }
+                                                                  if(itm.keterangan !=""){
+                                                                    keterangan+=`<li>${itm.keterangan}</li>`
+                                                                  }
+                                                                })
+                                                                 terbatas += "</ul>";
+                                                       bersyarat += "</ul>";
+                                                         diizinkan += "</ul>";
+                                                           dilarang += "</ul>";
+                                                             ketentuan += "</ul>";
+                                                               keterangan += "</ul>";
+                                                       $('#tabel_polaruang').append("<tr><td>"+i+"</td><td>"+this.rencana_tg+"  ("+total+")</td><td>"+diizinkan+"</td><td>"+terbatas+"</td><td>"+bersyarat+"</td><td>"+dilarang+"</td><td>"+ketentuan+"</td><td>"+keterangan+"</td></tr>")
+
+
+                                                                  // html = html + this.rencana_tg+" ("+total+")</br>";
+                                                           })
+                                                              
+                                                             // $("#konten-detail").toggle("slide", {direction:"right"}, 500);
+                                                           //  $('.modal').modal('show');
+                                                           }
+                                                         });
+                                                  
+
+                                   //    html = html+"</br>"+"<a href='/peta/print?p="+toWKT(layer)+"' style='color:blue' target='_blank'>[DOWNLOAD]</a>";
+                                             var bounds = layer.getBounds();
+                                    //         // Get center of bounds
+                                             var center = bounds.getCenter();
+                                      // map.openPopup(html, center, {
+                                      //     offset: L.point(0, -24)
+                                      //   });
+                                       $('#konten_polaruang').empty()
+                                      $('#konten_polaruang').append(html)
+                                      // $("#konten-detail").toggle("slide", {direction:"right"}, 500);
+                                   //   $('.modal').modal('show');
+                                  drawnItems.addLayer(layer);
+                                
+                          })
+               }
+              
+
+              var locateIcon = L.ExtraMarkers.icon({
+                  icon: 'fa-map-marker', 
+                  markerColor: 'blue-dark', 
+                  prefix: 'fa',
+                  iconColor: 'white',
+                  shape: 'square'
+              });
+
+              var ihtIconAktif = L.ExtraMarkers.icon({
+                  prefix: 'fa', 
+                  markerColor: 'green-light', 
+                  icon: 'fa-building', 
+                  iconColor: 'white',
+                  shape: 'square'
+              });
+
+              var ihtIconTidakAktif = L.ExtraMarkers.icon({
+                  prefix: 'fa', 
+                  markerColor: 'red', 
+                  icon: 'fa-ban', 
+                  iconColor: 'white',
+                  shape: 'square'
+              });
+
+              var ihtIconTidakDiketahui = L.ExtraMarkers.icon({
+                  prefix: 'fa', 
+                  markerColor: 'orange', 
+                  icon: 'fa-question', 
+                  iconColor: 'white',
+                  shape: 'square'
+              });
+
+              var routeIcon = L.ExtraMarkers.icon({
+                  prefix: 'fa', 
+                  markerColor: 'red', 
+                  icon: 'fa-location-arrow', 
+                  iconColor: 'white',
+                  shape: 'square'
+              });
+
+              // $.getJSON( root + "index.php/kabupaten", function( json ) {
+              //   $.each(json, function( i, item ) {
+              //     $('#kabupaten').append('<option value="'+item.id_kabupaten+'">'+item.nama_kabupaten+'</option>');
+              //   })
+              // });
+            //ambil ksp  
+            var label_kec = [];
+            var label_desa = [];
+        var popup = new L.popup();
+           
+                    //topojson
+                    L.TopoJSON = L.GeoJSON.extend({  
+                      addData: function(jsonData) {    
+                        if (jsonData.type === "Topology") {
+                          for (key in jsonData.objects) {
+                            geojson = topojson.feature(jsonData, jsonData.objects[key]);
+                            L.GeoJSON.prototype.addData.call(this, geojson);
+                          }
+                        }    
+                        else {
+                          L.GeoJSON.prototype.addData.call(this, jsonData);
+                        }
+                      }  
+                    });
+                    //topojson
+              var wellmaxzoom = 13;       
+              var polaruang_layer = new L.GeoJSON();
+            var kabupaten_layer = new L.TopoJSON();
+            var desa_layer = new L.TopoJSON();
+            var perikanan = new L.TopoJSON();
+            var hutan_lindung = new L.TopoJSON();
+             var pertahanan = new L.TopoJSON();
+            var hutan_produksi_terbatas = new L.TopoJSON();
+            var hutan_produksi_tetap = new L.TopoJSON();
+            var industri = new L.TopoJSON();
+            var permukiman_perkotaan = new L.TopoJSON();
+             var permukiman_perdesaan = new L.TopoJSON();
+             var jalan = new L.TopoJSON();
+             var sungai = new L.TopoJSON();
+              var hortikultura = new L.TopoJSON();
+              var hortikultura2 = new L.TopoJSON();
+              var tanaman_pangan = new L.TopoJSON();
+              var mangrove = new L.TopoJSON();
+            var sempadan_pantai = new L.TopoJSON();
+            var sempadan_sungai = new L.TopoJSON();
+         
+            var jalan_layer = new L.TopoJSON();
+           
+            
+            //hapus labeh
+            function hapus_label_kec(){
+               var ii = 0;
+                    kabupaten_layer.eachLayer(function (layer) {
+                  map.removeLayer(label_kec[ii]);
+                  // label[ii].clearLayers();
+                   ii++;
+                })
+                    label_kec = [];
+            }
+            function tampil_label_kec(){
+               var ii = 0;
+                        kabupaten_layer.eachLayer(function (layer) {
+                          label_kec[ii].setOpacity(1);
+                      // label[ii].clearLayers();
+                       ii++;
+                    })
+            }
+            function hide_label_kec(){
+               var ii = 0;
+                        kabupaten_layer.eachLayer(function (layer) {
+                          label_kec[ii].setOpacity(0);
+                      // label[ii].clearLayers();
+                       ii++;
+                    })
+            }
+
+            function hapus_label_desa(){
+               var ii = 0;
+                    desa_layer.eachLayer(function (layer) {
+                     if(label_desa[ii]){
+                       map.removeLayer(label_desa[ii]);
+                     }
+                  
+                  // label[ii].clearLayers();
+                   ii++;
+                })
+                    label_desa = [];
+            }
+            function tampil_label_desa(){
+               var ii = 0;
+                        desa_layer.eachLayer(function (layer) {
+                          label_desa[ii].setOpacity(1);
+                      // label[ii].clearLayers();
+                       ii++;
+                    })
+            }
+            function hide_label_desa(){
+               var ii = 0;
+                        desa_layer.eachLayer(function (layer) {
+                          label_desa[ii].setOpacity(0);
+                      // label[ii].clearLayers();
+                       ii++;
+                    })
+            }
+            function loadGeoJsonkec(data) {
+              hapus_label_kec();
+              kabupaten_layer.clearLayers();
+              kabupaten_layer.addData(data);
+
+              kabupaten_layer.addTo(map);
+              var i = 0;
+              var labelnya = "";
+               kabupaten_layer.eachLayer(function (layer) {
+
+                    
+                      layer.setStyle(style_kabupaten);
+                      // layer.bindPopup(feature.properties.kabupaten);
+                      // Get bounds of polygon
+                      var bounds = layer.getBounds();
+                      // Get center of bounds
+                      var center = bounds.getCenter();
+                      //center.on('click', alert('asu'));
+                      // Use center to put marker on map
+                      //var marker = L.marker(center).addTo(map);
+                      //labelnya
+                       label_kec[i] = new L.Tooltip({
+                      noHide: false,
+                      direction: 'auto'
+                      });
+                        labelnya = layer.feature.properties.kecamatan;
+                       
+                    label_kec[i].setContent(labelnya);
+                    label_kec[i].setLatLng(center);
+                   // label_kec[i].setOpacity(0);
+                    map.showLabel(label_kec[i]);
+                     layer.on('click', function (e) {
+                                     //  panorama(e.latlng.lat, e.latlng.lng);
+                                       // clickHandler(e)
+                                        });
+                    i++;
+                      // layer.on("click", function (e) {
+                      //       // var bounds = layer.getBounds();
+                      //       // var popupContent = "popup content here";
+                      //       // popup.setLatLng(bounds.getCenter());
+                      //       // popup.setContent(popupContent);
+                      //       // map.openPopup(popup);
+                      //    //  $('#bs-example-modal-lg').modal('show');
+                      //   });
+               });
+            }
+            function loadGeoJsondesa(data) {
+
+              hapus_label_desa();
+              desa_layer.clearLayers();
+              desa_layer.addData(data);
+              desa_layer.addTo(map);
+              var i = 0;
+              var labelnya = "";
+               desa_layer.eachLayer(function (layer) {
+
+                    
+                         layer.setStyle(style_desa);
+
+                      // layer.bindPopup(feature.properties.kabupaten);
+                      // Get bounds of polygon
+                      var bounds = layer.getBounds();
+                      // Get center of bounds
+                      var center = bounds.getCenter();
+                      //center.on('click', alert('asu'));
+                      // Use center to put marker on map
+                      //var marker = L.marker(center).addTo(map);
+                      map.fitBounds(bounds)
+                      //labelnya
+                       label_desa[i] = new L.Tooltip({
+                      noHide: false,
+                      direction: 'auto'
+                      });
+                        labelnya = layer.feature.properties.desa;
+                       
+                    label_desa[i].setContent(labelnya);
+                    label_desa[i].setLatLng(center);
+                    label_desa[i].setOpacity(0);
+                    map.showLabel(label_desa[i]);
+                       
+                       drawnItems.clearLayers();
+                                    $.ajax({
+                                             type : "GET",
+                                             async : false,
+                                             global : false,
+                                             url : root + "peta/list_polaruang_desa/"+layer.feature.properties.kode_d,
+                                             dataType : 'json',
+                                             success: function (data) {
+                                           // console.log(data)
+                                                    var latlngss = layer.getLatLngs();
+                                            // console.log(latlngss[0])
+                                                 var seeArea =  L.GeometryUtil.geodesicArea(latlngss[0]);
+                                                     seeArea = L.GeometryUtil.readableArea(seeArea, true, {})
+                                           $('#tabel_kecamatan_desa').empty()
+                                              $.each(data.admin, function(){
+
+                                                $('#tabel_kecamatan_desa').append("<tr><td style='text-align: center'>"+this.kecamatan+"</td><td style='text-align: center'>"+this.desa+" ("+seeArea+")</td></tr>")
+                                              })
+                                             
+                                            var i = 0;
+                                              $('#tabel_polaruang').empty()
+                                            $.each(data.pola_ruang, function(){
+                                                var total = 0;
+                                                    $.each(this.irisan, function(){
+                                                            if(this.polygon){
+
+                                                             wkt.read(''+this.polygon+'');
+                                                              var latlngss = wkt.toObject().getLatLngs();
+                                                                 var gambar = wkt.toObject();
+                                                                gambar.setStyle(style_gambar);
+                                                                 drawnItems.addLayer(gambar);
+                                                             //  console.log(this)
+                                                             //  console.log(wkt.toObject().getLatLngs())
+                                                                 //hitung luas
+                                                               if(wkt.toObject().getLatLngs().length > 1){
+                                                                 $.each(latlngss, function(index, value){
+                                                                  if(value.length > 1){
+                                                                    $.each(value, function(indexx, valuee){
+                                                                      var luas =  L.GeometryUtil.geodesicArea(valuee);
+                                                                      total = total + luas; 
+                                                                    })
+                                                                  }else{
+                                                                    var luas =  L.GeometryUtil.geodesicArea(value);
+                                                                      total = total + luas;  
+                                                                  }
+                                                                    
+                                                                    
+                                                                 })
+                                                               }else{
+
+                                                                var luas =  L.GeometryUtil.geodesicArea(latlngss[0]);
+                                                                
+                                                                      total = total + luas;   
+                                                               }
+                                                            }
+                                                                  
+                                                                           
+                                                    })
+                                                    if(total != 0){
+                                                       total = L.GeometryUtil.readableArea(total, true, {})
+                                                     }else{
+                                                      total = "Kesalahan dalam Penghitungan!"
+                                                     }
+                                                     i = i + 1;
+                                                     // html = html + "<tr><td>Kategori Pola Ruang</td><td>:</td><td>"+this.rencana_tg+" ("+total+")</td></tr>"
+                                                    
+                                                      $('#tabel_polaruang').append("<tr><td>"+i+"</td><td>"+this.rencana_tg+"  ("+total+")</td><td>"+this.pemanfaata+"</td><td>"+this.pengendali+"</td></tr>")
+
+                                                    // html = html + this.rencana_tg+" ("+total+")</br>";
+                                             })
+                                                
+                                               // $("#konten-detail").toggle("slide", {direction:"right"}, 500);
+                                            
+                                             }
+                                           })
+                                      
+                                       
+                    i++;
+                  
+               });
+               tampil_label_desa();
+               map.removeLayer(drawnItems);
+                         drawnItems.addTo(map);
+            }
+            function loadGeoJsonjalan(data) {
+            
+            jalan_layer.clearLayers();
+            jalan_layer.addData(data);
+            jalan_layer  = L.featureGroup([jalan_layer]).addTo(map);
+            var i = 0;
+            var labelnya = "";
+            jalan_layer.eachLayer(function (layer) {
+
+                  
+                   // layer.setStyle(style_sempadan_sungai);
+                   // layer.bindPopup(layer.feature.properties.rencana_tg);
+                    // Get bounds of polygon
+                   // var bounds = layer.getBounds();
+                    // Get center of bounds
+                   // var center = bounds.getCenter();
+                    //center.on('click', alert('asu'));
+                    // Use center to put marker on map
+                    //var marker = L.marker(center).addTo(map);
+                    //labelnya
+                    var stl = {
+              color : "red", 
+              weight : 1, 
+              opacity : 1, 
+              fillOpacity  : 0.5
+            };
+            layer.setStyle(stl);
+                   layer.on('click', function (e) {
+                                      //panorama(e.latlng.lat, e.latlng.lng);
+                                      clickHandler(e)
+                                      });
+                  i++;
+                    // layer.on("click", function (e) {
+                    //       // var bounds = layer.getBounds();
+                    //       // var popupContent = "popup content here";
+                    //       // popup.setLatLng(bounds.getCenter());
+                    //       // popup.setContent(popupContent);
+                    //       // map.openPopup(popup);
+                    //    //  $('#bs-example-modal-lg').modal('show');
+                    //   });
+             });
+                //  map.removeLayer(jalan_layer);
+          }
+
+          function loadGeoJsonsungai(data) {
+           
+           sungai.clearLayers();
+           sungai.addData(data);
+           sungai  = L.featureGroup([sungai]).addTo(map);
+           var i = 0;
+           var labelnya = "";
+           sungai.eachLayer(function (layer) {
+
+                 
+                  // layer.setStyle(style_sempadan_sungai);
+                  // layer.bindPopup(layer.feature.properties.rencana_tg);
+                   // Get bounds of polygon
+                  // var bounds = layer.getBounds();
+                   // Get center of bounds
+                  // var center = bounds.getCenter();
+                   //center.on('click', alert('asu'));
+                   // Use center to put marker on map
+                   //var marker = L.marker(center).addTo(map);
+                   //labelnya
+                   var stl = {
+             color : "blue", 
+             weight : 1, 
+             opacity : 1, 
+             fillOpacity  : 0.5
+           };
+           layer.setStyle(stl);
+                  layer.on('click', function (e) {
+                                     //panorama(e.latlng.lat, e.latlng.lng);
+                                     clickHandler(e)
+                                     });
+                 i++;
+                   // layer.on("click", function (e) {
+                   //       // var bounds = layer.getBounds();
+                   //       // var popupContent = "popup content here";
+                   //       // popup.setLatLng(bounds.getCenter());
+                   //       // popup.setContent(popupContent);
+                   //       // map.openPopup(popup);
+                   //    //  $('#bs-example-modal-lg').modal('show');
+                   //   });
+            });
+                // map.removeLayer(jalan_layer);
+         }
+  
+    function loadGeoJsonmangrove(data) {
+      
+      mangrove.clearLayers();
+      mangrove.addData(data);
+      mangrove  = L.featureGroup([mangrove]).addTo(map);
+      var i = 0;
+      var labelnya = "";
+      mangrove.eachLayer(function (layer) {
+
+            
+              layer.setStyle(style_perikanan);
+             // layer.bindPopup(layer.feature.properties.rencana_tg);
+              // Get bounds of polygon
+              var bounds = layer.getBounds();
+              // Get center of bounds
+              var center = bounds.getCenter();
+              //center.on('click', alert('asu'));
+              // Use center to put marker on map
+              //var marker = L.marker(center).addTo(map);
+              //labelnya
+             
+             layer.on('click', function (e) {
+                                //panorama(e.latlng.lat, e.latlng.lng);
+                                clickHandler(e)
+                                });
+            i++;
+              // layer.on("click", function (e) {
+              //       // var bounds = layer.getBounds();
+              //       // var popupContent = "popup content here";
+              //       // popup.setLatLng(bounds.getCenter());
+              //       // popup.setContent(popupContent);
+              //       // map.openPopup(popup);
+              //    //  $('#bs-example-modal-lg').modal('show');
+              //   });
+       });
+           // map.removeLayer(perikanan);
+    }
+       function loadGeoJsonpolaruang(data) {
+     
+            polaruang_layer.clearLayers();
+            polaruang_layer.addData(data);
+             polaruang_layer  = L.featureGroup([polaruang_layer]).addTo(map);
+            var i = 0;
+            var labelnya = "";
+             polaruang_layer.eachLayer(function (layer) {
+
+                  
+                    layer.setStyle(style_polaruang);
+                   // layer.bindPopup(layer.feature.properties.rencana_tg);
+                    // Get bounds of polygon
+                    var bounds = layer.getBounds();
+                    // Get center of bounds
+                    var center = bounds.getCenter();
+                    //center.on('click', alert('asu'));
+                    // Use center to put marker on map
+                    //var marker = L.marker(center).addTo(map);
+                    //labelnya
+                   
+                   layer.on('click', function (e) {
+                                      //panorama(e.latlng.lat, e.latlng.lng);
+                                      clickHandler(e)
+                                      });
+                  i++;
+                    // layer.on("click", function (e) {
+                    //       // var bounds = layer.getBounds();
+                    //       // var popupContent = "popup content here";
+                    //       // popup.setLatLng(bounds.getCenter());
+                    //       // popup.setContent(popupContent);
+                    //       // map.openPopup(popup);
+                    //    //  $('#bs-example-modal-lg').modal('show');
+                    //   });
+             });
+                // map.removeLayer(polaruang_layer);
+          }
+          function loadGeoJsontanamanPangan(data) {
+      
+      tanaman_pangan.clearLayers();
+      tanaman_pangan.addData(data);
+      tanaman_pangan  = L.featureGroup([tanaman_pangan]).addTo(map);
+      var i = 0;
+      var labelnya = "";
+      tanaman_pangan.eachLayer(function (layer) {
+
+            
+              layer.setStyle(style_perikanan);
+             // layer.bindPopup(layer.feature.properties.rencana_tg);
+              // Get bounds of polygon
+              var bounds = layer.getBounds();
+              // Get center of bounds
+              var center = bounds.getCenter();
+              //center.on('click', alert('asu'));
+              // Use center to put marker on map
+              //var marker = L.marker(center).addTo(map);
+              //labelnya
+             
+             layer.on('click', function (e) {
+                                //panorama(e.latlng.lat, e.latlng.lng);
+                                clickHandler(e)
+                                });
+            i++;
+              // layer.on("click", function (e) {
+              //       // var bounds = layer.getBounds();
+              //       // var popupContent = "popup content here";
+              //       // popup.setLatLng(bounds.getCenter());
+              //       // popup.setContent(popupContent);
+              //       // map.openPopup(popup);
+              //    //  $('#bs-example-modal-lg').modal('show');
+              //   });
+       });
+           // map.removeLayer(perikanan);
+    }
+              function loadGeoJsonperikanan(data) {
+     
+            perikanan.clearLayers();
+            perikanan.addData(data);
+             perikanan  = L.featureGroup([perikanan]).addTo(map);
+            var i = 0;
+            var labelnya = "";
+             perikanan.eachLayer(function (layer) {
+
+                  
+                    layer.setStyle(style_perikanan);
+                   // layer.bindPopup(layer.feature.properties.rencana_tg);
+                    // Get bounds of polygon
+                    var bounds = layer.getBounds();
+                    // Get center of bounds
+                    var center = bounds.getCenter();
+                    //center.on('click', alert('asu'));
+                    // Use center to put marker on map
+                    //var marker = L.marker(center).addTo(map);
+                    //labelnya
+                   
+                   layer.on('click', function (e) {
+                                      //panorama(e.latlng.lat, e.latlng.lng);
+                                      clickHandler(e)
+                                      });
+                  i++;
+                    // layer.on("click", function (e) {
+                    //       // var bounds = layer.getBounds();
+                    //       // var popupContent = "popup content here";
+                    //       // popup.setLatLng(bounds.getCenter());
+                    //       // popup.setContent(popupContent);
+                    //       // map.openPopup(popup);
+                    //    //  $('#bs-example-modal-lg').modal('show');
+                    //   });
+             });
+               //  map.removeLayer(perikanan);
+          }
+           function loadGeoJsonhutan_lindung(data) {
+     
+            hutan_lindung.clearLayers();
+            hutan_lindung.addData(data);
+             hutan_lindung  = L.featureGroup([hutan_lindung]).addTo(map);
+            var i = 0;
+            var labelnya = "";
+             hutan_lindung.eachLayer(function (layer) {
+
+                  
+                    layer.setStyle(style_hutan_lindung);
+                   // layer.bindPopup(layer.feature.properties.rencana_tg);
+                    // Get bounds of polygon
+                    var bounds = layer.getBounds();
+                    // Get center of bounds
+                    var center = bounds.getCenter();
+                    //center.on('click', alert('asu'));
+                    // Use center to put marker on map
+                    //var marker = L.marker(center).addTo(map);
+                    //labelnya
+                   
+                   layer.on('click', function (e) {
+                                      //panorama(e.latlng.lat, e.latlng.lng);
+                                      clickHandler(e)
+                                      });
+                  i++;
+                    // layer.on("click", function (e) {
+                    //       // var bounds = layer.getBounds();
+                    //       // var popupContent = "popup content here";
+                    //       // popup.setLatLng(bounds.getCenter());
+                    //       // popup.setContent(popupContent);
+                    //       // map.openPopup(popup);
+                    //    //  $('#bs-example-modal-lg').modal('show');
+                    //   });
+             });
+                // map.removeLayer(hutan_lindung);
+          }
+           function loadGeoJsonpertahanan(data) {
+     
+            pertahanan.clearLayers();
+            pertahanan.addData(data);
+             pertahanan  = L.featureGroup([pertahanan]).addTo(map);
+            var i = 0;
+            var labelnya = "";
+             pertahanan.eachLayer(function (layer) {
+
+                  
+                    layer.setStyle(style_pertahanan);
+                   // layer.bindPopup(layer.feature.properties.rencana_tg);
+                    // Get bounds of polygon
+                    var bounds = layer.getBounds();
+                    // Get center of bounds
+                    var center = bounds.getCenter();
+                    //center.on('click', alert('asu'));
+                    // Use center to put marker on map
+                    //var marker = L.marker(center).addTo(map);
+                    //labelnya
+                   
+                   layer.on('click', function (e) {
+                                      //panorama(e.latlng.lat, e.latlng.lng);
+                                      clickHandler(e)
+                                      });
+                  i++;
+                    // layer.on("click", function (e) {
+                    //       // var bounds = layer.getBounds();
+                    //       // var popupContent = "popup content here";
+                    //       // popup.setLatLng(bounds.getCenter());
+                    //       // popup.setContent(popupContent);
+                    //       // map.openPopup(popup);
+                    //    //  $('#bs-example-modal-lg').modal('show');
+                    //   });
+             });
+              //  map.removeLayer(pertahanan);
+          }
+
+          function loadGeoJsonhutan_produksi_terbatas(data) {
+          
+            hutan_produksi_terbatas.clearLayers();
+            hutan_produksi_terbatas.addData(data);
+            hutan_produksi_terbatas  = L.featureGroup([hutan_produksi_terbatas]).addTo(map);
+            var i = 0;
+            var labelnya = "";
+            hutan_produksi_terbatas.eachLayer(function (layer) {
+
+                  
+                    layer.setStyle(style_hutan_produksi_terbatas);
+                   // layer.bindPopup(layer.feature.properties.rencana_tg);
+                    // Get bounds of polygon
+                    var bounds = layer.getBounds();
+                    // Get center of bounds
+                    var center = bounds.getCenter();
+                    //center.on('click', alert('asu'));
+                    // Use center to put marker on map
+                    //var marker = L.marker(center).addTo(map);
+                    //labelnya
+                   
+                   layer.on('click', function (e) {
+                                      //panorama(e.latlng.lat, e.latlng.lng);
+                                      clickHandler(e)
+                                      });
+                  i++;
+                    // layer.on("click", function (e) {
+                    //       // var bounds = layer.getBounds();
+                    //       // var popupContent = "popup content here";
+                    //       // popup.setLatLng(bounds.getCenter());
+                    //       // popup.setContent(popupContent);
+                    //       // map.openPopup(popup);
+                    //    //  $('#bs-example-modal-lg').modal('show');
+                    //   });
+             });
+                // map.removeLayer(hutan_produksi_terbatas);
+          }
+
+          function loadGeoJsonhutan_produksi_tetap(data) {
+          
+           hutan_produksi_tetap.clearLayers();
+            hutan_produksi_tetap.addData(data);
+            hutan_produksi_tetap  = L.featureGroup([hutan_produksi_tetap]).addTo(map);
+            var i = 0;
+            var labelnya = "";
+            hutan_produksi_tetap.eachLayer(function (layer) {
+
+                  
+                    layer.setStyle(style_hutan_produksi_tetap);
+                   // layer.bindPopup(layer.feature.properties.rencana_tg);
+                    // Get bounds of polygon
+                    var bounds = layer.getBounds();
+                    // Get center of bounds
+                    var center = bounds.getCenter();
+                    //center.on('click', alert('asu'));
+                    // Use center to put marker on map
+                    //var marker = L.marker(center).addTo(map);
+                    //labelnya
+                   
+                   layer.on('click', function (e) {
+                                      //panorama(e.latlng.lat, e.latlng.lng);
+                                      clickHandler(e)
+                                      });
+                  i++;
+                    // layer.on("click", function (e) {
+                    //       // var bounds = layer.getBounds();
+                    //       // var popupContent = "popup content here";
+                    //       // popup.setLatLng(bounds.getCenter());
+                    //       // popup.setContent(popupContent);
+                    //       // map.openPopup(popup);
+                    //    //  $('#bs-example-modal-lg').modal('show');
+                    //   });
+             });
+                // map.removeLayer(hutan_produksi_tetap);
+          }
+
+          function loadGeoJsonindustri(data) {
+          
+            industri.clearLayers();
+            industri.addData(data);
+            industri  = L.featureGroup([industri]).addTo(map);
+            var i = 0;
+            var labelnya = "";
+            industri.eachLayer(function (layer) {
+
+                  
+                    layer.setStyle(style_kawasan_industri);
+                   // layer.bindPopup(layer.feature.properties.rencana_tg);
+                    // Get bounds of polygon
+                    var bounds = layer.getBounds();
+                    // Get center of bounds
+                    var center = bounds.getCenter();
+                    //center.on('click', alert('asu'));
+                    // Use center to put marker on map
+                    //var marker = L.marker(center).addTo(map);
+                    //labelnya
+                   
+                   layer.on('click', function (e) {
+                                      //panorama(e.latlng.lat, e.latlng.lng);
+                                      clickHandler(e)
+                                      });
+                  i++;
+                    // layer.on("click", function (e) {
+                    //       // var bounds = layer.getBounds();
+                    //       // var popupContent = "popup content here";
+                    //       // popup.setLatLng(bounds.getCenter());
+                    //       // popup.setContent(popupContent);
+                    //       // map.openPopup(popup);
+                    //    //  $('#bs-example-modal-lg').modal('show');
+                    //   });
+             });
+                // map.removeLayer(industri);
+          }
+          function loadGeoJsonpermukiman_perkotaan(data) {
+           
+           permukiman_perkotaan.clearLayers();
+           permukiman_perkotaan.addData(data);
+           permukiman_perkotaan  = L.featureGroup([permukiman_perkotaan]).addTo(map);
+           var i = 0;
+           var labelnya = "";
+           permukiman_perkotaan.eachLayer(function (layer) {
+
+                 
+                   layer.setStyle(style_permukiman);
+                  // layer.bindPopup(layer.feature.properties.rencana_tg);
+                   // Get bounds of polygon
+                   var bounds = layer.getBounds();
+                   // Get center of bounds
+                   var center = bounds.getCenter();
+                   //center.on('click', alert('asu'));
+                   // Use center to put marker on map
+                   //var marker = L.marker(center).addTo(map);
+                   //labelnya
+                  
+                  layer.on('click', function (e) {
+                                     //panorama(e.latlng.lat, e.latlng.lng);
+                                     clickHandler(e)
+                                     });
+                 i++;
+                   // layer.on("click", function (e) {
+                   //       // var bounds = layer.getBounds();
+                   //       // var popupContent = "popup content here";
+                   //       // popup.setLatLng(bounds.getCenter());
+                   //       // popup.setContent(popupContent);
+                   //       // map.openPopup(popup);
+                   //    //  $('#bs-example-modal-lg').modal('show');
+                   //   });
+            });
+                // map.removeLayer(permukiman);
+         }
+
+         function loadGeoJsonpermukiman_perdesaan(data) {
+         
+         permukiman_perdesaan.clearLayers();
+         permukiman_perdesaan.addData(data);
+         permukiman_perdesaan  = L.featureGroup([permukiman_perdesaan]).addTo(map);
+         var i = 0;
+         var labelnya = "";
+         permukiman_perdesaan.eachLayer(function (layer) {
+
+               
+                 layer.setStyle(style_permukiman);
+                // layer.bindPopup(layer.feature.properties.rencana_tg);
+                 // Get bounds of polygon
+                 var bounds = layer.getBounds();
+                 // Get center of bounds
+                 var center = bounds.getCenter();
+                 //center.on('click', alert('asu'));
+                 // Use center to put marker on map
+                 //var marker = L.marker(center).addTo(map);
+                 //labelnya
+                
+                layer.on('click', function (e) {
+                                   //panorama(e.latlng.lat, e.latlng.lng);
+                                   clickHandler(e)
+                                   });
+               i++;
+                 // layer.on("click", function (e) {
+                 //       // var bounds = layer.getBounds();
+                 //       // var popupContent = "popup content here";
+                 //       // popup.setLatLng(bounds.getCenter());
+                 //       // popup.setContent(popupContent);
+                 //       // map.openPopup(popup);
+                 //    //  $('#bs-example-modal-lg').modal('show');
+                 //   });
+          });
+              // map.removeLayer(permukiman);
+       }
+          function loadGeoJsonpertanian_lahan_basah(data) {
+          
+            pertanian_lahan_basah.clearLayers();
+            pertanian_lahan_basah.addData(data);
+            pertanian_lahan_basah  = L.featureGroup([pertanian_lahan_basah]).addTo(map);
+            var i = 0;
+            var labelnya = "";
+            pertanian_lahan_basah.eachLayer(function (layer) {
+
+                  
+                    layer.setStyle(style_pertanian_lahan_basah);
+                   // layer.bindPopup(layer.feature.properties.rencana_tg);
+                    // Get bounds of polygon
+                    var bounds = layer.getBounds();
+                    // Get center of bounds
+                    var center = bounds.getCenter();
+                    //center.on('click', alert('asu'));
+                    // Use center to put marker on map
+                    //var marker = L.marker(center).addTo(map);
+                    //labelnya
+                   
+                   layer.on('click', function (e) {
+                                      //panorama(e.latlng.lat, e.latlng.lng);
+                                      clickHandler(e)
+                                      });
+                  i++;
+                    // layer.on("click", function (e) {
+                    //       // var bounds = layer.getBounds();
+                    //       // var popupContent = "popup content here";
+                    //       // popup.setLatLng(bounds.getCenter());
+                    //       // popup.setContent(popupContent);
+                    //       // map.openPopup(popup);
+                    //    //  $('#bs-example-modal-lg').modal('show');
+                    //   });
+             });
+           
+               //  map.removeLayer(pertanian_lahan_basah);
+          }
+           function loadGeoJsonpertanian_lahan_kering(data) {
+          
+            pertanian_lahan_kering.clearLayers();
+            pertanian_lahan_kering.addData(data);
+            pertanian_lahan_kering  = L.featureGroup([pertanian_lahan_kering]).addTo(map);
+            var i = 0;
+            var labelnya = "";
+            pertanian_lahan_kering.eachLayer(function (layer) {
+
+                  
+                    layer.setStyle(style_pertanian_lahan_kering);
+                   // layer.bindPopup(layer.feature.properties.rencana_tg);
+                    // Get bounds of polygon
+                    var bounds = layer.getBounds();
+                    // Get center of bounds
+                    var center = bounds.getCenter();
+                    //center.on('click', alert('asu'));
+                    // Use center to put marker on map
+                    //var marker = L.marker(center).addTo(map);
+                    //labelnya
+                   
+                   layer.on('click', function (e) {
+                                      //panorama(e.latlng.lat, e.latlng.lng);
+                                      clickHandler(e)
+                                      });
+                  i++;
+                    // layer.on("click", function (e) {
+                    //       // var bounds = layer.getBounds();
+                    //       // var popupContent = "popup content here";
+                    //       // popup.setLatLng(bounds.getCenter());
+                    //       // popup.setContent(popupContent);
+                    //       // map.openPopup(popup);
+                    //    //  $('#bs-example-modal-lg').modal('show');
+                    //   });
+             });
+           
+              //   map.removeLayer(pertanian_lahan_kering);
+          }
+        
+
+        
+
+          function loadGeoJsonsempadan_pantai(data) {
+          
+            sempadan_pantai.clearLayers();
+            sempadan_pantai.addData(data);
+             sempadan_pantai  = L.featureGroup([sempadan_pantai]).addTo(map);
+            var i = 0;
+            var labelnya = "";
+             sempadan_pantai.eachLayer(function (layer) {
+
+                  
+                    layer.setStyle(style_sempadan_pantai);
+                   // layer.bindPopup(layer.feature.properties.rencana_tg);
+                    // Get bounds of polygon
+                    var bounds = layer.getBounds();
+                    // Get center of bounds
+                    var center = bounds.getCenter();
+                    //center.on('click', alert('asu'));
+                    // Use center to put marker on map
+                    //var marker = L.marker(center).addTo(map);
+                    //labelnya
+                   
+                   layer.on('click', function (e) {
+                                      //panorama(e.latlng.lat, e.latlng.lng);
+                                      clickHandler(e)
+                                      });
+                  i++;
+                    // layer.on("click", function (e) {
+                    //       // var bounds = layer.getBounds();
+                    //       // var popupContent = "popup content here";
+                    //       // popup.setLatLng(bounds.getCenter());
+                    //       // popup.setContent(popupContent);
+                    //       // map.openPopup(popup);
+                    //    //  $('#bs-example-modal-lg').modal('show');
+                    //   });
+             });
+              //   map.removeLayer(sempadan_pantai);
+          }
+
+          function loadGeoJsonsempadan_sungai(data) {
+          
+            sempadan_sungai.clearLayers();
+            sempadan_sungai.addData(data);
+            sempadan_sungai  = L.featureGroup([sempadan_sungai]).addTo(map);
+            var i = 0;
+            var labelnya = "";
+            sempadan_sungai.eachLayer(function (layer) {
+
+                  
+                    layer.setStyle(style_sempadan_sungai);
+                   // layer.bindPopup(layer.feature.properties.rencana_tg);
+                    // Get bounds of polygon
+                    var bounds = layer.getBounds();
+                    // Get center of bounds
+                    var center = bounds.getCenter();
+                    //center.on('click', alert('asu'));
+                    // Use center to put marker on map
+                    //var marker = L.marker(center).addTo(map);
+                    //labelnya
+                   
+                   layer.on('click', function (e) {
+                                      //panorama(e.latlng.lat, e.latlng.lng);
+                                      clickHandler(e)
+                                      });
+                  i++;
+                    // layer.on("click", function (e) {
+                    //       // var bounds = layer.getBounds();
+                    //       // var popupContent = "popup content here";
+                    //       // popup.setLatLng(bounds.getCenter());
+                    //       // popup.setContent(popupContent);
+                    //       // map.openPopup(popup);
+                    //    //  $('#bs-example-modal-lg').modal('show');
+                    //   });
+             });
+               //  map.removeLayer(sempadan_sungai);
+          
+          }
+
+          function loadGeoJsonhortikultura(data) {
+          hortikultura.clearLayers();
+             hortikultura.addData(data);
+             hortikultura  = L.featureGroup([hortikultura]).addTo(map);
+             var i = 0;
+             var labelnya = "";
+             hortikultura.eachLayer(function (layer) {
+
+                   
+                     layer.setStyle(style_rth);
+                    // layer.bindPopup(layer.feature.properties.rencana_tg);
+                     // Get bounds of polygon
+                     var bounds = layer.getBounds();
+                     // Get center of bounds
+                     var center = bounds.getCenter();
+                     //center.on('click', alert('asu'));
+                     // Use center to put marker on map
+                     //var marker = L.marker(center).addTo(map);
+                     //labelnya
+                    
+                    layer.on('click', function (e) {
+                                       //panorama(e.latlng.lat, e.latlng.lng);
+                                       clickHandler(e)
+                                       });
+                   i++;
+                     // layer.on("click", function (e) {
+                     //       // var bounds = layer.getBounds();
+                     //       // var popupContent = "popup content here";
+                     //       // popup.setLatLng(bounds.getCenter());
+                     //       // popup.setContent(popupContent);
+                     //       // map.openPopup(popup);
+                     //    //  $('#bs-example-modal-lg').modal('show');
+                     //   });
+              });
+                  // map.removeLayer(hortikultura);
+           }
+
+           function loadGeoJsonhortikultura2(data) {
+      
+      hortikultura2.clearLayers();
+      hortikultura2.addData(data);
+      hortikultura2  = L.featureGroup([hortikultura2]).addTo(map);
+      var i = 0;
+      var labelnya = "";
+      hortikultura2.eachLayer(function (layer) {
+        console.log('abc')
+            
+              layer.setStyle(style_hutan_produksi_tetap);
+             // layer.bindPopup(layer.feature.properties.rencana_tg);
+              // Get bounds of polygon
+              var bounds = layer.getBounds();
+              // Get center of bounds
+              var center = bounds.getCenter();
+              //center.on('click', alert('asu'));
+              // Use center to put marker on map
+              //var marker = L.marker(center).addTo(map);
+              //labelnya
+             
+             layer.on('click', function (e) {
+                                //panorama(e.latlng.lat, e.latlng.lng);
+                                clickHandler(e)
+                                });
+            i++;
+              // layer.on("click", function (e) {
+              //       // var bounds = layer.getBounds();
+              //       // var popupContent = "popup content here";
+              //       // popup.setLatLng(bounds.getCenter());
+              //       // popup.setContent(popupContent);
+              //       // map.openPopup(popup);
+              //    //  $('#bs-example-modal-lg').modal('show');
+              //   });
+       });
+       peta_pemohon();
+          //  map.removeLayer(hortikultura2);
+    }
+
+          
+
+     
+
+
+
+
+          
+
+
+       
+
+
+    // do stuff after marker has been added
+
+      
+    function doAnimations(){
+       var myIcon = document.querySelector('.gps_ring')
+      //sesudah
+       myIcon.style.width = '1000px'
+       
+    }
+
+            
+               
+                 
+                     
+
+            //ambil kec
+              var geoJsonUrl =root+"peta/topojson_kec"; 
+                $.getJSON(geoJsonUrl)
+                  .done(loadGeoJsonkec);
+                  //ambil polaruang
+                //   var geoJsonUrl =root+"peta/topojson_polaruang"; 
+                // $.getJSON(geoJsonUrl)
+                //   .done(loadGeoJsonpolaruang);
+                var geoJsonUrl =root+"peta/topojson_polaruang?kode=2110&jenis=2"; 
+                            $.getJSON(geoJsonUrl)
+                              .done(loadGeoJsonjalan);
+                              var geoJsonUrl =root+"peta/topojson_polaruang?kode=4470&jenis=2"; 
+                            $.getJSON(geoJsonUrl)
+                              .done(loadGeoJsonsungai);
+                              var geoJsonUrl =root+"peta/topojson_polaruang?kode=28&jenis=2"; 
+                            $.getJSON(geoJsonUrl)
+                              .done(loadGeoJsontanamanPangan);
+                  var geoJsonUrl =root+"peta/topojson_polaruang?kode=34&jenis=2"; 
+                            $.getJSON(geoJsonUrl)
+                              .done(loadGeoJsonperikanan);
+
+                  var geoJsonUrl =root+"peta/topojson_polaruang?kode=2&jenis=1"; 
+                                  $.getJSON(geoJsonUrl)
+                                    .done(loadGeoJsonhutan_lindung);
+
+                  var geoJsonUrl =root+"peta/topojson_polaruang?kode=49&jenis=2"; 
+                 $.getJSON(geoJsonUrl)
+                   .done(loadGeoJsonpertahanan);
+                   var geoJsonUrl =root+"peta/topojson_polaruang?kode=47&jenis=2"; 
+                 $.getJSON(geoJsonUrl)
+                   .done(loadGeoJsonpermukiman_perkotaan);
+                   var geoJsonUrl =root+"peta/topojson_polaruang?kode=48&jenis=2"; 
+                 $.getJSON(geoJsonUrl)
+                   .done(loadGeoJsonpermukiman_perdesaan);
+                  var geoJsonUrl =root+"peta/topojson_polaruang?kode=23&jenis=2"; 
+                              $.getJSON(geoJsonUrl)
+                                .done(loadGeoJsonhutan_produksi_terbatas);
+
+                  var geoJsonUrl =root+"peta/topojson_polaruang?kode=24&jenis=2"; 
+                 $.getJSON(geoJsonUrl)
+                   .done(loadGeoJsonhutan_produksi_tetap);
+
+                  var geoJsonUrl =root+"peta/topojson_polaruang?kode=42&jenis=2"; 
+                 $.getJSON(geoJsonUrl)
+                   .done(loadGeoJsonindustri);
+
+                  var geoJsonUrl =root+"peta/topojson_polaruang?kode=29&jenis=2"; 
+                 $.getJSON(geoJsonUrl)
+                   .done(loadGeoJsonhortikultura2);
+
+                //   var geoJsonUrl =root+"peta/topojson_polaruang?kode=10&jenis=2"; 
+                //  $.getJSON(geoJsonUrl)
+                //    .done(loadGeoJsonhortikultura2);
+
+                  var geoJsonUrl =root+"peta/topojson_polaruang?kode=6&jenis=1"; 
+                            $.getJSON(geoJsonUrl)
+                              .done(loadGeoJsonsempadan_pantai);
+
+                  var geoJsonUrl =root+"peta/topojson_polaruang?kode=7&jenis=1"; 
+                            $.getJSON(geoJsonUrl)
+                              .done(loadGeoJsonsempadan_sungai);
+                  
+                  //   var geoJsonUrl =root+"peta/jalan"; 
+                  // $.getJSON(geoJsonUrl)
+                  //   .done(loadGeoJsonjalan);
+
+                 
+                   //ambil eksisting
+             
+                  map.on('moveend', function(){
+                   if(map.getZoom() > 10 && map.getZoom() < 14){
+                         tampil_label_kec();
+                   }else{
+                    hide_label_kec();
+                   }
+                 })
+                    var kiri_atas_lng  = map.getBounds().getSouthWest().lng;
+              var kiri_atas_lat  = map.getBounds().getSouthWest().lat;
+              var kanan_bawah_lng = map.getBounds().getNorthEast().lng;
+              var kanan_bawah_lat = map.getBounds().getNorthEast().lat;
+                 
+                      
+                     
+                  //end ambil_kec
+
+            //saat pindah
+          
+        
+              //kembali ke asal
+
+             
+             //kembali ke asal
+
+              var kiri_atas_lng  = map.getBounds().getSouthWest().lng;
+              var kiri_atas_lat  = map.getBounds().getSouthWest().lat;
+              var kanan_bawah_lng = map.getBounds().getNorthEast().lng;
+              var kanan_bawah_lat = map.getBounds().getNorthEast().lat;
+             //   var geoJsonUrl =root + "index.php/peta/geo_kec_bound/"+kiri_atas_lng+"/"+kiri_atas_lat+"/"+kanan_bawah_lng+"/"+kanan_bawah_lat; 
+                var geoJsonUrl =root+"peta/topojson_desa?kiri_lng="+kiri_atas_lng+"&kiri_lat="+kiri_atas_lat+"&kanan_lng="+kanan_bawah_lng+"&kanan_lat="+kanan_bawah_lat; 
+               // console.log(geoJsonUrl);
+              // console.log(map.getBounds().toBBoxString());
+              // console.log(map.getBounds().getSouthWest().lng + ';' + map.getBounds().getSouthWest().lat + ';' + map.getBounds().getNorthEast().lng + ';' + map.getBounds().getNorthEast().lat);
+            //    var boundingBox = L.rectangle(map.getBounds(), {color: "#ff7800", weight: 1});
+            // map.addLayer(boundingBox);
+                // $.ajax({
+                //     url: geoJsonUrl,
+                //     datatype: 'json',
+                //     jsonCallback: 'getJson',
+                //     success: loadGeoJson
+                //     });
+                // $.getJSON(geoJsonUrl)
+                //   .done(loadGeoJsondesa);
+
+
+             
+
+            //end moveend
+
+       legend.onAdd = function (map) {
+                var div = L.DomUtil.create('div', 'info-legend')
+               
+               // loop through our density intervals and generate a label with a colored square for each interval
+                for (var i = 0; i < warna_total.length; i++) {
+                  div.innerHTML += '<i style="background:' + warna_total[i] + '"></i> ' + labels[i] + '<br>';
+                }
+                return div;
+              };
+
+             legend.addTo(map);
+
+              var baseLayers = {
+                "Google Roadmap": google_roadmap,
+                "Google Hybrid": google_hybrid,
+                "Google Satellite": google_satelit,
+                "Open Street Map": osm,
+                "ESRI World Imagery": Esri_WorldImagery,
+                "RBI": RBI
+              };
+              
+              // var overlays = {
+              //   "kecamatan": kabupaten_layer,
+              //   "<span>RTRW Semapadan Sungai</span>&nbsp;&nbsp;<span style='background-color:#499277;padding:2px 8px 2px 8px;'></span>": sempadan_sungai,
+              //   "<span>RTRW Sempadan Pantai</span>&nbsp;&nbsp;<span style='background-color:#3F786F;padding:2px 8px 2px 8px;'></span>": sempadan_pantai,
+              //   "<span>RTRW Kawasan Konservasi/KA</span>&nbsp;&nbsp;<span style='background-color:#195344;padding:2px 8px 2px 8px;'></span>": kawasan_konservasi,
+              //   "<span>RTRW Hutan Lindung</span>&nbsp;&nbsp;<span style='background-color:#8C8D88;padding:2px 8px 2px 8px;'></span>": hutan_lindung,
+              //   "<span>RTRW Tambak</span>&nbsp;&nbsp;<span style='background-color:#48B3C5;padding:2px 8px 2px 8px;'></span>": tambak,
+              //   "<span>RTRW Lahan Basah Kering</span>&nbsp;&nbsp;<span style='background-color:#C8DEB0;padding:2px 8px 2px 8px;'></span>": lahan_basah_kering,
+              //   "<span>RTRW Permukiman Perkotaan</span>&nbsp;&nbsp;<span style='background-color:#E8B05D;padding:2px 8px 2px 8px;'></span>": permukiman_perkotaan,
+              //   "<span>RTRW Permukiman Perdesaan</span>&nbsp;&nbsp;<span style='background-color:#E8B05D;padding:2px 8px 2px 8px;'></span>": permukiman_perdesaan,
+              //   "<span>RTRW Perkebunan</span>&nbsp;&nbsp;<span style='background-color:#ABBC6E;padding:2px 8px 2px 8px;'></span>": perkebunan,
+              //   "<span>RTRW Industri</span>&nbsp;&nbsp;<span style='background-color:#9E8986;padding:2px 8px 2px 8px;'></span>": industri,
+              //   "<span>RTRW Hutan Produksi Terbatas</span>&nbsp;&nbsp;<span style='background-color:#7EA4D3;padding:2px 8px 2px 8px;'></span>": hutan_produksi_terbatas,
+              //   "<span>RTRW Hutan Produksi</span>&nbsp;&nbsp;<span style='background-color:#7EA4D3;padding:2px 8px 2px 8px;'></span>": hutan_produksi,
+              //   "<span>Jalan</span>&nbsp;&nbsp;<span style='background-color:red;padding:2px 8px 2px 8px;'></span>": jalan_layer
+               
+                
+              // };
+              
+              // L.control.layers(baseLayers,overlays,{
+              //   position : 'topright'
+              // }, {'drawlayer':drawnItems}, { position: 'topleft', collapsed: false }).addTo(map);
+
+                              var groupedOverlays = {
+                                   "Administrasi": {
+                     "&nbsp;&nbsp;&nbsp;&nbsp;kecamatan": kabupaten_layer,
+                    "&nbsp;&nbsp;&nbsp;&nbsp;Desa": desa_layer,
+                    
+                     },
+                     "Pola Ruang RTRW": {
+                   
+                  
+                  //  "&nbsp;&nbsp;&nbsp;&nbsp;<span>Jalan</span>&nbsp;&nbsp;<span style='background-color:red;padding:2px 8px 2px 8px;'></span>": jalan_layer
+                   
+                     }
+                   };
+                         var options = {
+           // Make the "Landmarks" group exclusive (use radio inputs)
+          // exclusiveGroups: ["Landmarks"],
+           // Show a checkbox next to non-exclusive group labels for toggling all
+           collapsed:true,
+           groupCheckboxes: false
+         };
+              L.control.groupedLayers(baseLayers, groupedOverlays, options).addTo(map);
+           
+
+              streetview.onAdd = function (map) {
+                var div = L.DomUtil.create('div', 'sv')
+               
+               // loop through our density intervals and generate a label with a colored square for each interval
+                  div.innerHTML += '';
+                
+                return div;
+              };
+
+             // streetview.addTo(map);
+
+              L.control.scale({
+                position : 'bottomright',
+                metric : true,
+                imperial : false
+              }).addTo(map);
+              
+              lc = L.control.locate({
+                position : 'topleft',
+                follow : true,
+                strings : {
+                  title : "Lokasi Anda",
+                  popup: "Anda berada di radius {distance} {unit} dari titik ini"
+                },
+                markerClass : L.marker,
+                markerStyle : {icon: locateIcon},
+                keepCurrentZoomLevel : true
+              }).addTo(map);
+
+              map
+                .on('startfollowing', function() {
+                  map.on('dragstart', lc._stopFollowing, lc);
+                })
+                .on('stopfollowing', function() {
+                    map.off('dragstart', lc._stopFollowing, lc);
+                });
+
+              map.on('locationfound', onLocationFound);
+              
+
+              // map.on('moveend', function() { 
+              //      console.log(map.getBounds());
+              // });
+
+              map.on('baselayerchange', function(e) {
+                console.log(e.name);
+
+                if ( e.name == 'Google Roadmap' || e.name == 'Open Street Map' || e.name == 'Mapbox Street') {
+                  kabupaten_layer.eachLayer(function (layer) {
+                 //   layer.setStyle(style_kabupaten_gelap);
+                  });
+                }else{
+                  kabupaten_layer.eachLayer(function (layer) {
+                    layer.setStyle(style_kabupaten);
+                  });
+                }
+
+              });
+              
+              //ganti kabupaten
+              $('#search_maps').hide();
+
+
+             // $('.leaflet-bottom.leaflet-left').hide();
+              
+              $('.leaflet-bar-part.leaflet-bar-part-single').click(function () {
+               
+              })
+              
+
+              //panorama
+             var marker= "";
+             var titik_panorama = null;
+              function panorama(xe,ye){
+                 if(titik_panorama != null){
+                map.removeLayer(titik_panorama);     
+                 }
+                 if(marker!=""){
+                   map.removeLayer(marker);
+                   
+                 }
+                    titik_panorama = L.marker([xe, ye]).addTo(map);
+                 var fenway = new google.maps.LatLng(xe,ye);
+                   var panoramaOptions = {
+                     position: fenway,
+                     pov: {
+                       heading: 34,
+                       pitch: 10
+                     }
+                   };
+                   var panorama = new  google.maps.StreetViewPanorama(document.getElementById('pano'),panoramaOptions);
+                 
+            }
+      //       map.on('click', function(e) {
+
+      //    // console.log(e.latlng.lat+' '+e.latlng.lng);
+      //    var xe = e.latlng.lat;
+      //    var ye = e.latlng.lng;
+         
+      //    panorama(xe,ye)
+       
+               
+      // });
+</script>

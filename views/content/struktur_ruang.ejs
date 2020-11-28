@@ -1,0 +1,2804 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="shortcut icon" href="/images/template/Logo Kab Pekalongan.ico">
+  <title>Sistem Informasi RTRW Kabupaten Pekalongan</title>
+
+  <link href="/stylesheets/template/css/theme.css" rel="stylesheet">
+  <link href="/stylesheets/template/css/style.css" rel="stylesheet">
+  <link href="/stylesheets/template/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+    <!-- Plugin This Page -->
+    <link href="/resources-maps/stylesheets/leaflet-routing-machine.css" rel="stylesheet"/>
+    <link href="/resources-maps/stylesheets/L.Control.Locate.min.css" rel="stylesheet"/>
+    <link href="/resources-maps/stylesheets/leaflet-routing-machine.css" rel="stylesheet"/>
+    <link href="/resources-maps/stylesheets/leaflet.extra-markers.css" rel="stylesheet"/>
+    <link href="/resources-maps/stylesheets/leaflet.label.css" rel="stylesheet"/>
+    <link href="/resources-maps/stylesheets/groupedlayercontrol.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/resources-maps/stylesheets/leaflet.draw.css" />
+    <link href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" rel="stylesheet">
+    <link href="/resources-maps/stylesheets/Control.FullScreen.css" rel="stylesheet"/>
+    <script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
+      <script src="https://unpkg.com/esri-leaflet@2.1.1/dist/esri-leaflet.js"
+       integrity="sha512-ECQqaYZke9cSdqlFG08zSkudgrdF6I1d8ViSa7I3VIszJyVqw4ng1G8sehEXlumdMnFYfzY0tMgdQa4WCs9IUw=="
+       crossorigin=""></script>
+    <script src="/resources-maps/javascripts/leaflet-routing-machine.js"></script>
+    <script src="/plugins/jquery/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <script src="/resources-maps/javascripts/leaflet.label.js"></script>
+    <script src="/resources-maps/panah-asmara.js"></script>
+    <script src="https://maps.google.com/maps/api/js?v=3.2&key=AIzaSyBy8irzccEOp7ezf5nQ2UPaLGcte_AEsOQ"></script>
+    <script src='https://unpkg.com/leaflet.gridlayer.googlemutant@latest/Leaflet.GoogleMutant.js'></script>
+    <script src="/resources-maps/javascripts/L.Control.Locate.js" ></script>
+    <script src="/resources-maps/javascripts/leaflet-routing-machine.js"></script>
+    <script src="/resources-maps/javascripts/leaflet.extra-markers.js"></script>
+    <script src="/resources-maps/javascripts/leaflet-image.js"></script>
+    <script src="https://d3js.org/topojson.v1.min.js"></script>
+    <script src="/resources-maps/javascripts/Control.FullScreen.js"></script>
+    <script src="/resources-maps/javascripts/groupedlayercontrol.js"></script>
+    <script src="/resources-maps/javascripts/wicket.js"></script>
+     <script src="/resources-maps/javascripts/wicket-leaflet.js"></script>
+    <!-- drawing -->
+    <script src="/resources-maps/draw/Leaflet.draw.js"></script>
+    <script src="/resources-maps/draw/Leaflet.Draw.Event.js"></script>
+    <script src="/resources-maps/draw/Toolbar.js"></script>
+    <script src="/resources-maps/draw/Tooltip.js"></script>
+    <script src="/resources-maps/draw/ext/GeometryUtil.js"></script>
+    <script src="/resources-maps/draw/ext/LatLngUtil.js"></script>
+    <script src="/resources-maps/draw/ext/LineUtil.Intersect.js"></script>
+    <script src="/resources-maps/draw/ext/Polygon.Intersect.js"></script>
+    <script src="/resources-maps/draw/ext/Polyline.Intersect.js"></script>
+    <script src="/resources-maps/draw/ext/TouchEvents.js"></script>
+    <script src="/resources-maps/draw/draw/DrawToolbar.js"></script>
+    <script src="/resources-maps/draw/draw/handler/Draw.Feature.js"></script>
+    <script src="/resources-maps/draw/draw/handler/Draw.SimpleShape.js"></script>
+    <script src="/resources-maps/draw/draw/handler/Draw.Polyline.js"></script>
+    <script src="/resources-maps/draw/draw/handler/Draw.Marker.js"></script>
+    <script src="/resources-maps/draw/draw/handler/Draw.Polygon.js"></script>
+    <script src="/resources-maps/draw/draw/handler/Draw.Rectangle.js"></script>
+    <script src="/resources-maps/draw/edit/EditToolbar.js"></script>
+    <script src="/resources-maps/draw/edit/handler/EditToolbar.Edit.js"></script>
+    <script src="/resources-maps/draw/edit/handler/EditToolbar.Delete.js"></script>
+    <script src="/resources-maps/draw/Control.Draw.js"></script>
+    <script src="/resources-maps/draw/edit/handler/Edit.Poly.js"></script>
+    <script src="/resources-maps/draw/edit/handler/Edit.SimpleShape.js"></script>
+    <script src="/resources-maps/draw/edit/handler/Edit.Rectangle.js"></script>
+    <script src="/resources-maps/draw/edit/handler/Edit.Marker.js"></script> 
+    <script src="/resources-maps/main.js"></script> 
+  
+    <!-- End Plugins This Page -->
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+        <style type="text/css">
+          body{
+            font-family: 'Poppins', sans-serif;
+            background-image: url('/images/template/pattern.png');
+            background-repeat: repeat;
+            }
+
+            .section-one ul.list-unstyled li{
+                margin-top: 10px;
+                margin-bottom: 10px;
+            }
+
+
+            .section-one ul.list-unstyled li a{
+                text-decoration: none;
+                color: black;
+                font-weight: 700;
+            }
+             .info-legend {
+        padding: 6px 8px;
+        font: 14px/16px Arial, Helvetica, sans-serif;
+        background: white;
+        background: rgba(255,255,255,0.8);
+        /*box-shadow: 0 0 15px rgba(0,0,0,0.2);*/
+        border-radius: 5px;
+      }
+      .info-legend i {
+        width: 50px;
+        height: 7px;
+        float: left;
+        margin-right: 8px;
+        opacity: 0.7;
+      }
+
+      @media (max-width: 768px) { 
+        .content { 
+          padding-left: 15px; 
+          padding-right: 15px;
+          padding-top: 15px; 
+          padding-bottom: 15px; 
+        } 
+      }
+            .box-jalan, .box-kereta, .box-terminal, .box-stasiun, .box-pelabuhan,
+            .box-listrik, .box-gas,
+            .box-air, .box-sda,
+            .box-bergerak, .box-tdk-bergerak,
+            .box-jalur, .box-bencana, .box-evakuasi
+            {
+              display: none;
+            }
+            
+            td{
+              padding-top: 5px !important;
+              padding-bottom: 5px !important;
+              padding-left: 0 !important;
+              padding-right: 0 !important;
+            }
+
+            ::-webkit-scrollbar {
+                width: 12px;
+            }
+            
+            ::-webkit-scrollbar-track {
+                -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+                border-radius: 0;
+            }
+            
+            ::-webkit-scrollbar-thumb {
+                border-radius: 0;
+                -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+            }
+        </style>
+</head>
+
+<body>
+  <header style="background-color: rgba(255,255,255,0.6);">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-2">
+          <div style="width: 100%;display: flex;justify-content: center;align-items: center;height: 10vh;background-color: ;">
+            <img src="/images/template/logo_bappeda.png" alt="" style="width:100%">
+          </div>
+        </div>
+        <div class="col-lg-8">
+          <div style="width: 100%;display: flex;justify-content: center;align-items: center;height: 10vh;background-color: ;">
+            <ul class="list-inline m-b-0">
+              <li style="margin-left:10px;margin-right:10px;"><a href="/" style="color:#333;text-decoration:none">BERANDA</a></li>
+              <li style="margin-left:10px;margin-right:10px;"><a href="/kawasan_strategis" style="color:#333;text-decoration:none">KAWASAN STRATEGIS</a></li>
+              <li style="margin-left:10px;margin-right:10px;"><a href="/struktur_ruang" style="color:#333;text-decoration:none">STRUKTUR RUANG</a></li>
+              <li style="margin-left:10px;margin-right:10px;"><a href="/pola_ruang" style="color:#333;text-decoration:none">POLA RUANG</a></li>
+              <li style="margin-left:10px;margin-right:10px;"><a href="/indikasi_program" style="color:#333;text-decoration:none">INDIKASI PROGRAM</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-2">
+          <div style="display: flex;height: 10vh;justify-content: flex-end;align-items: center;">
+            <a href="/alur_informasi_tata_ruang" style="text-decoration:none">
+            <div style="background-color: #00be80;padding:10px 10px;border-radius: 6px;">
+              <h4 style="font-size: 14px;margin-top: 0;margin-bottom: 0;text-align: center;"><strong>INFORMASI <span style="color: #fff;">TATA RUANG</span></strong></h4>
+            </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container-fluid">
+        
+    <div class="row">
+      <div class="col-lg-3" style="padding-left: 0;padding-right: 0;">
+        <div style="height: 90vh;padding-top: 2.5vh;padding-bottom: 2.5vh;background-color: ;overflow-y: auto;padding-left: 15px;padding-right: 15px;background-color: rgba(255,255,255,0.6);">
+          <div class="row">
+            <div class="col-lg-12">
+              <h3 class="text-center" style="margin-top:0;margin-bottom: 0;"><strong>STRUKTUR RUANG</strong></h3>
+              <h4 class="text-center" style="margin-top:0;color:#2ecc71">KABUPATEN PEKALONGAN</h4>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-12 table-no-border">
+              <table class="table table-bordered" style="margin-bottom: 0;">
+                <tbody>
+                  <tr>
+                    <td colspan="4"><h5 style="margin-top: 0;margin-bottom: 0;"><strong>Pencarian :</strong></h5></td>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align: middle;width: 100px;">Kecamatan</td>
+                    <td style="vertical-align: middle;width: 10px;">:</td>
+                    <td>
+                      <select class="form-control" name="" id="kec">
+                        <option value="">-- Pilih --</option>
+                        <%for(let i =0; i < kec.length; i++){%>
+                          <option value="<%=kec[i].kecamatan%>" xe="<%=kec[i].xe%>" ye="<%=kec[i].ye%>"><%=kec[i].kecamatan%></option>
+                          <%}%>
+                      </select>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td style="vertical-align: middle;">Kelurahan</td>
+                    <td style="vertical-align: middle;">:</td>
+                    <td>
+                      <select class="form-control" name="" id="desa">
+                        <option value="">-- Pilih --</option>
+                      </select>
+                    </td>
+                  </tr>
+
+               
+
+                  <tr>
+                    <td colspan="4"><button class="btn btn-success btn-sm">Cari</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="row" style="margin-top: 30px;">
+            <div class="col-lg-12">
+              <h5 style="margin-top: 0;margin-bottom: 0;"><strong>Layer Peta :</strong></h5>
+            </div>
+            <div class="col-lg-12" style="margin-top:15px">
+              <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default" >
+                  <div class="panel-heading" role="tab" id="headingOne" style="background-color: #2ecc71;">
+                    <h4 class="panel-title" style="color: #fff;font-weight: bold;">
+                      <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        TRANSPORTASI
+                      </a>
+                    </h4>
+                  </div>
+                  <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                    <div class="panel-body table-no-border">
+                     <table class="table table-bordered" style="margin-bottom: 0;">
+                       <tbody>
+                          <tr>
+                            <td style="vertical-align: middle;width: 25px;"><input type="checkbox" id="jaringan_jalan" name="" value=""></td>
+                            <td style="vertical-align: middle;">
+                              <h5 style="margin-top: 0;margin-bottom: 0;">Jaringan Jalan</h5>
+                              <h6 style="margin-top: 5px;margin-bottom: 0;color:#2ecc71"><span style="cursor: pointer;" onclick="pupz('Jaringan Jalan', '1002', '1')">Ketentuan</span> - <span style="cursor: pointer;" class="legenda-jalan">Legenda</span> </h6>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td colspan="2">
+                              <div class="box-jalan">
+                                <img src="https://via.placeholder.com/300" alt="" style="width: 100%;">
+                              </div>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td style="vertical-align: middle;"><input type="checkbox" id="kereta_api" name="" value=""></td>
+                            <td style="vertical-align: middle;">
+                              <h5 style="margin-top: 0;margin-bottom: 0;">Kereta Api</h5>
+                              <h6 style="margin-top: 5px;margin-bottom: 0;color:#2ecc71"><span style="cursor: pointer;"  onclick="pupz('Kereta Api', '1002', '2')">Ketentuan</span> - <span style="cursor: pointer;" class="legenda-kereta">Legenda</span> </h6>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td colspan="2">
+                              <div class="box-kereta">
+                                <img src="/images/template/legenda/jaringan_kereta_api.png" alt="" style="width: 100%;">
+                              </div>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td style="vertical-align: middle;"><input type="checkbox" id="terminal" name="" value=""></td>
+                            <td style="vertical-align: middle;">
+                              <h5 style="margin-top: 0;margin-bottom: 0;">Terminal</h5>
+                              <h6 style="margin-top: 5px;margin-bottom: 0;color:#2ecc71"><span style="cursor: pointer;" onclick="pupz('Kereta Api', '2006', '1')">Ketentuan</span> - <span style="cursor: pointer;" class="legenda-terminal">Legenda</span> </h6>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td colspan="2">
+                              <div class="box-terminal">
+                                <img src="/images/template/legenda/terminal.png" alt="" style="width: 100%;">
+                              </div>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td style="vertical-align: middle;"><input type="checkbox" id="stasiun" name="" value=""></td>
+                            <td style="vertical-align: middle;">
+                              <h5 style="margin-top: 0;margin-bottom: 0;">Stasiun</h5>
+                              <h6 style="margin-top: 5px;margin-bottom: 0;color:#2ecc71"><span style="cursor: pointer;" onclick="pupz('Kereta Api', '2006', '5')">Ketentuan</span> - <span style="cursor: pointer;" class="legenda-stasiun">Legenda</span> </h6>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td colspan="2">
+                              <div class="box-stasiun">
+                                <img src="/images/template/legenda/stasiun.png" alt="" style="width: 100%;">
+                              </div>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td style="vertical-align: middle;"><input type="checkbox" id="pelabuhan" name="" value=""></td>
+                            <td style="vertical-align: middle;">
+                              <h5 style="margin-top: 0;margin-bottom: 0;">Pelabuhan</h5>
+                              <h6 style="margin-top: 5px;margin-bottom: 0;color:#2ecc71"><span style="cursor: pointer;" onclick="pupz('Kereta Api', '2006', '13')">Ketentuan</span> - <span style="cursor: pointer;" class="legenda-pelabuhan">Legenda</span> </h6>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td colspan="2">
+                              <div class="box-pelabuhan">
+                                <img src="/images/template/legenda/pelabuhan.png" alt="" style="width: 100%;">
+                              </div>
+                            </td>
+                          </tr>
+                       </tbody>
+                     </table>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel panel-success">
+                  <div class="panel-heading" role="tab" id="headingTwo" style="background-color: #2ecc71;">
+                    <h4 class="panel-title" style="color: #fff;font-weight: bold;">
+                      <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        ENERGI
+                      </a>
+                    </h4>
+                  </div>
+                  <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                    <div class="panel-body table-no-border">
+                      <table class="table table-bordered" style="margin-bottom: 0;">
+                        <tbody>
+                          <tr>
+                             <td style="vertical-align: middle;width: 25px;"><input type="checkbox" id="jaringan_listrik" name="" value=""></td>
+                             <td style="vertical-align: middle;">
+                               <h5 style="margin-top: 0;margin-bottom: 0;">Jaringan Listrik</h5>
+                               <h6 style="margin-top: 5px;margin-bottom: 0;color:#2ecc71"><span style="cursor: pointer;"  onclick="pupz('Jaringan Listrik', '1005', '7')">Ketentuan</span> - <span style="cursor: pointer;" class="legenda-listrik">Legenda</span> </h6>
+                             </td>
+                          </tr>
+ 
+                          <tr>
+                             <td colspan="2">
+                               <div class="box-listrik">
+                                 <img src="/images/template/legenda/energi.png" alt="" style="width: 100%;">
+                               </div>
+                             </td>
+                          </tr>
+
+                          <tr>
+                            <td style="vertical-align: middle;"><input type="checkbox" id="jaringan_gas" name="" value=""></td>
+                            <td style="vertical-align: middle;">
+                              <h5 style="margin-top: 0;margin-bottom: 0;">Jaringan Gas</h5>
+                              <h6 style="margin-top: 5px;margin-bottom: 0;color:#2ecc71"><span style="cursor: pointer;"  onclick="pupz('Jaringan GAS', '1006', '1')">Ketentuan</span> - <span style="cursor: pointer;" class="legenda-gas">Legenda</span> </h6>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td colspan="2">
+                              <div class="box-gas">
+                                <img src="/images/template/legenda/gas.png" alt="" style="width: 100%;">
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel panel-success">
+                  <div class="panel-heading" role="tab" id="headingThree" style="background-color: #2ecc71;">
+                    <h4 class="panel-title" style="color: #fff;font-weight: bold;">
+                      <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        SDA
+                      </a>
+                    </h4>
+                  </div>
+                  <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                    <div class="panel-body table-no-border">
+                      <table class="table table-bordered" style="margin-bottom: 0;">
+                        <tbody>
+                          <tr>
+                             <td style="vertical-align: middle;width: 25px;"><input type="checkbox" id="sumber_air" name="" value=""></td>
+                             <td style="vertical-align: middle;">
+                               <h5 style="margin-top: 0;margin-bottom: 0;">Sumber Air</h5>
+                               <h6 style="margin-top: 5px;margin-bottom: 0;color:#2ecc71"><span style="cursor: pointer;" onclick="pupz('Kereta Api', '2004', '4')">Ketentuan</span> - <span style="cursor: pointer;" class="legenda-air">Legenda</span> </h6>
+                             </td>
+                          </tr>
+ 
+                          <tr>
+                             <td colspan="2">
+                               <div class="box-air">
+                                 <img src="/images/template/legenda/sumber_air.png" alt="" style="width: 100%;">
+                               </div>
+                             </td>
+                          </tr>
+
+                          <tr>
+                            <td style="vertical-align: middle;"><input type="checkbox" id="jaringan_sda" name="" value=""></td>
+                            <td style="vertical-align: middle;">
+                              <h5 style="margin-top: 0;margin-bottom: 0;">Jaringan SDA</h5>
+                              <h6 style="margin-top: 5px;margin-bottom: 0;color:#2ecc71"><span style="cursor: pointer;"  onclick="pupz('Jaringan SDA', '1003', '4')">Ketentuan</span> - <span style="cursor: pointer;" class="legenda-sda">Legenda</span> </h6>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td colspan="2">
+                              <div class="box-sda">
+                                <img src="https://via.placeholder.com/300" alt="" style="width: 100%;">
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel panel-success">
+                  <div class="panel-heading" role="tab" id="headingFour" style="background-color: #2ecc71;">
+                    <h4 class="panel-title" style="color: #fff;font-weight: bold;">
+                      <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                        TELEKOMUNIKASI
+                      </a>
+                    </h4>
+                  </div>
+                  <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+                    <div class="panel-body table-no-border">
+                      <table class="table table-bordered" style="margin-bottom: 0;">
+                        <tbody>
+                          <tr>
+                             <td style="vertical-align: middle;width: 25px;"><input type="checkbox" id="jaringan_bergerak" name="" value=""></td>
+                             <td style="vertical-align: middle;">
+                               <h5 style="margin-top: 0;margin-bottom: 0;">Jaringan Bergerak</h5>
+                               <h6 style="margin-top: 5px;margin-bottom: 0;color:#2ecc71"><span style="cursor: pointer;" onclick="pupz('Kereta Api', '2005', '3')">Ketentuan</span> - <span style="cursor: pointer;" class="legenda-bergerak">Legenda</span> </h6>
+                             </td>
+                          </tr>
+ 
+                          <tr>
+                             <td colspan="2">
+                               <div class="box-bergerak">
+                                 <img src="https://via.placeholder.com/300" alt="" style="width: 100%;">
+                               </div>
+                             </td>
+                          </tr>
+
+                          <tr>
+                            <td style="vertical-align: middle;"><input type="checkbox" id="jaringan_tidak_bergerak" name="" value=""></td>
+                            <td style="vertical-align: middle;">
+                              <h5 style="margin-top: 0;margin-bottom: 0;">Jaringan Tidak Bergerak</h5>
+                              <h6 style="margin-top: 5px;margin-bottom: 0;color:#2ecc71"><span style="cursor: pointer;"  onclick="pupz('Jaringan Tidak Bergerak', '1001', '1')">Ketentuan</span> - <span style="cursor: pointer;" class="legenda-tdk-bergerak">Legenda</span> </h6>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td colspan="2">
+                              <div class="box-tdk-bergerak">
+                                <img src="https://via.placeholder.com/300" alt="" style="width: 100%;">
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="panel panel-success">
+                  <div class="panel-heading" role="tab" id="headingFive" style="background-color: #2ecc71;">
+                    <h4 class="panel-title" style="color: #fff;font-weight: bold;">
+                      <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                        KEBENCANAAN
+                      </a>
+                    </h4>
+                  </div>
+                  <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
+                    <div class="panel-body table-no-border">
+                      <table class="table table-bordered" style="margin-bottom: 0;">
+                        <tbody>
+                          <tr>
+                             <td style="vertical-align: middle;width: 25px;"><input type="checkbox" id="jalur_evakuasi" name="" value=""></td>
+                             <td style="vertical-align: middle;">
+                               <h5 style="margin-top: 0;margin-bottom: 0;">Jalur Evakuasi</h5>
+                               <h6 style="margin-top: 5px;margin-bottom: 0;color:#2ecc71"><span style="cursor: pointer;"  onclick="pupz('Jalur Evakuasi Bencana', '1004', '2')">Ketentuan</span> - <span style="cursor: pointer;" class="legenda-jalur">Legenda</span> </h6>
+                             </td>
+                          </tr>
+ 
+                          <tr>
+                             <td colspan="2">
+                               <div class="box-jalur">
+                                 <img src="/images/template/legenda/jalur_evakuasi.png" alt="" style="width: 100%;">
+                               </div>
+                             </td>
+                          </tr>
+
+                          <tr>
+                            <td style="vertical-align: middle;"><input type="checkbox" id="rawan_bencana" name="" value=""></td>
+                            <td style="vertical-align: middle;">
+                              <h5 style="margin-top: 0;margin-bottom: 0;">Kawasan Rawan Bencana</h5>
+                              <h6 style="margin-top: 5px;margin-bottom: 0;color:#2ecc71"><span style="cursor: pointer;">Ketentuan</span> - <span style="cursor: pointer;" class="legenda-bencana">Legenda</span> </h6>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td colspan="2">
+                              <div class="box-bencana">
+                                <img src="https://via.placeholder.com/300" alt="" style="width: 100%;">
+                              </div>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td style="vertical-align: middle;"><input type="checkbox" id="tempat_evakuasi" name="" value=""></td>
+                            <td style="vertical-align: middle;">
+                              <h5 style="margin-top: 0;margin-bottom: 0;">Tempat Evakuasi</h5>
+                              <h6 style="margin-top: 5px;margin-bottom: 0;color:#2ecc71"><span style="cursor: pointer;" onclick="pupz('Kereta Api', '2003', '12')">Ketentuan</span> - <span style="cursor: pointer;" class="legenda-evakuasi">Legenda</span> </h6>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td colspan="2">
+                              <div class="box-evakuasi">
+                                <img src="/images/template/legenda/tempat_evakuasi.png" alt="" style="width: 100%;">
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+
+                 
+                </div>
+
+
+                <div class="panel panel-success">
+                  <div class="panel-heading" role="tab" id="headingFive" style="background-color: #2ecc71;">
+                    <h4 class="panel-title" style="color: #fff;font-weight: bold;">
+                      <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                        PUSAT KEGIATAN / PELAYANAN
+                      </a>
+                    </h4>
+                  </div>
+                  <div id="collapseSix" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSix">
+                    <div class="panel-body table-no-border">
+                      <table class="table table-bordered" style="margin-bottom: 0;">
+                        <tbody>
+                          <tr>
+                             <td style="vertical-align: middle;width: 25px;"><input type="checkbox" id="pkl" name="" value=""></td>
+                             <td style="vertical-align: middle;">
+                               <h5 style="margin-top: 0;margin-bottom: 0;">Pusat Kegiatan Lokal (PKL)</h5>
+                               <h6 style="margin-top: 5px;margin-bottom: 0;color:#2ecc71"><span style="cursor: pointer;"  onclick="pupz('Jalur Evakuasi Bencana', '2001', '4')">Ketentuan</span> - <span style="cursor: pointer;" class="legenda-jalur">Legenda</span> </h6>
+                             </td>
+                          </tr>
+ 
+                          <tr>
+                             <td colspan="2">
+                               <div class="box-jalur">
+                                 <img src="/images/template/legenda/jalur_evakuasi.png" alt="" style="width: 100%;">
+                               </div>
+                             </td>
+                          </tr>
+
+                          <tr>
+                            <td style="vertical-align: middle;"><input type="checkbox" id="ppk" name="" value=""></td>
+                            <td style="vertical-align: middle;">
+                              <h5 style="margin-top: 0;margin-bottom: 0;">Pusat Pelayanan Kawasan (PPK)</h5>
+                              <h6 style="margin-top: 5px;margin-bottom: 0;color:#2ecc71"><span style="cursor: pointer;" onclick="pupz('Jalur Evakuasi Bencana', '2001', '5')">Ketentuan</span> - <span style="cursor: pointer;" class="legenda-bencana">Legenda</span> </h6>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td colspan="2">
+                              <div class="box-bencana">
+                                <img src="https://via.placeholder.com/300" alt="" style="width: 100%;">
+                              </div>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td style="vertical-align: middle;"><input type="checkbox" id="ppl" name="" value=""></td>
+                            <td style="vertical-align: middle;">
+                              <h5 style="margin-top: 0;margin-bottom: 0;">Pusat Pelayanan Lingkungan (PPL)</h5>
+                              <h6 style="margin-top: 5px;margin-bottom: 0;color:#2ecc71"><span style="cursor: pointer;" onclick="pupz('Kereta Api', '2001', '6')">Ketentuan</span> - <span style="cursor: pointer;" class="legenda-evakuasi">Legenda</span> </h6>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td colspan="2">
+                              <div class="box-evakuasi">
+                                <img src="/images/template/legenda/tempat_evakuasi.png" alt="" style="width: 100%;">
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+
+                   
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-9" style="padding-left: 0;padding-right: 0;">
+        <div style="width: 100%;height: 90vh; ;" id="map"></div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade modal-ketentuan" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">KETENTUAN STRUKTUR RUANG</h4>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-lg-12">
+              <table class="table table-bordered">
+                <thead style="background-color: #00be80">
+                  <tr> 
+                    <th>No.</th>
+                    <th>Kawasan</th>
+                    <th>Diizinkan</th>
+                    <th>Terbatas</th>
+                    <th>Bersyarat</th>
+                    <th>Dilarang</th>
+                    <th>Ketentuan Lainnya</th>
+                    <th>Ket. Lainnya</th>
+                  </tr>
+                </thead>
+
+                <tbody id="tabel_polaruang">
+                  <tr>
+                    <td colspan="8">Ulangi kembali digitasi</td>
+                     <!-- <td>perwujudannya</td>
+                      <td>perwujudannya</td> -->
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+        </div>
+      </div>
+    </div>
+  </div>
+    <script src="/javascripts/template/bootstrap.min.js"></script>
+    <!-- Plugins This Page -->
+    <!-- End Plugins This Page -->
+    <script type="text/javascript">
+      $(".legenda-jalan").click(function(){
+        $(".box-jalan").toggle();
+        $(".box-kereta").hide();
+        $(".box-terminal").hide();
+        $(".box-stasiun").hide();
+        $(".box-pelabuhan").hide();
+      });
+
+      $(".legenda-kereta").click(function(){
+        $(".box-jalan").hide();
+        $(".box-kereta").toggle();
+        $(".box-terminal").hide();
+        $(".box-stasiun").hide();
+        $(".box-pelabuhan").hide();
+      });
+
+      $(".legenda-terminal").click(function(){
+        $(".box-jalan").hide();
+        $(".box-kereta").hide();
+        $(".box-terminal").toggle();
+        $(".box-stasiun").hide();
+        $(".box-pelabuhan").hide();
+      });
+
+      $(".legenda-stasiun").click(function(){
+        $(".box-jalan").hide();
+        $(".box-kereta").hide();
+        $(".box-terminal").hide();
+        $(".box-stasiun").toggle();
+        $(".box-pelabuhan").hide();
+      });
+
+      $(".legenda-pelabuhan").click(function(){
+        $(".box-jalan").hide();
+        $(".box-kereta").hide();
+        $(".box-terminal").hide();
+        $(".box-stasiun").hide();
+        $(".box-pelabuhan").toggle();
+      });
+
+
+      $(".legenda-listrik").click(function(){
+        $(".box-listrik").toggle();
+        $(".box-gas").hide();
+      });
+
+      $(".legenda-gas").click(function(){
+        $(".box-listrik").hide();
+        $(".box-gas").toggle();
+      });
+
+      $(".legenda-air").click(function(){
+        $(".box-air").toggle();
+        $(".box-sda").hide();
+      });
+
+      $(".legenda-sda").click(function(){
+        $(".box-air").hide();
+        $(".box-sda").toggle();
+      });
+
+      $(".legenda-bergerak").click(function(){
+        $(".box-bergerak").toggle();
+        $(".box-tdk-bergerak").hide();
+      });
+
+      $(".legenda-tdk-bergerak").click(function(){
+        $(".box-bergerak").hide();
+        $(".box-tdk-bergerak").toggle();
+      });
+
+      $(".legenda-jalur").click(function(){
+        $(".box-jalur").toggle();
+        $(".box-bencana").hide();
+        $(".box-evakuasi").hide();
+      });
+
+      $(".legenda-bencana").click(function(){
+        $(".box-jalur").hide();
+        $(".box-bencana").toggle();
+        $(".box-evakuasi").hide();
+      });
+
+      $(".legenda-evakuasi").click(function(){
+        $(".box-jalur").hide();
+        $(".box-bencana").hide();
+        $(".box-evakuasi").toggle();
+      });
+
+
+
+    $("#btn-detail").click(function(){
+        $("#konten-detail").toggle("slide", {direction:"right"}, 500);
+    });
+   </script>
+
+    <script type="text/javascript">
+           function pupz(nama,idtipe,sudut_kepe){
+        $('#tabel_polaruang').empty()
+        $.ajax({
+                                 type : "GET",
+                                 async : false,
+                                 global : false,
+                                 url : root + `peta/json_pupz?kode=${idtipe}${sudut_kepe}`,
+                                 dataType : 'json',
+                                 success: function (data) {
+                                // console.log(data)
+                                let terbatas = "<ol>";
+                                                      let bersyarat = "<ol>";
+                                                        let diizinkan = "<ol>";
+                                                          let dilarang = "<ol>";
+                                                            let ketentuan = "<ol>";
+                                                              let keterangan = "<ol>";
+                                                                $.each(data, function(i, itm){
+                                                                  // console.log(itm)
+                                                                  if(itm.terbatas !=""){
+                                                                    terbatas+=`<li>${itm.terbatas}</li>`
+                                                                  }
+                                                                  if(itm.bersyarat !=""){
+                                                                    bersyarat+=`<li>${itm.bersyarat}</li>`
+                                                                  }
+                                                                  if(itm.diizinkan !=""){
+                                                                    diizinkan+=`<li>${itm.diizinkan}</li>`
+                                                                  }
+                                                                  if(itm.dilarang !=""){
+                                                                    dilarang+=`<li>${itm.dilarang}</li>`
+                                                                  }
+                                                                  if(itm.ketentuan !=""){
+                                                                    ketentuan+=`<li>${itm.ketentuan}</li>`
+                                                                  }
+                                                                  if(itm.keterangan !=""){
+                                                                    keterangan+=`<li>${itm.keterangan}</li>`
+                                                                  }
+                                                                })
+                                                                 terbatas += "</ol>";
+                                                       bersyarat += "</ol>";
+                                                         diizinkan += "</ol>";
+                                                           dilarang += "</ol>";
+                                                             ketentuan += "</ol>";
+                                                               keterangan += "</ol>";
+                                                       $('#tabel_polaruang').append("<tr><td>1</td><td>"+nama+"  </td><td>"+diizinkan+"</td><td>"+terbatas+"</td><td>"+bersyarat+"</td><td>"+dilarang+"</td><td>"+ketentuan+"</td><td>"+keterangan+"</td></tr>")
+
+                                                       $('.modal-ketentuan').modal('show');
+                                 }
+                               });
+       }
+
+             function toWKT (layer) {
+                 var lng, lat, coords = [];
+                if (layer instanceof L.Polygon || layer instanceof L.Polyline) {
+                  var latlngs = layer.getLatLngs();
+                for (var i = 0; i < latlngs.length; i++) {
+                    var latlngs1 = latlngs[i];
+                    if (latlngs1.length){
+                    for (var j = 0; j < latlngs1.length; j++) {
+                      coords.push(latlngs1[j].lng + " " + latlngs1[j].lat);
+                      if (j === 0) {
+                        lng = latlngs1[j].lng;
+                        lat = latlngs1[j].lat;
+                      }
+                    }}
+                    else
+                    {
+                      coords.push(latlngs[i].lng + " " + latlngs[i].lat);
+                      if (i === 0) {
+                        lng = latlngs[i].lng;
+                        lat = latlngs[i].lat;
+                      }}
+                };
+                  if (layer instanceof L.Polygon) {
+                    return "POLYGON((" + coords.join(",") + "," + lng + " " + lat + "))";
+                  } else if (layer instanceof L.Polyline) {
+                    return "LINESTRING(" + coords.join(",") + ")";
+                  }
+                } else if (layer instanceof L.Marker) {
+                  return "POINT(" + layer.getLatLng().lng + " " + layer.getLatLng().lat + ")";
+                }
+              };
+           $(document).ready(function() {
+               // $.ajax({
+               //   type : "GET",
+               //   async : false,
+               //   global : false,
+               //   url : root + "peta/json_kec",
+               //   dataType : 'json',
+               //   success: function (data) {
+               //    $("#kabupaten").empty();
+               //     $("#kabupaten").append('<option value="">Pilih Kecamatan / Kota</option>')
+               //  $.each(data, function(){
+               //       $("#kabupaten").append('<option value="'+ this.kecamatan +'">'+ this.kecamatan +'</option>')
+               //   })
+                   
+               //   }
+               // });
+               
+
+               
+           });
+        
+
+                      var warna_total = ['green','red','purple','blue','yellow'];
+                 var labels = ['SWP Doro','SWP Kajen','SWP Kedungwuni','SWP Sragi','SWP Wiradesa'];
+                  var wkt = new Wkt.Wkt();
+             function onLocationFound(e) {
+                 var radius = e.accuracy / 2;
+                 
+                 if(center == 0 ){
+                   map.setView(e.latlng, 13);
+                   center++;
+                 }
+                //   var koordinat = {latlng:{lat: ye, lng: xe}};
+                
+                   
+                //console.log(koordinat)
+                 clickHandler(e)
+                 // iht_layer.eachLayer(function (layer) {
+                 //   layer_lat_long = layer.getLatLng();
+                 //   layer_lat = layer.getLatLng().lat;
+                 //   layer_lng = layer.getLatLng().lng;
+
+                 //   // jarak ke point saat ini dalam meter
+                 //   var posisi_kita_lat = e.latlng.lat;
+                 //   var posisi_kita_lng = e.latlng.lng;
+
+                 //   jarak = layer_lat_long.distanceTo(e.latlng);
+
+                 //   var popupContent = getPopup( layer, posisi_kita_lat, posisi_kita_lng, layer_lat, layer_lng );
+                 //   layer.bindPopup(popupContent, popupOptions);
+                 //   if(jarak > 30000){
+                 //      // layer.setOpacity(0);
+                 //      // layer.unbindPopup();
+                 //   }
+                 // });
+               }
+
+               function ke_lokasi(x_awal, y_awal, x_akhir, y_akhir){
+                 map.closePopup();
+                 console.log(x_awal+ ' , ' +y_awal+ ' ; ' +x_akhir + ' , ' + y_akhir)
+
+                 if(navigasi!=null){
+                   navigasi.spliceWaypoints(navigasi.getWaypoints().length - 1, 1, L.latLng(x_akhir, y_akhir));   
+                 }
+                 else{
+                   navigasi =  L.Routing.control({
+                     // waypointIcon :
+                     // waypoints : [L.latLng(x_awal, y_awal), L.latLng(x_akhir, y_akhir)]
+                     plan: L.Routing.plan([
+                         L.latLng(x_awal, y_awal),
+                         L.latLng(x_akhir, y_akhir)
+                     ], 
+                     {
+                       createMarker: function(i, wp) {
+                         return L.marker(wp.latLng, {
+                           draggable: false,
+                           icon: routeIcon
+                         });
+                       }
+                       // geocoder: L.Control.Geocoder.nominatim(),
+                       // routeWhileDragging: true
+                     })
+                   });
+                   navigasi.addTo(map);
+                   console.log(navigasi.getPlan());
+                   $('.leaflet-routing-container').append('<a href="#" id="tutup_navigasi" onclick="tutup_navigasi()">BATAL</a>');
+                 }
+               }
+               
+               function tutup_navigasi() {
+                 if(navigasi!=null){
+                   navigasi.spliceWaypoints(0, 2);
+                   $('.leaflet-routing-container').hide();
+                   navigasi = null;
+                 }
+               }
+
+               function tambah_titik(x, y, id_jalan){
+
+                 map.panTo(new L.LatLng(x, y));
+                 map.setZoom(16);
+
+                 jalan_layer.eachLayer(function (layer) {
+                   if ( layer.feature.properties.id_jalan == id_jalan ) {
+                     console.log(layer.feature.properties)
+                     layer.openPopup();
+                   };
+                 });
+               }
+
+               $('#cari').click(function(){
+                 var xe =  $('#xe').val();
+                 var ye = $('#ye').val();
+                   map.panTo(new L.LatLng(ye, xe));
+                 map.setZoom(16);
+                 var koordinat = {latlng:{lat: ye, lng: xe}};
+                
+                   
+                //console.log(koordinat)
+                 clickHandler(koordinat)
+               })
+
+
+               /**
+                * 
+                *  Variables Initialization
+                * 
+                */
+               var kabupaten_layer;
+               var iht_layer = null;
+               var source = null;
+               var marker;
+               var lingkaran;
+               var center = 0;
+               var navigasi=null;
+               var kabupaten_layer;
+               var marker_search='';
+
+               /**
+                * 
+                *  Layer Styling
+                * 
+                */
+               var sembunyi = {
+                 color : "transparent",
+                 weight : 1,
+                 opacity : 0,
+                 fillOpacity : 0
+               };
+               
+                var style_kabupaten = {
+                     color : "yellow", 
+                     weight : 3, 
+                     opacity : 1, 
+                     fillOpacity  : 0,
+                     dashArray : 3
+                   };
+                var style_gambar = {
+                     color : "blue", 
+                     weight : 2, 
+                     opacity : 1, 
+                     fillOpacity  : 0
+                     
+                   };
+                    var style_desa = {
+                     color : "white", 
+                     weight : 1, 
+                     opacity : 1, 
+                     fillOpacity  : 0,
+                     dashArray : 3
+                   };
+                var style_polaruang = {
+                 color : "cyan", 
+                 weight : 1, 
+                 opacity : 1, 
+                 fillOpacity  : 0.3,
+                 dashArray : 3
+               };
+                var style_perikanan = {
+                 color : "#499277", 
+                 weight : 1, 
+                 opacity : 1, 
+                 fillOpacity  : 0.7,
+                 dashArray : 3
+               };
+                var style_hutan_lindung = {
+                 color : "#3F786F", 
+                 weight : 1, 
+                 opacity : 1, 
+                 fillOpacity  : 0.7,
+                 dashArray : 3
+               };
+                var style_pertahanan = {
+                 color : "#195344", 
+                 weight : 1, 
+                 opacity : 1, 
+                 fillOpacity  : 0.7,
+                 dashArray : 3
+               };
+                var style_hutan_produksi_terbatas = {
+                 color : "#8C8D88", 
+                 weight : 1, 
+                 opacity : 1, 
+                 fillOpacity  : 0.7,
+                 dashArray : 3
+               };
+
+               var style_hutan_produksi_tetap = {
+                 color : "#48B3C5", 
+                 weight : 1, 
+                 opacity : 1, 
+                 fillOpacity  : 0.7,
+                 dashArray : 3
+               };
+
+               
+
+               var style_kawasan_industri = {
+                 color : "#E8B05D", 
+                 weight : 1, 
+                 opacity : 1, 
+                 fillOpacity  : 0.7,
+                 dashArray : 3
+               };
+
+               var style_permukiman = {
+                 color : "#E8B05D", 
+                 weight : 1, 
+                 opacity : 1, 
+                 fillOpacity  : 0.7,
+                 dashArray : 3
+               };
+
+               var style_pertanian_lahan_basah = {
+                 color : "#ABBC6E", 
+                 weight : 1, 
+                 opacity : 1, 
+                 fillOpacity  : 0.7,
+                 dashArray : 3
+               };
+
+               var style_pertanian_lahan_kering = {
+                 color : "#9E8986 ", 
+                 weight : 1, 
+                 opacity : 1, 
+                 fillOpacity  : 0.7,
+                 dashArray : 3
+               };
+
+               var style_rth = {
+                 color : "#7EA4D3", 
+                 weight : 1, 
+                 opacity : 1, 
+                 fillOpacity  : 0.7,
+                 dashArray : 3
+               };
+
+               var style_sempadan_pantai = {
+                 color : "#7EA4D3", 
+                 weight : 1, 
+                 opacity : 1, 
+                 fillOpacity  : 0.7,
+                 dashArray : 3
+               };
+
+               var style_sempadan_sungai = {
+                 color : "#56f442", 
+                 weight : 1, 
+                 opacity : 1, 
+                 fillOpacity  : 0.7,
+                 dashArray : 3
+               };
+
+               var style_kawasan_tanaman_pangan = {
+                 color : "#98f442", 
+                 weight : 1, 
+                 opacity : 1, 
+                 fillOpacity  :0.7,
+                 dashArray : 3
+               };
+
+               var style_lppb = {
+                 color : "#2ECC71", 
+                 weight : 1, 
+                 opacity : 1, 
+                 fillOpacity  :0.7,
+                 dashArray : 3
+               };
+
+             
+
+               var style_kabupaten_gelap = {
+                 color : "#000", 
+                 weight : 1, 
+                 opacity : 1, 
+                 fillOpacity  : 0,
+                 dashArray : 3
+               };
+               
+               var popupOptions = {
+                 maxWidth : '450',
+                 minWidth : '250',
+                 className : 'custom',
+                 closeOnClick : true
+               };
+
+               /**
+                * 
+                *  Map initialization
+                * 
+               . The Longitude of Kota Pati is 
+                */
+               var southWest = L.latLng(-8.629903118263488, 108.0780029296875),
+                 northEast = L.latLng(-6.124169589851178, 112.52746582031249),
+                 bounds = L.latLngBounds(southWest, northEast);
+               var map = L.map('map', {
+                   center: [ -7.004990, 109.614342],
+                   // maxBounds: bounds,
+                   zoom: 11,
+                   minZoom:2,
+                   maxZoom:19,
+                   fullscreenControl: true,
+                   fullscreenControlOptions: {
+                     position: 'topleft'
+                   }
+               });
+
+
+               //ngilangi garis putih
+       
+
+
+
+                 function clickHandler(e) {
+                
+      //  var clickBounds = L.latLngBounds(e.latlng, e.latlng);
+
+      //  var intersectingFeatures = [];
+      //    for (var l in map._layers) {
+      //    var overlay = map._layers[l];
+      //    if (overlay._layers) {
+      //      for (var f in overlay._layers) {
+      //        var feature = overlay._layers[f];
+      //        var bounds;
+      //        if (feature.getBounds) bounds = feature.getBounds();
+      //        else if (feature._latlng) {
+      //          bounds = L.latLngBounds(feature._latlng, feature._latlng);
+      //        }
+      //        if (bounds && clickBounds.intersects(bounds)) {
+      //          intersectingFeatures.push(feature);
+      //        }
+      //      }
+      //    }
+      //  }
+      // intersectingFeatures.map(function(o) {
+      //    console.log(o)
+      //  })
+      //  var html = "Found features: " + intersectingFeatures.length + "<br/>" + intersectingFeatures.map(function(o) {
+      //    return o.feature
+      //  }).join('<br/>');
+      $('#xe').val(e.latlng.lng) 
+      $('#ye').val(e.latlng.lat) 
+     var html ="";
+      
+       html = html + "</br></br>Pola Ruang RTRW : </br>"
+      $.ajax({
+               type : "GET",
+               async : false,
+               global : false,
+               url : root + "peta/list_polaruang?x="+e.latlng.lng+"&y="+e.latlng.lat,
+               dataType : 'json',
+               success: function (data) {
+              // console.log(data)
+              $.each(data, function(){
+                   html = html + this.rencana_tg+"</br>";
+               })
+                 
+               }
+             });
+
+      html = html + "</br>Koordinat : </br>"
+       html = html + "</br>"+e.latlng.lng+" "+e.latlng.lat+"</br>"
+
+       
+          
+       map.openPopup(html, e.latlng);
+     }
+
+
+
+
+               // map.fitBounds(bounds);
+
+               var google_roadmap    = L.gridLayer.googleMutant({
+                                                               type: 'roadmap',
+                                                               styles: [
+                                                                           {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
+                                                                           {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
+                                                                           {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
+                                                                           {
+                                                                             featureType: 'administrative.locality',
+                                                                             elementType: 'labels.text.fill',
+                                                                             stylers: [{color: '#d59563'}]
+                                                                           },
+                                                                           {
+                                                                             featureType: 'poi',
+                                                                             elementType: 'labels.text.fill',
+                                                                             stylers: [{color: '#d59563'}]
+                                                                           },
+                                                                           {
+                                                                             featureType: 'poi.park',
+                                                                             elementType: 'geometry',
+                                                                             stylers: [{color: '#263c3f'}]
+                                                                           },
+                                                                           {
+                                                                             featureType: 'poi.park',
+                                                                             elementType: 'labels.text.fill',
+                                                                             stylers: [{color: '#6b9a76'}]
+                                                                           },
+                                                                           {
+                                                                             featureType: 'road',
+                                                                             elementType: 'geometry',
+                                                                             stylers: [{color: '#38414e'}]
+                                                                           },
+                                                                           {
+                                                                             featureType: 'road',
+                                                                             elementType: 'geometry.stroke',
+                                                                             stylers: [{color: '#212a37'}]
+                                                                           },
+                                                                           {
+                                                                             featureType: 'road',
+                                                                             elementType: 'labels.text.fill',
+                                                                             stylers: [{color: '#9ca5b3'}]
+                                                                           },
+                                                                           {
+                                                                             featureType: 'road.highway',
+                                                                             elementType: 'geometry',
+                                                                             stylers: [{color: '#746855'}]
+                                                                           },
+                                                                           {
+                                                                             featureType: 'road.highway',
+                                                                             elementType: 'geometry.stroke',
+                                                                             stylers: [{color: '#1f2835'}]
+                                                                           },
+                                                                           {
+                                                                             featureType: 'road.highway',
+                                                                             elementType: 'labels.text.fill',
+                                                                             stylers: [{color: '#f3d19c'}]
+                                                                           },
+                                                                           {
+                                                                             featureType: 'transit',
+                                                                             elementType: 'geometry',
+                                                                             stylers: [{color: '#2f3948'}]
+                                                                           },
+                                                                           {
+                                                                             featureType: 'transit.station',
+                                                                             elementType: 'labels.text.fill',
+                                                                             stylers: [{color: '#d59563'}]
+                                                                           },
+                                                                           {
+                                                                             featureType: 'water',
+                                                                             elementType: 'geometry',
+                                                                             stylers: [{color: '#17263c'}]
+                                                                           },
+                                                                           {
+                                                                             featureType: 'water',
+                                                                             elementType: 'labels.text.fill',
+                                                                             stylers: [{color: '#515c6d'}]
+                                                                           },
+                                                                           {
+                                                                             featureType: 'water',
+                                                                             elementType: 'labels.text.stroke',
+                                                                             stylers: [{color: '#17263c'}]
+                                                                           }
+                                                                         ]
+                                                          // valid values are 'roadmap', 'satellite', 'terrain' and 'hybrid'
+                                                           })
+
+               var google_hybrid     = L.gridLayer.googleMutant({
+                                                               type: 'hybrid' // valid values are 'roadmap', 'satellite', 'terrain' and 'hybrid'
+                                                           })
+               var google_satelit    = L.gridLayer.googleMutant({
+                                                               type: 'satellite' // valid values are 'roadmap', 'satellite', 'terrain' and 'hybrid'
+                                                           })
+               var osm               = L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {});
+               var Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}');
+              // var RBI            = L.tileLayer('http://portal.ina-sdi.or.id/arcgis/rest/services/IGD/RupabumiIndonesia/MapServer');
+
+               var RBI =  L.esri.tiledMapLayer({
+                 url: "https://portal.ina-sdi.or.id/arcgis/rest/services/IGD/RupabumiIndonesia/MapServer"
+               });
+                              (function(){
+                   var originalInitTile = L.GridLayer.prototype._initTile
+                   L.GridLayer.include({
+                       _initTile: function (tile) {
+                           originalInitTile.call(this, tile);
+
+                           var tileSize = this.getTileSize();
+
+                           tile.style.width = tileSize.x + 1 + 'px';
+                           tile.style.height = tileSize.y + 1 + 'px';
+                       }
+                   });
+               })()
+               map.addLayer(Esri_WorldImagery);
+
+               var legend = L.control({position: 'bottomleft'});
+               var streetview = L.control({position: 'bottomright'});
+               
+               //gambar
+               var drawnItems = L.featureGroup().addTo(map);
+               var options = {
+                     position: 'topleft',
+                     draw: {
+                         polyline: false,
+                         polygon: {
+                          showArea: true,
+                             allowIntersection: false, // Restricts shapes to simple polygons
+                             drawError: {
+                                 color: '#e1e100', // Color the shape will turn when intersects
+                                 message: '<strong>Digitasi Salah!' // Message that will show when intersect
+                             },
+                             shapeOptions: {
+                                 color: '#bada55'
+                             }
+                         },
+                         circle: false, // Turns off this drawing tool
+                         rectangle: false,
+                         marker: false
+                     },
+                     edit: {
+                         featureGroup: drawnItems, //REQUIRED!!
+                         remove: true
+                     }
+                 };
+                 
+                 var drawControl = new L.Control.Draw(options);
+                // map.addControl(drawControl);
+                 
+                  map.on(L.Draw.Event.CREATED, function(event) {
+                    drawnItems.clearLayers();
+                     var layer = event.layer;
+                           var latlngss = layer.getLatLngs();
+                   // console.log(latlngss[0])
+                        var seeArea =  L.GeometryUtil.geodesicArea(latlngss[0]);
+                                        seeArea = L.GeometryUtil.readableArea(seeArea, true, {})
+                                      // console.log(seeArea);
+                        // console.log(toWKT(layer));
+                        // console.log(layer);
+                       var html ="";
+                        html = html + "Luas Keseluruhan : "+seeArea+"</br>"
+                         html = html + "Pola Ruang RTRW : </br>"
+                        $.ajax({
+                                 type : "GET",
+                                 async : false,
+                                 global : false,
+                                 url : root + "peta/list_polaruang?p="+toWKT(layer),
+                                 dataType : 'json',
+                                 success: function (data) {
+                                // console.log(data)
+                                $.each(data, function(){
+                                    var total = 0;
+                                        $.each(this.irisan, function(){
+                                                if(this.polygon){
+
+                                                 wkt.read(''+this.polygon+'');
+                                                  var latlngss = wkt.toObject().getLatLngs();
+                                                     var gambar = wkt.toObject();
+                                                    gambar.setStyle(style_gambar);
+                                                     drawnItems.addLayer(gambar);
+                                                 //  console.log(this)
+                                                 //  console.log(wkt.toObject().getLatLngs())
+                                                     //hitung luas
+                                                   if(wkt.toObject().getLatLngs().length > 1){
+                                                     $.each(latlngss, function(index, value){
+                                                      if(value.length > 1){
+                                                        $.each(value, function(indexx, valuee){
+                                                          var luas =  L.GeometryUtil.geodesicArea(valuee);
+                                                          total = total + luas; 
+                                                        })
+                                                      }else{
+                                                        var luas =  L.GeometryUtil.geodesicArea(value);
+                                                          total = total + luas;  
+                                                      }
+                                                        
+                                                        
+                                                     })
+                                                   }else{
+
+                                                 
+                                                    var luas =  L.GeometryUtil.geodesicArea(latlngss[0]);
+                                                    
+                                                          total = total + luas;   
+                                                   }
+                                                }
+
+                                                      
+                                                               
+                                        })
+                                        if(total != 0){
+                                           total = L.GeometryUtil.readableArea(total, true, {})
+                                         }else{
+                                          total = "Kesalahan dalam Penghitungan!"
+                                         }
+                                        
+                                         html = html + this.rencana_tg+" ("+total+")</br>";
+                                 })
+                                   
+                                 }
+                               });
+
+
+                          html = html+"</br>"+"<a href='/peta/print?p="+toWKT(layer)+"' style='color:blue' target='_blank'>[DOWNLOAD]</a>";
+                                var bounds = layer.getBounds();
+                       //         // Get center of bounds
+                                var center = bounds.getCenter();
+                         map.openPopup(html, center, {
+                             offset: L.point(0, -24)
+                           });
+                     drawnItems.addLayer(layer);
+             
+                    
+                  
+                   });
+
+
+               //gambar end 
+
+
+
+               var locateIcon = L.ExtraMarkers.icon({
+                   icon: 'fa-map-marker', 
+                   markerColor: 'blue-dark', 
+                   prefix: 'fa',
+                   iconColor: 'white',
+                   shape: 'square'
+               });
+
+               var ihtIconAktif = L.ExtraMarkers.icon({
+                   prefix: 'fa', 
+                   markerColor: 'green-light', 
+                   icon: 'fa-building', 
+                   iconColor: 'white',
+                   shape: 'square'
+               });
+
+               var ihtIconTidakAktif = L.ExtraMarkers.icon({
+                   prefix: 'fa', 
+                   markerColor: 'red', 
+                   icon: 'fa-ban', 
+                   iconColor: 'white',
+                   shape: 'square'
+               });
+
+               var ihtIconTidakDiketahui = L.ExtraMarkers.icon({
+                   prefix: 'fa', 
+                   markerColor: 'orange', 
+                   icon: 'fa-question', 
+                   iconColor: 'white',
+                   shape: 'square'
+               });
+
+               var routeIcon = L.ExtraMarkers.icon({
+                   prefix: 'fa', 
+                   markerColor: 'red', 
+                   icon: 'fa-location-arrow', 
+                   iconColor: 'white',
+                   shape: 'square'
+               });
+
+               // $.getJSON( root + "index.php/kabupaten", function( json ) {
+               //   $.each(json, function( i, item ) {
+               //     $('#kabupaten').append('<option value="'+item.id_kabupaten+'">'+item.nama_kabupaten+'</option>');
+               //   })
+               // });
+             //ambil ksp  
+             var label_kec = [];
+             var label_desa = [];
+         var popup = new L.popup();
+            
+                     //topojson
+                     L.TopoJSON = L.GeoJSON.extend({  
+                       addData: function(jsonData) {    
+                         if (jsonData.type === "Topology") {
+                           for (key in jsonData.objects) {
+                             geojson = topojson.feature(jsonData, jsonData.objects[key]);
+                             L.GeoJSON.prototype.addData.call(this, geojson);
+                           }
+                         }    
+                         else {
+                           L.GeoJSON.prototype.addData.call(this, jsonData);
+                         }
+                       }  
+                     });
+                     //topojson
+               var wellmaxzoom = 13;       
+             var polaruang_layer = new L.GeoJSON();
+             var kabupaten_layer = new L.TopoJSON();
+             var desa_layer = new L.TopoJSON();
+             var jaringan_jalan = new L.TopoJSON();
+             var kereta_api = new L.TopoJSON();
+             var terminal = new L.TopoJSON();
+             var pelabuhan = new L.TopoJSON();
+             var stasiun = new L.TopoJSON();
+             var jaringan_listrik = new L.TopoJSON();
+             var jaringan_gas = new L.TopoJSON();
+             var sumber_air = new L.TopoJSON();
+             var jaringan_sda = new L.TopoJSON();
+             var jaringan_bergerak = new L.TopoJSON();
+             var jaringan_tidak_bergerak = new L.TopoJSON();
+             var jalur_evakuasi = new L.TopoJSON();
+             var rawan_bencana = new L.TopoJSON();
+             var tempat_evakuasi = new L.TopoJSON();
+             var pkl = new L.TopoJSON();
+             var ppk = new L.TopoJSON();
+             var ppl = new L.TopoJSON();
+
+      
+             function hapus_label_kec(){
+                var ii = 0;
+                     kabupaten_layer.eachLayer(function (layer) {
+                   map.removeLayer(label_kec[ii]);
+                   // label[ii].clearLayers();
+                    ii++;
+                 })
+                     label_kec = [];
+             }
+             function tampil_label_kec(){
+                var ii = 0;
+                         kabupaten_layer.eachLayer(function (layer) {
+                           label_kec[ii].setOpacity(1);
+                       // label[ii].clearLayers();
+                        ii++;
+                     })
+             }
+             function hide_label_kec(){
+                var ii = 0;
+                         kabupaten_layer.eachLayer(function (layer) {
+                           label_kec[ii].setOpacity(0);
+                       // label[ii].clearLayers();
+                        ii++;
+                     })
+             }
+
+             function hapus_label_desa(){
+                var ii = 0;
+                     desa_layer.eachLayer(function (layer) {
+                      if(label_desa[ii]){
+                        map.removeLayer(label_desa[ii]);
+                      }
+                   
+                   // label[ii].clearLayers();
+                    ii++;
+                 })
+                     label_desa = [];
+             }
+             function tampil_label_desa(){
+                var ii = 0;
+                         desa_layer.eachLayer(function (layer) {
+                           label_desa[ii].setOpacity(1);
+                       // label[ii].clearLayers();
+                        ii++;
+                     })
+             }
+             function hide_label_desa(){
+                var ii = 0;
+                         desa_layer.eachLayer(function (layer) {
+                           label_desa[ii].setOpacity(0);
+                       // label[ii].clearLayers();
+                        ii++;
+                     })
+             }
+             function loadGeoJsonkec(data) {
+               hapus_label_kec();
+               kabupaten_layer.clearLayers();
+               kabupaten_layer.addData(data);
+
+               kabupaten_layer.addTo(map);
+               var i = 0;
+               var labelnya = "";
+                kabupaten_layer.eachLayer(function (layer) {
+
+                     
+                       layer.setStyle(style_kabupaten);
+                       // layer.bindPopup(feature.properties.kabupaten);
+                       // Get bounds of polygon
+                       var bounds = layer.getBounds();
+                       // Get center of bounds
+                       var center = bounds.getCenter();
+                       //center.on('click', alert('asu'));
+                       // Use center to put marker on map
+                       //var marker = L.marker(center).addTo(map);
+                       //labelnya
+                        label_kec[i] = new L.Tooltip({
+                       noHide: false,
+                       direction: 'auto',
+                        permanent : true
+                       });
+                         labelnya = layer.feature.properties.kecamatan;
+                        
+                     label_kec[i].setContent(labelnya);
+                     label_kec[i].setLatLng(center);
+                     label_kec[i].setOpacity(0);
+                     map.showLabel(label_kec[i]);
+                      layer.on('click', function (e) {
+                                      //  panorama(e.latlng.lat, e.latlng.lng);
+                                        // clickHandler(e)
+                                         });
+                     i++;
+                       // layer.on("click", function (e) {
+                       //       // var bounds = layer.getBounds();
+                       //       // var popupContent = "popup content here";
+                       //       // popup.setLatLng(bounds.getCenter());
+                       //       // popup.setContent(popupContent);
+                       //       // map.openPopup(popup);
+                       //    //  $('#bs-example-modal-lg').modal('show');
+                       //   });
+                });
+             }
+             function loadGeoJsondesa(data) {
+
+               hapus_label_desa();
+               desa_layer.clearLayers();
+               desa_layer.addData(data);
+               desa_layer.addTo(map);
+               var i = 0;
+               var labelnya = "";
+                desa_layer.eachLayer(function (layer) {
+
+                     
+                          layer.setStyle(style_desa);
+
+                       // layer.bindPopup(feature.properties.kabupaten);
+                       // Get bounds of polygon
+                       var bounds = layer.getBounds();
+                       // Get center of bounds
+                       var center = bounds.getCenter();
+                       //center.on('click', alert('asu'));
+                       // Use center to put marker on map
+                       //var marker = L.marker(center).addTo(map);
+                       //labelnya
+                        label_desa[i] = new L.Tooltip({
+                       noHide: false,
+                       direction: 'auto',
+                        permanent : true
+                       });
+                         labelnya = layer.feature.properties.desa;
+                        
+                     label_desa[i].setContent(labelnya);
+                     label_desa[i].setLatLng(center);
+                     label_desa[i].setOpacity(0);
+                     map.showLabel(label_desa[i]);
+                      layer.on('click', function (e) {
+                                     //    panorama(e.latlng.lat, e.latlng.lng);
+                                    //   clickHandler(e)
+                                         });
+                     i++;
+                       // layer.on("click", function (e) {
+                       //       // var bounds = layer.getBounds();
+                       //       // var popupContent = "popup content here";
+                       //       // popup.setLatLng(bounds.getCenter());
+                       //       // popup.setContent(popupContent);
+                       //       // map.openPopup(popup);
+                       //     // $('#bs-example-modal-lg').modal('show');
+                       //   });
+                });
+                tampil_label_desa();
+                map.removeLayer(drawnItems);
+                          drawnItems.addTo(map);
+             }
+             
+             function loadGeoJsonjalan(data) {
+             
+               jalan_layer.clearLayers();
+               jalan_layer.addData(data);
+               jalan_layer  = L.featureGroup([jalan_layer]).addTo(map);
+               var i = 0;
+               var labelnya = "";
+               jalan_layer.eachLayer(function (layer) {
+
+                     
+                      // layer.setStyle(style_sempadan_sungai);
+                      // layer.bindPopup(layer.feature.properties.rencana_tg);
+                       // Get bounds of polygon
+                      // var bounds = layer.getBounds();
+                       // Get center of bounds
+                      // var center = bounds.getCenter();
+                       //center.on('click', alert('asu'));
+                       // Use center to put marker on map
+                       //var marker = L.marker(center).addTo(map);
+                       //labelnya
+                       var stl = {
+                 color : "red", 
+                 weight : 1, 
+                 opacity : 1, 
+                 fillOpacity  : 0
+               };
+               layer.setStyle(stl);
+                      layer.on('click', function (e) {
+                                         //panorama(e.latlng.lat, e.latlng.lng);
+                                         clickHandler(e)
+                                         });
+                     i++;
+                       // layer.on("click", function (e) {
+                       //       // var bounds = layer.getBounds();
+                       //       // var popupContent = "popup content here";
+                       //       // popup.setLatLng(bounds.getCenter());
+                       //       // popup.setContent(popupContent);
+                       //       // map.openPopup(popup);
+                       //    //  $('#bs-example-modal-lg').modal('show');
+                       //   });
+                });
+                    map.removeLayer(jalan_layer);
+             }
+         
+             function loadGeoJsonjaringan_jalan(data) {
+        
+        jaringan_jalan.clearLayers();
+        jaringan_jalan.addData(data);
+        jaringan_jalan.addTo(map);
+        var i = 0;
+        var labelnya = "";
+        jaringan_jalan.eachLayer(function (layer) {
+          var ste = {
+               color : "red", 
+               weight : 3, 
+               opacity : 1, 
+               fillOpacity  : 0,
+               dashArray : 3
+          }
+                layer.setStyle(ste);
+              
+          
+               layer.on('click', function (e) {
+                 pupz(layer.feature.properties.namobj, layer.feature.properties.idtipe, layer.feature.properties.orde02)
+                                  });
+              i++;
+           
+         });
+          //   map.removeLayer(kawasan_strategis);
+      }
+
+      function loadGeoJsonkereta_api(data) {
+        
+        kereta_api.clearLayers();
+        kereta_api.addData(data);
+        kereta_api.addTo(map);
+        var i = 0;
+        var labelnya = "";
+        kereta_api.eachLayer(function (layer) {
+          var ste = {
+               color : "black", 
+               weight : 1, 
+               opacity : 1, 
+               fillOpacity  : 0,
+               dashArray : 3
+          }
+                layer.setStyle(ste);
+             
+               layer.on('click', function (e) {
+                 pupz(layer.feature.properties.namobj, layer.feature.properties.idtipe, layer.feature.properties.orde02)
+                                  });
+              i++;
+           
+         });
+          //   map.removeLayer(kawasan_strategis);
+      }
+
+      function loadGeoJsonjaringan_listrik(data) {
+        
+        jaringan_listrik.clearLayers();
+        jaringan_listrik.addData(data);
+        jaringan_listrik.addTo(map);
+        var i = 0;
+        var labelnya = "";
+        jaringan_listrik.eachLayer(function (layer) {
+          var ste = {
+               color : "white", 
+               weight : 1, 
+               opacity : 1, 
+               fillOpacity  : 0,
+               dashArray : 3
+          }
+                layer.setStyle(ste);
+          
+               
+               layer.on('click', function (e) {
+                 pupz(layer.feature.properties.namobj, layer.feature.properties.idtipe, layer.feature.properties.orde02)
+                                  });
+              i++;
+           
+         });
+          //   map.removeLayer(kawasan_strategis);
+      }
+
+      function loadGeoJsonjaringan_gas(data) {
+        
+        jaringan_gas.clearLayers();
+        jaringan_gas.addData(data);
+        jaringan_gas.addTo(map);
+        var i = 0;
+        var labelnya = "";
+        jaringan_gas.eachLayer(function (layer) {
+          var ste = {
+               color : "blue", 
+               weight : 1, 
+               opacity : 1, 
+               fillOpacity  : 0,
+               dashArray : 3
+          }
+                layer.setStyle(ste);
+              
+        
+               
+               layer.on('click', function (e) {
+                 pupz(layer.feature.properties.namobj, layer.feature.properties.idtipe, layer.feature.properties.orde02)
+                                  });
+              i++;
+           
+         });
+          //   map.removeLayer(kawasan_strategis);
+      }
+
+      function loadGeoJsonjalur_evakuasi(data) {
+        
+        jalur_evakuasi.clearLayers();
+        jalur_evakuasi.addData(data);
+        jalur_evakuasi.addTo(map);
+        var i = 0;
+        var labelnya = "";
+        jalur_evakuasi.eachLayer(function (layer) {
+          var ste = {
+               color : "green", 
+               weight : 1, 
+               opacity : 1, 
+               fillOpacity  : 0,
+               dashArray : 3
+          }
+                layer.setStyle(ste);
+              
+       
+               
+               layer.on('click', function (e) {
+                 pupz(layer.feature.properties.namobj, layer.feature.properties.idtipe, layer.feature.properties.orde02)
+                                  });
+              i++;
+           
+         });
+          //   map.removeLayer(kawasan_strategis);
+      }
+      function loadGeoJsonjaringan_tidak_bergerak(data) {
+        
+        jaringan_tidak_bergerak.clearLayers();
+        jaringan_tidak_bergerak.addData(data);
+        jaringan_tidak_bergerak.addTo(map);
+        var i = 0;
+        var labelnya = "";
+        jaringan_tidak_bergerak.eachLayer(function (layer) {
+          var ste = {
+               color : "green", 
+               weight : 1, 
+               opacity : 1, 
+               fillOpacity  : 0,
+               dashArray : 3
+          }
+                layer.setStyle(ste);
+              
+            
+               
+               layer.on('click', function (e) {
+                 pupz(layer.feature.properties.namobj, layer.feature.properties.idtipe, layer.feature.properties.orde02)
+                                  });
+              i++;
+           
+         });
+          //   map.removeLayer(kawasan_strategis);
+      }
+
+      function loadGeoJsonjaringan_sda(data) {
+        
+        jaringan_sda.clearLayers();
+        jaringan_sda.addData(data);
+        jaringan_sda.addTo(map);
+        var i = 0;
+        var labelnya = "";
+        jaringan_sda.eachLayer(function (layer) {
+          var ste = {
+               color : "green", 
+               weight : 3, 
+               opacity : 1, 
+               fillOpacity  : 0,
+               dashArray : 2
+          }
+                layer.setStyle(ste);
+           
+               
+               layer.on('click', function (e) {
+                 pupz(layer.feature.properties.namobj, layer.feature.properties.idtipe, layer.feature.properties.orde02)
+                                  });
+              i++;
+           
+         });
+          //   map.removeLayer(kawasan_strategis);
+      }
+      function loadGeoJsonterminal(data) {
+        
+        terminal.clearLayers();
+        terminal.addData(data);
+        terminal.addTo(map);
+        var i = 0;
+        var labelnya = "";
+        terminal.eachLayer(function (layer) {
+      
+          var ic = L.ExtraMarkers.icon({
+                   icon: 'fa-bus', 
+                   markerColor: 'blue-dark', 
+                   prefix: 'fa',
+                   iconColor: 'white',
+                   shape: 'square'
+               });
+
+               layer.setIcon(ic)
+               layer.on('click', function (e) {
+                 pupz(layer.feature.properties.namobj, layer.feature.properties.idtipe, layer.feature.properties.orde02)
+                                  });
+              i++;
+           
+         });
+          //   map.removeLayer(kawasan_strategis);
+      }
+      function loadGeoJsonstasiun(data) {
+        
+        stasiun.clearLayers();
+        stasiun.addData(data);
+        stasiun.addTo(map);
+        var i = 0;
+        var labelnya = "";
+        stasiun.eachLayer(function (layer) {
+      
+          var ic = L.ExtraMarkers.icon({
+                   icon: 'fa-train', 
+                   markerColor: 'blue-dark', 
+                   prefix: 'fa',
+                   iconColor: 'white',
+                   shape: 'square'
+               });
+
+               layer.setIcon(ic)
+               layer.on('click', function (e) {
+                 pupz(layer.feature.properties.namobj, layer.feature.properties.idtipe, layer.feature.properties.orde02)
+                                  });
+              i++;
+           
+         });
+          //   map.removeLayer(kawasan_strategis);
+      }
+
+      function loadGeoJsonpelabuhan(data) {
+        
+        pelabuhan.clearLayers();
+        pelabuhan.addData(data);
+        pelabuhan.addTo(map);
+        var i = 0;
+        var labelnya = "";
+        pelabuhan.eachLayer(function (layer) {
+      
+          var ic = L.ExtraMarkers.icon({
+                   icon: 'fa-ship', 
+                   markerColor: 'blue-dark', 
+                   prefix: 'fa',
+                   iconColor: 'white',
+                   shape: 'square'
+               });
+
+               layer.setIcon(ic)
+               layer.on('click', function (e) {
+                 pupz(layer.feature.properties.namobj, layer.feature.properties.idtipe, layer.feature.properties.orde02)
+                                  });
+              i++;
+           
+         });
+          //   map.removeLayer(kawasan_strategis);
+      }
+      function loadGeoJsonsumber_air(data) {
+        
+        sumber_air.clearLayers();
+        sumber_air.addData(data);
+        sumber_air.addTo(map);
+        var i = 0;
+        var labelnya = "";
+        sumber_air.eachLayer(function (layer) {
+      
+          var ic = L.ExtraMarkers.icon({
+                   icon: 'fa-tint', 
+                   markerColor: 'blue-dark', 
+                   prefix: 'fa',
+                   iconColor: 'white',
+                   shape: 'square'
+               });
+
+               layer.setIcon(ic)
+               layer.on('click', function (e) {
+                 pupz(layer.feature.properties.namobj, layer.feature.properties.idtipe, layer.feature.properties.orde02)
+                                  });
+              i++;
+           
+         });
+          //   map.removeLayer(kawasan_strategis);
+      }
+      function loadGeoJsonjaringan_bergerak(data) {
+        
+        jaringan_bergerak.clearLayers();
+        jaringan_bergerak.addData(data);
+        jaringan_bergerak.addTo(map);
+        var i = 0;
+        var labelnya = "";
+        jaringan_bergerak.eachLayer(function (layer) {
+      
+          var ic = L.ExtraMarkers.icon({
+                   icon: 'fa-signal', 
+                   markerColor: 'blue-dark', 
+                   prefix: 'fa',
+                   iconColor: 'white',
+                   shape: 'square'
+               });
+
+               layer.setIcon(ic)
+               layer.on('click', function (e) {
+                 pupz(layer.feature.properties.namobj, layer.feature.properties.idtipe, layer.feature.properties.orde02)
+                                  });
+              i++;
+           
+         });
+          //   map.removeLayer(kawasan_strategis);
+      }
+      function loadGeoJsonrawan_bencana(data) {
+        
+        rawan_bencana.clearLayers();
+        rawan_bencana.addData(data);
+        rawan_bencana.addTo(map);
+        var i = 0;
+        var labelnya = "";
+        rawan_bencana.eachLayer(function (layer) {
+      
+          var ic = L.ExtraMarkers.icon({
+                   icon: 'fa-skyatlas', 
+                   markerColor: 'blue-dark', 
+                   prefix: 'fa',
+                   iconColor: 'white',
+                   shape: 'square'
+               });
+
+               layer.setIcon(ic)
+               layer.on('click', function (e) {
+                 pupz(layer.feature.properties.namobj, layer.feature.properties.idtipe, layer.feature.properties.orde02)
+                                  });
+              i++;
+           
+         });
+          //   map.removeLayer(kawasan_strategis);
+      }
+      function loadGeoJsontempat_evakuasi(data) {
+        
+        tempat_evakuasi.clearLayers();
+        tempat_evakuasi.addData(data);
+        tempat_evakuasi.addTo(map);
+        var i = 0;
+        var labelnya = "";
+        tempat_evakuasi.eachLayer(function (layer) {
+      
+          var ic = L.ExtraMarkers.icon({
+                   icon: 'fa-users', 
+                   markerColor: 'blue-dark', 
+                   prefix: 'fa',
+                   iconColor: 'white',
+                   shape: 'square'
+               });
+
+               layer.setIcon(ic)
+               layer.on('click', function (e) {
+                 pupz(layer.feature.properties.namobj, layer.feature.properties.idtipe, layer.feature.properties.orde02)
+                                  });
+              i++;
+           
+         });
+          //   map.removeLayer(kawasan_strategis);
+      }
+
+      function loadGeoJsonpkl(data) {
+        
+        pkl.clearLayers();
+        pkl.addData(data);
+        pkl.addTo(map);
+        var i = 0;
+        var labelnya = "";
+        pkl.eachLayer(function (layer) {
+      
+          var ic = L.ExtraMarkers.icon({
+                   icon: 'fa-shopping-basket', 
+                   markerColor: 'blue-dark', 
+                   prefix: 'fa',
+                   iconColor: 'white',
+                   shape: 'square'
+               });
+
+               layer.setIcon(ic)
+               layer.on('click', function (e) {
+                 pupz(layer.feature.properties.namobj, layer.feature.properties.idtipe, layer.feature.properties.orde02)
+                                  });
+              i++;
+           
+         });
+          //   map.removeLayer(kawasan_strategis);
+      }
+
+      
+      function loadGeoJsonppk(data) {
+        
+        ppk.clearLayers();
+        ppk.addData(data);
+        ppk.addTo(map);
+        var i = 0;
+        var labelnya = "";
+        ppk.eachLayer(function (layer) {
+      
+          var ic = L.ExtraMarkers.icon({
+                   icon: 'fa-area-chart', 
+                   markerColor: 'blue-dark', 
+                   prefix: 'fa',
+                   iconColor: 'white',
+                   shape: 'square'
+               });
+
+               layer.setIcon(ic)
+               layer.on('click', function (e) {
+                 pupz(layer.feature.properties.namobj, layer.feature.properties.idtipe, layer.feature.properties.orde02)
+                                  });
+              i++;
+           
+         });
+          //   map.removeLayer(kawasan_strategis);
+      }
+      function loadGeoJsonppl(data) {
+        
+        ppl.clearLayers();
+        ppl.addData(data);
+        ppl.addTo(map);
+        var i = 0;
+        var labelnya = "";
+        ppl.eachLayer(function (layer) {
+      
+          var ic = L.ExtraMarkers.icon({
+                   icon: 'fa-envira', 
+                   markerColor: 'blue-dark', 
+                   prefix: 'fa',
+                   iconColor: 'white',
+                   shape: 'square'
+               });
+
+               layer.setIcon(ic)
+               layer.on('click', function (e) {
+                 pupz(layer.feature.properties.namobj, layer.feature.properties.idtipe, layer.feature.properties.orde02)
+                                  });
+              i++;
+           
+         });
+          //   map.removeLayer(kawasan_strategis);
+      }
+
+      function loadGeoJsonrawan_bencana(data) {
+             
+        rawan_bencana.clearLayers();
+        rawan_bencana.addData(data);
+        rawan_bencana.addTo(map);
+             var i = 0;
+             var labelnya = "";
+             rawan_bencana.eachLayer(function (layer) {
+
+                   
+                     layer.setStyle(style_permukiman);
+                    // layer.bindPopup(layer.feature.properties.rencana_tg);
+                     // Get bounds of polygon
+                     var bounds = layer.getBounds();
+                     // Get center of bounds
+                     var center = bounds.getCenter();
+                     //center.on('click', alert('asu'));
+                     // Use center to put marker on map
+                     //var marker = L.marker(center).addTo(map);
+                     //labelnya
+                    
+                    layer.on('click', function (e) {
+                                       //panorama(e.latlng.lat, e.latlng.lng);
+                                       clickHandler(e)
+                                       });
+                   i++;
+                 
+              });
+                  // map.removeLayer(permukiman);
+           }
+
+           
+
+
+        
+
+
+     // do stuff after marker has been added
+
+       
+     function doAnimations(){
+        var myIcon = document.querySelector('.gps_ring')
+       //sesudah
+        myIcon.style.width = '1000px'
+        
+     }
+
+             
+                
+                  
+                      
+
+             //ambil kec
+               var geoJsonUrl =root+"peta/topojson_kec"; 
+                 $.getJSON(geoJsonUrl)
+                   .done(loadGeoJsonkec);
+
+                   $('#jaringan_jalan').click(function(){
+                          
+                          if(this.checked){
+                           if(jaringan_jalan.getLayers().length==0){
+                            var geoJsonUrl =root+"peta/sr_line?idtipe=1002&sudut_kepe=1"; 
+                            $.getJSON(geoJsonUrl)
+                              .done(loadGeoJsonjaringan_jalan);
+                            }else{
+                               map.addLayer(jaringan_jalan)
+                          }
+                          }else{
+                           map.removeLayer(jaringan_jalan)
+                          }
+                        
+                        })
+
+                        $('#kereta_api').click(function(){
+                          
+                          if(this.checked){
+                           if(kereta_api.getLayers().length==0){
+                            var geoJsonUrl =root+"peta/sr_line?idtipe=1002&sudut_kepe=2"; 
+                            $.getJSON(geoJsonUrl)
+                              .done(loadGeoJsonkereta_api);
+                            }else{
+                               map.addLayer(kereta_api)
+                          }
+                          }else{
+                           map.removeLayer(kereta_api)
+                          }
+                        
+                        })
+
+                        $('#jaringan_listrik').click(function(){
+                          
+                          if(this.checked){
+                           if(jaringan_listrik.getLayers().length==0){
+                            var geoJsonUrl =root+"peta/sr_line?idtipe=1005&sudut_kepe=7"; 
+                            $.getJSON(geoJsonUrl)
+                              .done(loadGeoJsonjaringan_listrik);
+                            }else{
+                               map.addLayer(jaringan_listrik)
+                          }
+                          }else{
+                           map.removeLayer(jaringan_listrik)
+                          }
+                        
+                        })
+
+                        
+                        $('#jaringan_gas').click(function(){
+                          
+                          if(this.checked){
+                           if(jaringan_gas.getLayers().length==0){
+                            var geoJsonUrl =root+"peta/sr_line?idtipe=1006&sudut_kepe=1"; 
+                            $.getJSON(geoJsonUrl)
+                              .done(loadGeoJsonjaringan_gas);
+                            }else{
+                               map.addLayer(jaringan_gas)
+                          }
+                          }else{
+                           map.removeLayer(jaringan_gas)
+                          }
+                        
+                        })
+                        $('#jalur_evakuasi').click(function(){
+                          
+                          if(this.checked){
+                           if(jalur_evakuasi.getLayers().length==0){
+                            var geoJsonUrl =root+"peta/sr_line?idtipe=1004&sudut_kepe=2"; 
+                            $.getJSON(geoJsonUrl)
+                              .done(loadGeoJsonjalur_evakuasi);
+                            }else{
+                               map.addLayer(jalur_evakuasi)
+                          }
+                          }else{
+                           map.removeLayer(jalur_evakuasi)
+                          }
+                        
+                        })
+
+                        $('#jaringan_tidak_bergerak').click(function(){
+                          
+                          if(this.checked){
+                           if(jaringan_tidak_bergerak.getLayers().length==0){
+                            var geoJsonUrl =root+"peta/sr_line?idtipe=1001&sudut_kepe=1"; 
+                            $.getJSON(geoJsonUrl)
+                              .done(loadGeoJsonjaringan_tidak_bergerak);
+                            }else{
+                               map.addLayer(jaringan_tidak_bergerak)
+                          }
+                          }else{
+                           map.removeLayer(jaringan_tidak_bergerak)
+                          }
+                        
+                        })
+
+                        $('#jaringan_sda').click(function(){
+                          
+                          if(this.checked){
+                           if(jaringan_sda.getLayers().length==0){
+                            var geoJsonUrl =root+"peta/sr_line?idtipe=1003&sudut_kepe=4"; 
+                            $.getJSON(geoJsonUrl)
+                              .done(loadGeoJsonjaringan_sda);
+                            }else{
+                               map.addLayer(jaringan_sda)
+                          }
+                          }else{
+                           map.removeLayer(jaringan_sda)
+                          }
+                        
+                        })
+
+                        $('#terminal').click(function(){
+                          
+                          if(this.checked){
+                           if(terminal.getLayers().length==0){
+                            var geoJsonUrl =root+"peta/sr_point?idtipe=2006&sudut_kepe=1"; 
+                            $.getJSON(geoJsonUrl)
+                              .done(loadGeoJsonterminal);
+                            }else{
+                               map.addLayer(terminal)
+                          }
+                          }else{
+                           map.removeLayer(terminal)
+                          }
+                        
+                        })
+
+                        $('#stasiun').click(function(){
+                          
+                          if(this.checked){
+                           if(stasiun.getLayers().length==0){
+                            var geoJsonUrl =root+"peta/sr_point?idtipe=2006&sudut_kepe=5"; 
+                            $.getJSON(geoJsonUrl)
+                              .done(loadGeoJsonstasiun);
+                            }else{
+                               map.addLayer(stasiun)
+                          }
+                          }else{
+                           map.removeLayer(stasiun)
+                          }
+                        
+                        })
+                        $('#pelabuhan').click(function(){
+                          
+                          if(this.checked){
+                           if(pelabuhan.getLayers().length==0){
+                            var geoJsonUrl =root+"peta/sr_point?idtipe=2006&sudut_kepe=13"; 
+                            $.getJSON(geoJsonUrl)
+                              .done(loadGeoJsonpelabuhan);
+                            }else{
+                               map.addLayer(pelabuhan)
+                          }
+                          }else{
+                           map.removeLayer(pelabuhan)
+                          }
+                        
+                        })
+
+                        $('#sumber_air').click(function(){
+                          
+                          if(this.checked){
+                           if(sumber_air.getLayers().length==0){
+                            var geoJsonUrl =root+"peta/sr_point?idtipe=2004&sudut_kepe=4"; 
+                            $.getJSON(geoJsonUrl)
+                              .done(loadGeoJsonsumber_air);
+                            }else{
+                               map.addLayer(sumber_air)
+                          }
+                          }else{
+                           map.removeLayer(sumber_air)
+                          }
+                        
+                        })
+
+                        $('#jaringan_bergerak').click(function(){
+                          
+                          if(this.checked){
+                           if(jaringan_bergerak.getLayers().length==0){
+                            var geoJsonUrl =root+"peta/sr_point?idtipe=2005&sudut_kepe=3"; 
+                            $.getJSON(geoJsonUrl)
+                              .done(loadGeoJsonjaringan_bergerak);
+                            }else{
+                               map.addLayer(jaringan_bergerak)
+                          }
+                          }else{
+                           map.removeLayer(jaringan_bergerak)
+                          }
+                        
+                        })
+                        $('#tempat_evakuasi').click(function(){
+                          
+                          if(this.checked){
+                           if(tempat_evakuasi.getLayers().length==0){
+                            var geoJsonUrl =root+"peta/sr_point?idtipe=2003&sudut_kepe=12"; 
+                            $.getJSON(geoJsonUrl)
+                              .done(loadGeoJsontempat_evakuasi);
+                            }else{
+                               map.addLayer(tempat_evakuasi)
+                          }
+                          }else{
+                           map.removeLayer(tempat_evakuasi)
+                          }
+                        
+                        })
+                        $('#pkl').click(function(){
+                          
+                          if(this.checked){
+                           if(pkl.getLayers().length==0){
+                            var geoJsonUrl =root+"peta/sr_point?idtipe=2001&sudut_kepe=4"; 
+                            $.getJSON(geoJsonUrl)
+                              .done(loadGeoJsonpkl);
+                            }else{
+                               map.addLayer(pkl)
+                          }
+                          }else{
+                           map.removeLayer(pkl)
+                          }
+                        
+                        })
+                        $('#ppl').click(function(){
+                          
+                          if(this.checked){
+                           if(ppl.getLayers().length==0){
+                            var geoJsonUrl =root+"peta/sr_point?idtipe=2001&sudut_kepe=6"; 
+                            $.getJSON(geoJsonUrl)
+                              .done(loadGeoJsonppl);
+                            }else{
+                               map.addLayer(ppl)
+                          }
+                          }else{
+                           map.removeLayer(ppl)
+                          }
+                        
+                        })
+                        $('#ppk').click(function(){
+                          
+                          if(this.checked){
+                           if(ppk.getLayers().length==0){
+                            var geoJsonUrl =root+"peta/sr_point?idtipe=2001&sudut_kepe=5"; 
+                            $.getJSON(geoJsonUrl)
+                              .done(loadGeoJsonppk);
+                            }else{
+                               map.addLayer(ppk)
+                          }
+                          }else{
+                           map.removeLayer(ppk)
+                          }
+                        
+                        })
+                        $('#rawan_bencana').click(function(){
+                          
+                          if(this.checked){
+                           if(rawan_bencana.getLayers().length==0){
+                            var geoJsonUrl =root+"peta/krb_lppb?kode=krb"; 
+                            $.getJSON(geoJsonUrl)
+                              .done(loadGeoJsonrawan_bencana);
+                            }else{
+                               map.addLayer(rawan_bencana)
+                          }
+                          }else{
+                           map.removeLayer(rawan_bencana)
+                          }
+                        
+                        })
+
+
+             
+               
+                    //ambil eksisting
+              
+                   map.on('moveend', function(){
+                    if(map.getZoom() > 10 && map.getZoom() < 14){
+                          tampil_label_kec();
+                    }else{
+                     hide_label_kec();
+                    }
+                  })
+                     var kiri_atas_lng  = map.getBounds().getSouthWest().lng;
+               var kiri_atas_lat  = map.getBounds().getSouthWest().lat;
+               var kanan_bawah_lng = map.getBounds().getNorthEast().lng;
+               var kanan_bawah_lat = map.getBounds().getNorthEast().lat;
+                  
+                       
+                      
+                   //end ambil_kec
+
+             //saat pindah
+             map.on('moveend', function(){
+              if(map.getZoom() > wellmaxzoom){
+               //kembali ke asal
+
+              
+              //kembali ke asal
+
+               var kiri_atas_lng  = map.getBounds().getSouthWest().lng;
+               var kiri_atas_lat  = map.getBounds().getSouthWest().lat;
+               var kanan_bawah_lng = map.getBounds().getNorthEast().lng;
+               var kanan_bawah_lat = map.getBounds().getNorthEast().lat;
+              //   var geoJsonUrl =root + "index.php/peta/geo_kec_bound/"+kiri_atas_lng+"/"+kiri_atas_lat+"/"+kanan_bawah_lng+"/"+kanan_bawah_lat; 
+                 var geoJsonUrl =root+"peta/topojson_desa?kiri_lng="+kiri_atas_lng+"&kiri_lat="+kiri_atas_lat+"&kanan_lng="+kanan_bawah_lng+"&kanan_lat="+kanan_bawah_lat; 
+                // console.log(geoJsonUrl);
+               // console.log(map.getBounds().toBBoxString());
+               // console.log(map.getBounds().getSouthWest().lng + ';' + map.getBounds().getSouthWest().lat + ';' + map.getBounds().getNorthEast().lng + ';' + map.getBounds().getNorthEast().lat);
+             //    var boundingBox = L.rectangle(map.getBounds(), {color: "#ff7800", weight: 1});
+             // map.addLayer(boundingBox);
+                 // $.ajax({
+                 //     url: geoJsonUrl,
+                 //     datatype: 'json',
+                 //     jsonCallback: 'getJson',
+                 //     success: loadGeoJson
+                 //     });
+                 $.getJSON(geoJsonUrl)
+                   .done(loadGeoJsondesa);
+
+
+                   
+                 }else{
+                 hapus_label_desa();
+                   map.removeLayer(desa_layer);
+                 };
+             });
+
+             //end moveend
+
+        legend.onAdd = function (map) {
+                 var div = L.DomUtil.create('div', 'info-legend')
+                
+                // loop through our density intervals and generate a label with a colored square for each interval
+                 for (var i = 0; i < warna_total.length; i++) {
+                   div.innerHTML += '<i style="background:' + warna_total[i] + '"></i> ' + labels[i] + '<br>';
+                 }
+                 return div;
+               };
+
+              // legend.addTo(map);
+
+               var baseLayers = {
+                 "Google Roadmap": google_roadmap,
+                 "Google Hybrid": google_hybrid,
+                 "Google Satellite": google_satelit,
+                 "Open Street Map": osm,
+                 "ESRI World Imagery": Esri_WorldImagery,
+                 "RBI": RBI
+               };
+               
+               // var overlays = {
+               //   "kecamatan": kabupaten_layer,
+               //   "<span>RTRW Semapadan Sungai</span>&nbsp;&nbsp;<span style='background-color:#499277;padding:2px 8px 2px 8px;'></span>": sempadan_sungai,
+               //   "<span>RTRW Sempadan Pantai</span>&nbsp;&nbsp;<span style='background-color:#3F786F;padding:2px 8px 2px 8px;'></span>": sempadan_pantai,
+               //   "<span>RTRW Kawasan Konservasi/KA</span>&nbsp;&nbsp;<span style='background-color:#195344;padding:2px 8px 2px 8px;'></span>": kawasan_konservasi,
+               //   "<span>RTRW Hutan Lindung</span>&nbsp;&nbsp;<span style='background-color:#8C8D88;padding:2px 8px 2px 8px;'></span>": hutan_lindung,
+               //   "<span>RTRW Tambak</span>&nbsp;&nbsp;<span style='background-color:#48B3C5;padding:2px 8px 2px 8px;'></span>": tambak,
+               //   "<span>RTRW Lahan Basah Kering</span>&nbsp;&nbsp;<span style='background-color:#C8DEB0;padding:2px 8px 2px 8px;'></span>": lahan_basah_kering,
+               //   "<span>RTRW Permukiman Perkotaan</span>&nbsp;&nbsp;<span style='background-color:#E8B05D;padding:2px 8px 2px 8px;'></span>": permukiman_perkotaan,
+               //   "<span>RTRW Permukiman Perdesaan</span>&nbsp;&nbsp;<span style='background-color:#E8B05D;padding:2px 8px 2px 8px;'></span>": permukiman_perdesaan,
+               //   "<span>RTRW Perkebunan</span>&nbsp;&nbsp;<span style='background-color:#ABBC6E;padding:2px 8px 2px 8px;'></span>": perkebunan,
+               //   "<span>RTRW Industri</span>&nbsp;&nbsp;<span style='background-color:#9E8986;padding:2px 8px 2px 8px;'></span>": industri,
+               //   "<span>RTRW Hutan Produksi Terbatas</span>&nbsp;&nbsp;<span style='background-color:#7EA4D3;padding:2px 8px 2px 8px;'></span>": hutan_produksi_terbatas,
+               //   "<span>RTRW Hutan Produksi</span>&nbsp;&nbsp;<span style='background-color:#7EA4D3;padding:2px 8px 2px 8px;'></span>": hutan_produksi,
+               //   "<span>Jalan</span>&nbsp;&nbsp;<span style='background-color:red;padding:2px 8px 2px 8px;'></span>": jalan_layer
+                
+                 
+               // };
+               
+               // L.control.layers(baseLayers,overlays,{
+               //   position : 'topright'
+               // }, {'drawlayer':drawnItems}, { position: 'topleft', collapsed: false }).addTo(map);
+
+                               var groupedOverlays = {
+                                    "Administrasi": {
+                      "&nbsp;&nbsp;&nbsp;&nbsp;kecamatan": kabupaten_layer,
+                     "&nbsp;&nbsp;&nbsp;&nbsp;Desa": desa_layer
+                      },
+                      "Layers": {
+          
+                    
+                      }
+                    };
+                          var options = {
+            // Make the "Landmarks" group exclusive (use radio inputs)
+           // exclusiveGroups: ["Landmarks"],
+            // Show a checkbox next to non-exclusive group labels for toggling all
+            groupCheckboxes: true
+          };
+               L.control.groupedLayers(baseLayers, groupedOverlays, options).addTo(map);
+            
+
+               streetview.onAdd = function (map) {
+                 var div = L.DomUtil.create('div', 'sv')
+                
+                // loop through our density intervals and generate a label with a colored square for each interval
+                   div.innerHTML += '';
+                 
+                 return div;
+               };
+
+              // streetview.addTo(map);
+
+               L.control.scale({
+                 position : 'bottomright',
+                 metric : true,
+                 imperial : false
+               }).addTo(map);
+               
+               lc = L.control.locate({
+                 position : 'topleft',
+                 follow : true,
+                 strings : {
+                   title : "Lokasi Anda",
+                   popup: "Anda berada di radius {distance} {unit} dari titik ini"
+                 },
+                 markerClass : L.marker,
+                 markerStyle : {icon: locateIcon},
+                 keepCurrentZoomLevel : true
+               }).addTo(map);
+
+               map
+                 .on('startfollowing', function() {
+                   map.on('dragstart', lc._stopFollowing, lc);
+                 })
+                 .on('stopfollowing', function() {
+                     map.off('dragstart', lc._stopFollowing, lc);
+                 });
+
+               map.on('locationfound', onLocationFound);
+               
+
+               // map.on('moveend', function() { 
+               //      console.log(map.getBounds());
+               // });
+
+               map.on('baselayerchange', function(e) {
+                 console.log(e.name);
+
+                 if ( e.name == 'Google Roadmap' || e.name == 'Open Street Map' || e.name == 'Mapbox Street') {
+                   kabupaten_layer.eachLayer(function (layer) {
+                  //   layer.setStyle(style_kabupaten_gelap);
+                   });
+                 }else{
+                   kabupaten_layer.eachLayer(function (layer) {
+                     layer.setStyle(style_kabupaten);
+                   });
+                 }
+
+               });
+               
+               //ganti kabupaten
+               $('#search_maps').hide();
+
+
+              // $('.leaflet-bottom.leaflet-left').hide();
+               
+               $('.leaflet-bar-part.leaflet-bar-part-single').click(function () {
+                
+               })
+               
+
+               //panorama
+              var marker= "";
+              var titik_panorama = null;
+               function panorama(xe,ye){
+                  if(titik_panorama != null){
+                 map.removeLayer(titik_panorama);     
+                  }
+                  if(marker!=""){
+                    map.removeLayer(marker);
+                    
+                  }
+                     titik_panorama = L.marker([xe, ye]).addTo(map);
+                  var fenway = new google.maps.LatLng(xe,ye);
+                    var panoramaOptions = {
+                      position: fenway,
+                      pov: {
+                        heading: 34,
+                        pitch: 10
+                      }
+                    };
+                    var panorama = new  google.maps.StreetViewPanorama(document.getElementById('pano'),panoramaOptions);
+                  
+             }
+         //       map.on('click', function(e) {
+
+         //    // console.log(e.latlng.lat+' '+e.latlng.lng);
+         //    var xe = e.latlng.lat;
+         //    var ye = e.latlng.lng;
+            
+         //    panorama(xe,ye)
+          
+                  
+         // });
+
+         $('#kec').change(function() {
+                console.log($('option:selected', this).attr('xe'))
+                map.setView(new L.LatLng($('option:selected', this).attr('ye'), $('option:selected', this).attr('xe')), 13);
+               $.ajax({
+                 type : "GET",
+                 async : false,
+                 global : false,
+                 url :  "/pola_ruang/get_desa_by_kec?kec="+$('#kec').val(),
+                 dataType : 'json',
+                 success: function (data) {
+                  $("#desa").empty();
+                  $("#desa").append('<option value="">-- PILIH --</option>')
+                $.each(data, function(){
+                     $("#desa").append('<option value="'+ this.desa +'" xe="'+ this.xe +'" ye="'+ this.ye +'" >'+ this.desa +'</option>')
+                 })
+                   
+                 }
+               });            
+           });
+
+
+           $('#desa').change(function() {
+            map.setView(new L.LatLng($('option:selected', this).attr('ye'), $('option:selected', this).attr('xe')), 15);
+                     
+           });
+   </script>
+</body>
+</html>

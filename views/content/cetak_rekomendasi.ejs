@@ -1,0 +1,89 @@
+<!--  BACKUP ASLI SERVER BENAR -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="/images/template/Logo Kab Pekalongan.ico" type="image/png">
+    <title>Cetak Rekomendasi | Sistem Informasi RTRW Kabupaten Pekalongan</title>
+  
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <style type="text/css">
+      body {
+        background: rgb(204,204,204); 
+        font-family: 'Arial'
+      }
+
+      page {
+        background: white;
+        display: block;
+        margin: 0 auto;
+        margin-bottom: 5mm;
+        box-shadow: 0 0 5mm rgba(0,0,0,0.5);
+        /*border:2px solid black;*/
+      }
+
+      page[size="A4"] {
+        width: 210mm;
+        height: 306mm;  
+        border:1px solid black;
+      }
+      
+      @media print {
+        body, page {
+          margin: 0;
+          box-shadow: none;
+        }
+
+        #btn-print{
+          display: none !important;
+        }
+      }
+
+
+      table { page-break-inside:auto }
+      tr    { page-break-inside:avoid; page-break-after:auto }
+      thead { display:table-header-group }
+      tfoot { page-break-inside:avoid; page-break-after:auto  }
+
+      div { page-break-inside:auto }
+      div    { page-break-inside:avoid; page-break-after:auto }
+      div { display:table-header-group }
+      div { page-break-inside:avoid; page-break-after:auto  }
+      .text-center{
+        text-align: center;
+      }
+    </style>
+</head>
+
+<body>
+    <div id="btn-print" style="float:right;display: inline-block;background-color: red;padding: 10px 15px;border-bottom: 4px solid rgba(0,0,0,0.4);border-right: 4px solid rgba(0,0,0,0.4);border-radius: 4px;cursor: pointer;">
+      <h5 style="text-align: center;margin-top: 0px;margin-bottom: 0px;color: #ffffff;"><strong>CETAK</strong></h5>
+    </div>
+
+
+    <page size="A4">
+
+    </page>
+    <!-- jQuery -->
+    
+    <script src="/plugins/jquery/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript">
+    $('#btn-print').click(function(){
+         window.print();
+    });
+    </script>
+</body>
+</html>

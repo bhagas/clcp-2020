@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link rel="shortcut icon" href="/images/template/Logo Kab Pekalongan.ico">
+	<title>Sistem Informasi RTRW Kabupaten Pekalongan</title>
+
+	<link href="/stylesheets/template/css/theme.css" rel="stylesheet">
+	<link href="/stylesheets/template/css/style.css" rel="stylesheet">
+	<link href="/stylesheets/template/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  
+  <!-- Plugins This Page -->
+  <link href="/plugins/datatables/dataTables.css" rel="stylesheet">
+  <!-- End Plugins This Page -->
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+  <style type="text/css">
+    body{
+        font-family: "Source Sans Pro";
+    }
+
+    .section-one ul.list-unstyled li{
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+
+    .section-one ul.list-unstyled li a{
+        text-decoration: none;
+        color: black;
+        font-weight: 700;
+    }
+
+    #data thead tr td{
+      font-weight: 700
+    }
+
+    .panel-default > .panel-heading{
+      background-color: #f9941c;
+    }
+
+    .panel{
+      border: 1px solid #ffca4f;
+    }
+  </style>
+</head>
+
+<body>
+    <% include ../template/header.ejs %>
+    <section class="section-one">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-2 col-lg-2 p-l-0 p-r-0 visible-md visible-lg">
+              <div style="width: 100%;min-height: 100vh;background-color: #159B75;">
+                <div style="width: 100%;max-height: 100vh;background-color: #159B75;overflow-y: auto;overflow-x: hidden;">
+                  <div class="row">
+                    <div class="col-md-12 col-lg-12">
+                      <div style="width: 100%;background-color: #39C99C;padding:  10px;border-bottom: 6px solid rgba(0,0,0,0.2);">
+                        <center><img src="/images/template/Logo Kab Pekalongan.png" style="height: 80px;"></center>
+                        <h5 class="m-b-0 text-center"><strong>PEMERINTAH KABUPATEN PEKALONGAN</strong></h5>
+                        <h6 class="m-t-5 m-b-0 text-center"><strong>SISTEM INFORMASI RTRW <br/>KABUPATEN PEKALONGAN</strong></h6>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row p-l-15 p-r-15">
+                    <div class="col-md-12 col-lg-12 m-t-10">
+                      <ul class="list-unstyled">
+                        <li><a href="/">HOME</a></li>
+                        <li>
+                            <a href="#" data-toggle="collapse" data-target="#profil" aria-expanded="false" aria-controls="collapseExample">PROFIL <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                            <div class="collapse" id="profil">
+                              <ul class="list-unstyled" style="margin-left: 15px;">
+                                  <li><a href="/profil/profil_kecamatan">PROFIL KECAMATAN</a></li>
+                                  <li><a href="/profil/profil_desa">PROFIL DESA</a></li>
+                                  <li><a href="/profil/profil_jenis_tanah">JENIS TANAH</a></li>
+                                  <li><a href="/profil/profil_kelerengan">KELERENGAN</a></li>
+                                  <li><a href="/profil/profil_kesesuaian_lahan">KESESUAIAN LAHAN</a></li>
+                                  <li><a href="/profil/profil_morfologi_wilayah">MORFOLOGI WILAYAH</a></li>
+                              </ul>
+                            </div>
+                        </li>
+                        <li><a href="/tujuan_strategi">TUJUAN & STRATEGI</a></li>
+                        <li>
+                            <a href="#" data-toggle="collapse" data-target="#strukturruang" aria-expanded="false" aria-controls="collapseExample">STRUKTUR RUANG <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                            <div class="collapse" id="strukturruang">
+                              <ul class="list-unstyled" style="margin-left: 15px;">
+                                  <li><a href="/struktur_ruang/sistem_pusat_kegiatan">SISTEM PUSAT KEGIATAN</a></li>
+                                  <li><a href="/struktur_ruang/sistem_jaringan_prasarana">SISTEM JARINGAN PRASARANA</a></li>
+                              </ul>
+                            </div>
+                        </li>
+                        <li><a href="/pola_ruang">POLA RUANG</a></li>
+                        <li><a href="/kawasan_strategis">KAWASAN STRATEGIS</a></li>
+                        <li>
+                            <a href="#" data-toggle="collapse" data-target="#arahanpengendalian" aria-expanded="false" aria-controls="collapseExample">ARAHAN PENGENDALIAN <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                            <div class="collapse" id="arahanpengendalian">
+                              <ul class="list-unstyled" style="margin-left: 15px;">
+                                  <li><a href="/arahan_pengendalian/perizinan">PERIZINAN</a></li>
+                                  <li><a href="/arahan_pengendalian/insentif_disinsentif">INSENTIF & DISINSENTIF</a></li>
+                                  <li><a href="/arahan_pengendalian/sanksi">SANKSI</a></li>
+                              </ul>
+                            </div>
+                        </li>
+                        <li><a href="/indikasi_program">INDIKASI PROGRAM</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-10 col-lg-10" style="position: relative;min-height: 100vh;">
+              <div class="row visible-md visible-lg">
+                <div class="col-md-12 col-lg-12 ">
+                  <div style="display: table;width: 100%">
+                    <div style="display: table-row;">
+                      <div style="display: table-cell;vertical-align: middle;height: 100vh">
+                        <!-- <object data="/document/Perizinan.pdf" width="100%" height="550" type='application/pdf'>
+                          <p>Sorry, the PDF couldn't be displayed :(</p>
+                        </object> -->
+                        <center><img src="/images/template/perizinan new.png" style="height: 100vh" class="img-responsive"></center>
+                      </div>
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+
+              <div class="row visible-xs visible-sm">
+                <div class="col-xs-12 col-sm-12 m-t-15 m-b-15">
+                  <!-- <iframe src="/plugins/pdfjs/web/viewer.html?file=Perizinan.pdf" style="width: 100%;height: 100vh;"></iframe> -->
+                  <img src="/images/template/perizinan new.png" style="width: 100%" class="img-responsive">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </section>
+    <% include ../template/footer.ejs %>
+    <script src="/plugins/jquery/jquery-1.11.1.min.js"></script>
+    <script src="/javascripts/template/bootstrap.min.js"></script>
+    
+    <!-- Plugins This Page -->
+    <script src="/plugins/datatables/jquery.dataTables.min.js"></script>
+    <!-- End Plugins This Page -->
+    <script type="text/javascript">
+      $('#konten2').hide(); 
+      $('#konten3').hide();
+
+      $('#btn1').click(function() { 
+        $('#konten1').show(); 
+        $('#konten2').hide(); 
+        $('#konten3').hide(); 
+      }); 
+   
+      $('#btn2').click(function() { 
+        $('#konten1').hide(); 
+        $('#konten2').show(); 
+        $('#konten3').hide(); 
+      }); 
+
+      $('#btn3').click(function() { 
+        $('#konten1').hide(); 
+        $('#konten2').hide(); 
+        $('#konten3').show(); 
+      });
+
+      $('#data').DataTable({ 
+        "language": { 
+            "sProcessing":   "Sedang memproses...", 
+            "sLengthMenu":   "_MENU_", 
+            "sZeroRecords":  "Tidak ditemukan data yang sesuai", 
+            "sInfo":         "Menampilkan _START_ sampai _END_ dari _TOTAL_ entri", 
+            "sInfoEmpty":    "Menampilkan 0 sampai 0 dari 0 entri", 
+            "sInfoFiltered": "(disaring dari _MAX_ entri keseluruhan)", 
+            "sInfoPostFix":  "", 
+            "sUrl":          "", 
+            "oPaginate": { 
+                "sFirst":    "Pertama", 
+                "sPrevious": "Sebelumnya", 
+                "sNext":     "Selanjutnya", 
+                "sLast":     "Terakhir" 
+            } 
+        }, 
+        // "columnDefs": [ 
+        //     { "width": "230px", "targets": 6}, 
+        // ], 
+      });
+    </script>
+</body>
+</html>

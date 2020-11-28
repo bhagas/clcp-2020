@@ -1,0 +1,236 @@
+<% include ../../template-backoffice/header.ejs %>
+<style type="text/css">
+	.force-table-responsive{
+		overflow-x: hidden
+	}
+</style>
+<!-- BEGIN PAGE CONTENT -->
+<div class="page-content">
+  <div class="header">
+    <h2><strong>Data Saran</strong></h2>
+    <div class="breadcrumb-wrapper">
+      <ol class="breadcrumb">
+        <li><a href="/backoffice">Dashboard</a>
+        </li>
+        <li class="active">Data Saran</li>
+      </ol>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel">
+        <div class="panel-header header-line">
+           <!-- <a class="btn btn-primary btn-embossed" href="/manajemen_saran/insert" role="button"><i class="fa fa-plus" aria-hidden="true"></i>Tambah Data</a> -->
+        </div>
+        <div class="panel-content pagination2">
+          <table class="table table-bordered table-striped table-hover" id="data">
+            <thead>
+              <tr>
+                <th class="header">No.</th>
+                <th class="header">Nama Lengkap</th>
+                <th class="header">Isi Pengaduan</th>
+                <th class="header">Upload Foto Pengaduan</th>
+                <th class="header">Tanggapan</th>
+                <th class="header">Publish</th>
+                <th class="header">Option</th>
+              </tr>
+            </thead>
+            
+            <tbody>
+            <% for(var i=0; i<data.length; i++){ %>
+            <tr>
+              <td><%= i+1%></td>
+              <td><%= data[i].nama%></td>
+              <td><%- data[i].pengaduan%></td>
+              <td><img src="/foto/<%= data[i].foto%>" style="width: 150px;"></td>
+              <td><%- data[i].tanggapan%></td>
+              <td><% if(data[i].publis==0){%>Tidak<% }else{%> Ya <%}%></td>
+              <td>
+                <center>
+                	<div style="display: inline-block;">
+                		<a class="btn btn-warning btn-embossed btn-sm" href="/manajemen_saran/edit/<%= data[i].id%>" role="button" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                	</div>
+
+                	<div style="display: inline-block;margin-top: 5px;">
+                		<a class="btn btn-danger btn-embossed btn-sm" href="/manajemen_saran/delete/<%= data[i].id%>" role="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                	</div>
+
+                	<div style="display: inline-block;margin-top: 5px;">
+                		<button type="button" class="btn btn-info btn-sm" onclick="detil(<%= data[i].id%>)"><i class="fa fa-info" aria-hidden="true"></i></button>
+                	</div>
+
+                  <div style="display: inline-block;margin-top: 5px;">
+                    <a class="btn btn-success btn-embossed btn-sm" href="/manajemen_saran/cetak/1" role="button"><i class="fa fa-print" aria-hidden="true"></i></a>
+                  </div>
+                </center>
+              </td>
+            </tr>
+            <% }%>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>  
+  </div>
+  <div class="footer">
+    <div class="copyright">
+      <p class="pull-left sm-pull-reset">`
+        <span>Copyright <span class="copyright">©</span> 2017 </span>
+        <span>Pemerintah Kabupaten Pekalongan</span>.
+      </p>
+    </div>
+  </div>
+</div>
+<!-- END PAGE CONTENT -->
+
+
+<div class="modal fade detail" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Detail Saran</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12 col-lg-12">
+            <div style="width: 100%;background-color: ;position: relative;display: table;;">
+            	<div style="display: table-row;">
+            		<div style="display: table-cell;width: 38%;padding-right: 1%;" class="table-no-border">
+            			<table class="table table-bordered" >
+            			  <tr>
+            			    <td>Nama</td>
+            			    <td>:</td>
+            			    <td id="nama"></td>
+            			  </tr>
+
+            			  <tr>
+            			    <td>NIK</td>
+            			    <td>:</td>
+            			    <td id="nik"></td>
+            			  </tr>
+
+
+            			  <tr>
+            			    <td>Alamat</td>
+            			    <td>:</td>
+            			    <td id="alamat"></td>
+            			  </tr>
+
+            			  <tr>
+            			    <td>No. Telepon</td>
+            			    <td>:</td>
+            			    <td id="telp"></td>
+            			  </tr>
+
+            			  <tr>
+            			    <td>Email</td>
+            			    <td>:</td>
+            			    <td id="email"></td>
+            			  </tr>
+
+            			  <tr>
+            			    <td>Koordinat Permasalahan</td>
+            			    <td>:</td>
+            			    <td id="koor"></td>
+            			  </tr>
+
+            			  <tr>
+            			    <td>Foto Permasalahan</td>
+            			    <td>:</td>
+            			    <td id="foto"></td>
+            			  </tr>
+            			</table>
+            		</div>
+            		<div style="display: table-cell;width: 58%;background-color: ;height: 100px;padding-left: 1%;" class="table-no-border">
+            			<table class="table table-bordered">
+            				<tr>
+            					<td>Isi Pengaduan :</td>
+            				</tr>
+
+            				<tr>
+            					<td id="pengaduan">
+            						
+            					</td>
+            				</tr>
+
+            				<tr>
+            					<td>Tanggapan :</td>
+            				</tr>
+
+            				<tr>
+            					<td id="tanggapan">
+            						
+            					</td>
+            				</tr>
+            			</table>
+            		</div>
+            	</div>
+            </div>
+          </div>
+
+          
+        </div>
+      </div>
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div> -->
+    </div>
+  </div>
+</div>
+
+<% include ../../template-backoffice/footer.ejs %>
+
+<script type="text/javascript">
+function detil (x) {
+  $.get( "/manajemen_saran/get_json/"+x, function( data ) {
+    console.log(data);
+    $('#nama').empty();
+    $('#nik').empty();
+    $('#alamat').empty();
+    $('#telp').empty();
+    $('#email').empty();
+    $('#koor').empty();
+    $('#foto').empty();
+    $('#pengaduan').empty();
+    $('#tanggapan').empty();
+
+    $('#nama').html(data.data[0].nama);
+    $('#nik').html(data.data[0].nik);
+    $('#alamat').html(data.data[0].alamat);
+    $('#telp').html(data.data[0].telp);
+    $('#email').html(data.data[0].email);
+    $('#koor').html(data.data[0].koor);
+    $('#foto').html('<img src="/foto/'+data.data[0].foto+'" style="width:100px">');
+    $('#pengaduan').html(data.data[0].pengaduan);
+    $('#tanggapan').html(data.data[0].tanggapan);
+
+    $('.detail').modal('toggle');
+    $('.detail').modal('show');
+  })
+  }
+  $(document).ready(function() {
+    $('#data').DataTable({
+      "language": {
+          "sProcessing":   "Sedang memproses...",
+          "sLengthMenu":   "_MENU_",
+          "sZeroRecords":  "Tidak ditemukan data yang sesuai",
+          "sInfo":         "Menampilkan _START_ sampai _END_ dari _TOTAL_ entri",
+          "sInfoEmpty":    "Menampilkan 0 sampai 0 dari 0 entri",
+          "sInfoFiltered": "(disaring dari _MAX_ entri keseluruhan)",
+          "sInfoPostFix":  "",
+          "sUrl":          "",
+          "oPaginate": {
+            "sFirst":    "Pertama",
+            "sPrevious": "Sebelumnya",
+            "sNext":     "Selanjutnya",
+            "sLast":     "Terakhir"
+          }
+      },
+      "columnDefs": [
+          { "width": "60px", "targets": 6}
+      ],
+    });
+  });
+</script>

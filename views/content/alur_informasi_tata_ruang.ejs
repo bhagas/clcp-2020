@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link rel="shortcut icon" href="/images/template/Logo Kab Pekalongan.ico">
+	<title>Sistem Informasi RTRW Kabupaten Pekalongan</title>
+
+	<link href="/stylesheets/template/css/theme.css" rel="stylesheet">
+	<link href="/stylesheets/template/css/style.css" rel="stylesheet">
+	<link href="/stylesheets/template/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  
+  <!-- Plugins This Page -->
+  <!-- End Plugins This Page -->
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+  <style type="text/css">
+    body{
+        font-family: "Source Sans Pro";
+    }
+
+    
+  </style>
+</head>
+
+<body>
+    <section style="position: relative;padding-top: 30px;padding-bottom: 30px;">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <h3 class="text-center"><strong>PANDUAN INPUT KOORDINAT LOKASI</strong></h3>
+          </div>
+          
+
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-top: 30px;">
+            <!-- <img src="http://via.placeholder.com/1920x1080" class="img-responsive" style="width:100%;height: 100vh"> -->
+            <img src="/images/template/alur/ALUR.png" style="width: 100%;">
+          </div>
+
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+             <a href="/peta_informasi_tata_ruang"> <button type="button" class="btn btn-primary btn-lg pull-right" >Lanjut <i class="fa fa-arrow-circle-o-right fa-lg" aria-hidden="true"></i></button></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- modal permohonan informasi -->
+    <div class="modal fade form_permohonan_informasi" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="gridSystemModalLabel">Formulir Permohonan Informasi</h4>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <form action="/peta_informasi_tata_ruang" method="POST">
+                  <div class="form-group">
+                    <label>Nama</label>
+                    <input type="text" class="form-control" name="n" id="" placeholder="" required>
+                  </div>
+
+                  <div class="form-group">
+                    <label>NIK</label>
+                    <input type="text" class="form-control" name="nik" id="" placeholder="" required>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Email</label>
+                    <input type="text" class="form-control" name="e" id="" placeholder="" required>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Telepon</label> 
+                    <input type="text" class="form-control" name="t" id="" placeholder="" required>
+                  </div>
+
+                  <button type="submit" class="btn btn-default">Submit</button>
+                </form>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div> -->
+        </div>
+      </div>
+    </div>
+    <!-- end modal permohonan informasi -->
+    <script src="/plugins/jquery/jquery-1.11.1.min.js"></script>
+    <script src="/javascripts/template/bootstrap.min.js"></script>
+    
+    <!-- Plugins This Page -->
+    <!-- End Plugins This Page -->
+    <script type="text/javascript">
+
+    </script>
+</body>
+</html>

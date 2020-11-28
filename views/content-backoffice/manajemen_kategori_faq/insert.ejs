@@ -1,0 +1,78 @@
+<% include ../../template-backoffice/header.ejs %>
+<!-- BEGIN PAGE CONTENT -->
+<div class="page-content">
+  <div class="header">
+    <h2><strong>Tambah Data Kategori FAQ</strong></h2>
+    <div class="breadcrumb-wrapper">
+      <ol class="breadcrumb">
+        <li><a href="/backoffice">Dashboard</a></li>
+        <li><a href="/manajemen_kategori_faq">Data Kategori FAQ</a></li>
+        <li class="active">Tambah Data</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="panel">
+        <div class="panel-content">
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <form role="form" action="/manajemen_kategori_faq/submit_insert" method="POST" >
+                <div class="form-group">
+                  <label>Kategori FAQ</label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                      <input type="text" class="form-control" name="kategori" id="" placeholder="">    
+                    </div>
+                  </div>
+                </div>
+
+                
+                <button type="submit" class="btn btn-primary btn-embossed">Simpan Data</button>
+              </form>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <div class="copyright">
+      <p class="pull-left sm-pull-reset">
+        <span>Copyright <span class="copyright">©</span> 2017 </span>
+        <span>Pemerintah Kabupaten Pekalongan</span>.
+      </p>
+    </div>
+  </div>
+</div>
+<!-- END PAGE CONTENT -->
+
+<% include ../../template-backoffice/footer.ejs %>
+<script type="text/javascript">
+  $(document).ready(function() {
+    // Option ckeditor
+    // CKEDITOR.replace( 'deskripsi', {
+    //   toolbarGroups: [
+    //     { name: 'clipboard', groups: [ 'clipboard', 'undo' ] },
+    //     { name: 'editing', groups: [ 'find', 'selection', 'spellchecker', 'editing' ] },
+    //     { name: 'links', groups: [ 'links' ] },
+    //     { name: 'insert', groups: [ 'insert' ] },
+    //     { name: 'forms', groups: [ 'forms' ] },
+    //     { name: 'tools', groups: [ 'tools' ] },
+    //     { name: 'document', groups: [ 'mode', 'document', 'doctools' ] },
+    //     { name: 'others', groups: [ 'others' ] },
+    //     '/',
+    //     { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
+    //     { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi', 'paragraph' ] },
+    //     { name: 'styles', groups: [ 'styles' ] },
+    //     { name: 'colors', groups: [ 'colors' ] },
+    //     { name: 'about', groups: [ 'about' ] }
+    //   ],
+
+    //   removeButtons: 'Underline,Subscript,Superscript,About,Image,Styles,Format'
+    // });
+    // End option ckeditor
+  });
+</script>
